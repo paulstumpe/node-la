@@ -1,10 +1,20 @@
-const path = require('path');
-
-const SRC_DIR = path.join(__dirname, '/client/src');
-
 module.exports = {
-  entry: `${SRC_DIR}/index.jsx`,
+  entry: './client/src/index.jsx',
+  output: {
+    path: './client/dist',
+    publicPath: '/',
+    filename: 'bundle.js',
+  },
+  devServer: {
+    contentBase: './dist'
+  },
   module: {
-    loaders: []
+    rules: [
+      {
+        test: /\.jsx$/,
+        exclude: /node_modules/,
+        use: ['babel-loader'],
+      }
+    ]
   }
 }

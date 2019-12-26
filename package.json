@@ -11,15 +11,19 @@
     "react-dom": "^16.12.0"
   },
   "devDependencies": {
+    "@babel/core": "^7.7.7",
+    "@babel/preset-env": "^7.7.7",
     "babel-core": "^6.26.3",
     "babel-loader": "^8.0.6",
     "babel-preset-react": "^6.24.1",
     "html-webpack-plugin": "^3.2.0",
     "webpack": "^4.41.4",
+    "webpack-cli": "^3.3.10",
     "webpack-dev-server": "^3.10.1"
   },
   "scripts": {
-    "start": "node server/index.js",
+    "start-server": "node server/index.js",
+    "start-client": "webpack-dev-server --config ./webpack.config.js --mode development",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
@@ -31,6 +35,11 @@
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/node-la/node-la/issues"
+  },
+  "babel": {
+    "presets": [
+      "@babel/preset-env"
+    ]
   },
   "homepage": "https://github.com/node-la/node-la#readme"
 }
