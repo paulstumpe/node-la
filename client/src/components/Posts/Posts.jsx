@@ -9,8 +9,8 @@ const useStyles = makeStyles(theme => ({
   },
   paper: {
     padding: theme.spacing(2),
-    textAlign: 'left',
-    color: theme.palette.text.secondary,
+    margin: 'auto',
+    maxWidth: 500,
   },
 }));
 
@@ -19,7 +19,7 @@ const Posts = () => {
 
   return (
     <div className={classes.root}>
-      <Grid container spacing={3}>
+      <Grid container spacing={2}>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
             <strong>Post 1 Title</strong>
