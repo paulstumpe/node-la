@@ -1,1 +1,1 @@
-//TODO: create connection  to mariaDB
+//TODO: create connection to mariaDB

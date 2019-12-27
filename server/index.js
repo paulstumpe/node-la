@@ -11,5 +11,5 @@ const CLIENT_PATH = path.join(__dirname, '../client/dist/');
 app.use(express.static(CLIENT_PATH));
 
 app.listen(PORT, () => {
-  console.log(`Listening on :${PORT}`);
+  console.log(`Listening on :${PORT} 🍃🌱`);
 });
