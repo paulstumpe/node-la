@@ -32,7 +32,7 @@ const NavBar = () => {
           <Typography variant="h5" className={classes.title}>
             Node.LA
           </Typography>
-          <Button color="inherit">Login</Button>
+          <Button variant="contained" color="secondary">Login</Button>
         </Toolbar>
       </AppBar>
     </div>
