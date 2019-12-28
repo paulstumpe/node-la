@@ -1,15 +1,17 @@
+--For Best Results, define schema in the CLI, in this particular order so that no reference
+--errors are thrown
+
 DROP DATABASE nodela;
 
 CREATE DATABASE nodela;
 
 USE nodela;
 
-CREATE TABLE IF NOT EXISTS user (
+CREATE TABLE user (
 id INT NOT NULL AUTO_INCREMENT,
 username VARCHAR(20) NOT NULL UNIQUE,
 PRIMARY KEY (id)
 )
-
 
 CREATE TABLE hood(
   id INT NOT NULL AUTO_INCREMENT,
@@ -18,13 +20,11 @@ CREATE TABLE hood(
   PRIMARY KEY (id)
 )
 
-
-CREATE TABLE IF NOT EXISTS post_type (
+CREATE TABLE post_type (
   id INT NOT NULL AUTO_INCREMENT,
   help_gen VARCHAR(20) NOT NULL,
   PRIMARY KEY(id)
 )
-
 
 CREATE TABLE post (
   id INT NOT NULL AUTO_INCREMENT,
@@ -38,7 +38,6 @@ CREATE TABLE post (
   post_votes INT NOT NULL,
   PRIMARY KEY (id)
 )
-
 
 CREATE TABLE comment(
   id INT NOT NULL AUTO_INCREMENT,
