@@ -1,13 +1,26 @@
 import React from 'react';
-import { withStyles, ListItemText, ListItemIcon, Menu, MenuItem, IconButton } from '@material-ui/core';
-import { DraftsIcon, SendIcon, InboxIcon, MenuIcon } from '@material-ui/icons';
+import { withStyles } from '@material-ui/core/styles';
+import Menu from '@material-ui/core/Menu';
+import MenuItem from '@material-ui/core/MenuItem';
+import ListItemIcon from '@material-ui/core/ListItemIcon';
+import ListItemText from '@material-ui/core/ListItemText';
+import InboxIcon from '@material-ui/icons/MoveToInbox';
+import DraftsIcon from '@material-ui/icons/Drafts';
+import SendIcon from '@material-ui/icons/Send';
+import MenuIcon from '@material-ui/icons/Menu';
+import HomeIcon from '@material-ui/icons/Home';
+import HomeWorkIcon from '@material-ui/icons/HomeWork';
+import IconButton from '@material-ui/core/IconButton';
+import PersonIcon from '@material-ui/icons/Person';
+import WbCloudyIcon from '@material-ui/icons/WbCloudy';
 
 const StyledMenu = withStyles({
   paper: {
     border: '1px solid #d3d4d5',
   },
 })(props => (
-  <Menu elevation={0}
+  <Menu
+    elevation={0}
     getContentAnchorEl={null}
     anchorOrigin={{
       vertical: 'bottom',
@@ -34,29 +47,27 @@ const StyledMenuItem = withStyles(theme => ({
 
 const MenuList = () => {
   const [anchorEl, setAnchorEl] = React.useState(null);
-
+  //target clicked element on menu
   const handleClick = event => {
     setAnchorEl(event.currentTarget);
   };
-
+  //close menu when clicked off menu
   const handleClose = () => {
     setAnchorEl(null);
   };
 
   return (
     <div>
-
       <IconButton
-        edge="start"
         aria-controls="customized-menu"
         aria-haspopup="true"
         variant="contained"
         color="inherit"
-        aria-label="menu"
         onClick={handleClick}
       >
         <MenuIcon />
       </IconButton>
+      {/* Drop down menu */}
       <StyledMenu
         id="customized-menu"
         anchorEl={anchorEl}
@@ -66,21 +77,30 @@ const MenuList = () => {
       >
         <StyledMenuItem>
           <ListItemIcon>
-            <SendIcon fontSize="small" />
+            <HomeIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Sent mail" />
+          <ListItemText primary="Home" />
         </StyledMenuItem>
+
         <StyledMenuItem>
           <ListItemIcon>
-            <DraftsIcon fontSize="small" />
+            <PersonIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Drafts" />
+          <ListItemText primary="User" />
         </StyledMenuItem>
+
         <StyledMenuItem>
           <ListItemIcon>
-            <InboxIcon fontSize="small" />
+            <HomeWorkIcon fontSize="small" />
           </ListItemIcon>
-          <ListItemText primary="Inbox" />
+          <ListItemText primary="Neighborhoods" />
+        </StyledMenuItem>
+
+        <StyledMenuItem>
+          <ListItemIcon>
+            <WbCloudyIcon fontSize="small" />
+          </ListItemIcon>
+          <ListItemText primary="Weather" />
         </StyledMenuItem>
       </StyledMenu>
     </div>
