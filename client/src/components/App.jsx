@@ -8,6 +8,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
+    //send request to server at '/posts' for all current posts
   }
 
   render() {
