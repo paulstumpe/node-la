@@ -15,8 +15,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const Posts = () => {
+  //use given style from above
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <Grid container spacing={2}>
