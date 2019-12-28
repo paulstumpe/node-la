@@ -1,9 +1,7 @@
 const feathers = require('@feathersjs/feathers');
 const express = require('@feathersjs/express');
 const socketio = require('@feathersjs/socketio');
-// Creates an ExpressJS compatible Feathers application
 const app = express(feathers());
-
 // Parse HTTP JSON bodies
 app.use(express.json());
 // Parse URL-encoded params
@@ -14,50 +12,68 @@ app.use(express.static(__dirname));
 app.configure(express.rest());
 // Configure Socket.io real-time APIs
 app.configure(socketio());
-// Register an in-memory messages service
-app.use('/posts', new PostService());
-// Register a nicer error handler than the default Express one
-app.use(express.errorHandler());
 
-// Add any new real-time connection to the `everybody` channel
-app.on('connection', connection =>
-  app.channel('everybody').join(connection)
-);
-// Publish all events to the `everybody` channel
-app.publish(data => app.channel('everybody'));
-
+// app.use(express.errorHandler());
 
 // A messages service that allows to create new
 // and return all existing messages
-class PostsService {
+/*
+This class follows the feathers js doc to a t utilizing
+express as a way to run a RESTFUL api server
+*/
+class MessageBoardPostService {
   constructor() {
-    this.posts = [];
+    this.board = [];
   }
   async find () {
-    // Just return all our posts
-    return this.posts;
+    // Just return all our messages
+    return this.board;
   }
-  async create (data) {
+  async create (post) {
     // The new message is the data merged with a unique identifier
     // using the messages length since it changes whenever we add one
-    const post = {
-      id: this.posts.length,
-      text: data.text
+    const messageBoardPost = {
+      id: this.board.length,
+      text: post.text
     }
     // Add new message to the list
-    this.posts.push(post);
-    return post;
+    this.board.push(messageBoardPost);
+    return messageBoardPost;
   }
 }
 
+// Register the message service on the Feathers application
+app.use('posts', new MessageBoardPostService());
 
-// Start the server
-app.listen(3030).on('listening', () =>
-  console.log('Feathers server listening on localhost:3030')
-);
+// Log every time a new message has been created
+app.service('posts').on('created', post => {
+  console.log('A new post has been created', post);
+});
 
-// For good measure let's create a message
-// So our API doesn't look so empty
-app.service('messages').create({
+app.service('posts').create({
   text: 'Hello world from the server'
 });
+
+app.listen(3000).on('listening', () =>
+  console.log('Feathers server listening on localhost:3000')
+);
+
+// // A function that creates new messages and then logs
+// // all existing messages
+// const main = async () => {
+//   // Create a new message on our message service
+//   await app.service('posts').create({
+//     text: 'Welcome to Node.LA'
+//   });
+
+//   await app.service('posts').create({
+//     text: 'Thanks for growing with us'
+//   });
+
+//   // Find all existing messages
+//   const posts = await app.service('posts').find();
+
+//   console.log('All messages', posts);
+// };
+
+// main();
