@@ -2,6 +2,7 @@ const feathers = require('@feathersjs/feathers');
 const express = require('@feathersjs/express');
 const socketio = require('@feathersjs/socketio');
 const app = express(feathers());
+const PORT = process.env.PORT || 3000;
 // Parse HTTP JSON bodies
 app.use(express.json());
 // Parse URL-encoded params
@@ -25,7 +26,7 @@ class MessageBoardPostService {
   constructor() {
     this.board = [];
   }
-  async find () {
+  async find() {
     // Just return all our messages
     return this.board;
   }
@@ -51,9 +52,10 @@ app.service('posts').on('created', post => {
 });
 
 app.service('posts').create({
+  
   text: 'Hello world from the server'
 });
 
-app.listen(3000).on('listening', () =>
-  console.log('Feathers server listening on localhost:3000')
+app.listen(PORT).on('listening', () =>
+  console.log(`Feathers server is listening on ${PORT}! 🚀`)
 );

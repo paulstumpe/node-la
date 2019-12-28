@@ -1,17 +1,16 @@
 const mariadb = require('mariadb');
-const mariaConfig = require('./config')
+// const mariaConfig = require('./config')
 const Sequelize = require('sequelize');
 
-
-mariadb.createConnection({
-  host: 'localhost',
-  user: 'root',
-  password: '',
-  database: 'nodela',
-  port: 3306
-})
-  .then(conn => console.log('connected to the db! with the id' + conn.threadId))
-  .catch(err => console.log('MARIA ERR:', err))
+// mariadb.createConnection({
+//   host: 'localhost',
+//   user: 'root',
+//   password: '',
+//   database: 'nodela',
+//   port: 3306
+// })
+//   .then(conn => console.log('connected to the db! with the id' + conn.threadId))
+//   .catch(err => console.log('MARIA ERR:', err))
 
 const sqlize = new Sequelize('nodela', 'root', '', {
     dialect: 'mariadb',
