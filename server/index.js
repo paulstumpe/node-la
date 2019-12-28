@@ -57,23 +57,3 @@ app.service('posts').create({
 app.listen(3000).on('listening', () =>
   console.log('Feathers server listening on localhost:3000')
 );
-
-// // A function that creates new messages and then logs
-// // all existing messages
-// const main = async () => {
-//   // Create a new message on our message service
-//   await app.service('posts').create({
-//     text: 'Welcome to Node.LA'
-//   });
-
-//   await app.service('posts').create({
-//     text: 'Thanks for growing with us'
-//   });
-
-//   // Find all existing messages
-//   const posts = await app.service('posts').find();
-
-//   console.log('All messages', posts);
-// };
-
-// main();

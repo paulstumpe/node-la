@@ -1,6 +1,8 @@
 module.exports = {
-  host: 'localhost',
   user: 'root',
+  host: 'localhost',
   password: '',
   database: 'nodela',
+  dialect: 'mariadb',
+  port: '3306'
 };
