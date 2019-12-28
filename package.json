@@ -1,5 +1,5 @@
 {
-  "name": "nodeLA",
+  "name": "node-la",
   "version": "1.0.0",
   "description": "",
   "main": "index.js",
@@ -7,17 +7,19 @@
     "@feathersjs/express": "^4.4.3",
     "@feathersjs/feathers": "^4.4.3",
     "@feathersjs/socketio": "^4.4.3",
-    "dotenv": "^8.2.0",
-    "mariadb": "^2.1.4",
-    "mariasql": "^0.2.6",
-    "sequelize": "^5.21.3",
     "axios": "^0.19.0",
+    "dotenv": "^8.2.0",
     "eslint": "^6.8.0",
     "express": "^4.17.1",
+    "feathers-sequelize": "^6.1.0",
+    "mariadb": "^2.1.4",
+    "mariasql": "^0.2.6",
     "material-ui": "^0.20.2",
+    "mysql2": "^2.1.0",
     "path": "^0.12.7",
     "react": "^16.12.0",
-    "react-dom": "^16.12.0"
+    "react-dom": "^16.12.0",
+    "sequelize": "^5.21.3"
   },
   "devDependencies": {
     "@babel/core": "^7.7.7",
