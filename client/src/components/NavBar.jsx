@@ -1,16 +1,12 @@
 import React from 'react';
+//style imports for all material ui css
 import { makeStyles } from '@material-ui/core/styles';
-import AppBar from '@material-ui/core/AppBar';
-import Toolbar from '@material-ui/core/Toolbar';
-import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
-import IconButton from '@material-ui/core/IconButton';
+//all component imports needed for navbar
+import { AppBar, Toolbar, Typography, Button, IconButton } from '@material-ui/core';
+//all material icon imports
 import MenuIcon from '@material-ui/icons/Menu';
-import TextField from '@material-ui/core/TextField';
-import Dialog from '@material-ui/core/Dialog';
-import DialogActions from '@material-ui/core/DialogActions';
-import DialogContent from '@material-ui/core/DialogContent';
-import DialogTitle from '@material-ui/core/DialogTitle';
+//all component imports needed for login dialog box
+import { TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -29,7 +25,7 @@ const NavBar = () => {
 
   const [open, setOpen] = React.useState(false);
 
-  const handleClickOpen = () => {
+  const handleOpen = () => {
     setOpen(true);
   };
 
@@ -41,24 +37,23 @@ const NavBar = () => {
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
+          {/* menu button */}
           <IconButton edge="start" className={classes.menuButton} color="inherit" aria-label="menu">
             <MenuIcon />
           </IconButton>
-          <Typography variant="h5" className={classes.title}>
-            Node.LA
-          </Typography>
-
-          <Button variant="contained" color="secondary" onClick={handleClickOpen}>Login</Button>
-
+          {/* app title */}
+          <Typography variant="h5" className={classes.title}> Node.LA </Typography>
+          {/* Login button */}
+          <Button variant="contained" color="secondary" onClick={handleOpen}> Login </Button>
+          {/* dialog box for loging in */}
           <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-
-            <DialogTitle id="form-dialog-title">Login</DialogTitle>
-
+            <DialogTitle id="form-dialog-title"> Login </DialogTitle>
+            {/* text fields in dialog box */}
             <DialogContent>
-              <TextField id="name" label="Username" type="username" fullWidth />
-              <TextField id="name" label="Password" type="password" fullWidth />
+              <TextField id="username" label="Username" type="username" fullWidth />
+              <TextField id="password" label="Password" type="password" fullWidth />
             </DialogContent>
-
+            {/* buttons in dialog box */}
             <DialogActions>
               <Button onClick={handleClose} color="primary">Cancel</Button>
               <Button onClick={handleClose} color="primary">Login</Button>
