@@ -1,5 +1,6 @@
---For Best Results, define schema in the CLI, in this particular order so that no reference
---errors are thrown
+--For Best Results, define schema in the CLI an in this particular order so that no reference
+--errors are thrown. Foreign Key structure is a mariadb requirement
+
 
 DROP DATABASE nodela;
 
