@@ -42,7 +42,7 @@ const StyledMenuItem = withStyles(theme => ({
   },
 }))(MenuItem);
 
-const MenuList = () => {
+const MenuList = ({ changeView }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   //target clicked element on menu
   const handleClick = event => {
@@ -72,21 +72,21 @@ const MenuList = () => {
         open={Boolean(anchorEl)}
         onClose={handleClose}
       >
-        <StyledMenuItem>
+        <StyledMenuItem onClick={() => {changeView("posts")}}>
           <ListItemIcon>
             <HomeIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Home" />
         </StyledMenuItem>
 
-        <StyledMenuItem>
+        <StyledMenuItem onClick={() => {changeView("userPosts")}}>
           <ListItemIcon>
             <PersonIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="User" />
         </StyledMenuItem>
 
-        <StyledMenuItem>
+        <StyledMenuItem onClick={() => {changeView("neighborhoods")}}>
           <ListItemIcon>
             <HomeWorkIcon fontSize="small" />
           </ListItemIcon>

@@ -1,19 +1,45 @@
 import React from 'react';
 import NavBar from './NavBar.jsx';
-import Posts from './Posts/Posts.jsx';
-import UserPosts from './Posts/UserPosts.jsx';
+import Posts from './Views/Posts.jsx';
+import UserPosts from './Views/UserPosts.jsx';
+import Neighborhoods from './Views/Neighborhoods.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+
+    this.state = {
+      view: 'posts'
+    };
+
+    this.changeView = this.changeView.bind(this);
+  }
+
+  //function to pass down to change views
+  changeView(option) {
+    this.setState({
+      view: option,
+    });
   }
 
   render() {
+    const { view } = this.state;
     return (
       <div>
-        <NavBar />
+        <NavBar changeView={this.changeView}/>
         <br />
-        <UserPosts />
+        {(() => {
+          switch (view) {
+            case 'posts':
+              return <Posts />;
+            case 'userPosts':
+              return <UserPosts />;
+            case 'neighborhoods':
+              return <Neighborhoods />;
+            default:
+              return <Posts />;
+          }
+        })()}
       </div>
     )
   }
