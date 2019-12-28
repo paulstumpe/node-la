@@ -19,9 +19,15 @@ module.exports = {
         use: ['babel-loader']
       },
       {
-        test: /\.png$/,
-        exclude: /node_modules/,
-        use: ['file-loader']
+        test: /\.(png|jpe?g|gif|svg)$/,
+        use: [
+          {
+            loader: "file-loader",
+            options: {
+              outputPath: 'images'
+            }
+          }
+        ]
       }
     ]
   }
