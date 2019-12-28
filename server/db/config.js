@@ -4,5 +4,8 @@ module.exports = {
   password: '',
   database: 'nodela',
   dialect: 'mariadb',
-  port: '3306'
+  port: '3306',
+  dialectOptions: {
+    connectionTimeout: 1000
+  }
 };
