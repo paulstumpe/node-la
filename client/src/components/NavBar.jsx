@@ -25,7 +25,7 @@ const NavBar = () => {
           {/* menu button */}
           <MenuList />
           {/* app title */}
-          <Typography variant="h5" className={classes.title}> Node.LA </Typography>
+          <Typography variant="h5" className={classes.title}>  Node.LA </Typography>
           {/* Login button */}
           <div variant="contained" color="secondary"> 
             <Login />

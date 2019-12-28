@@ -13,7 +13,7 @@ class App extends React.Component {
       <div>
         <NavBar />
         <br />
-        <UserPosts />
+        <Posts />
       </div>
     )
   }
