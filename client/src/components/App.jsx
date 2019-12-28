@@ -1,6 +1,7 @@
 import React from 'react';
 import NavBar from './NavBar.jsx';
 import Posts from './Posts/Posts.jsx';
+import UserPosts from './Posts/UserPosts.jsx';
 
 class App extends React.Component {
   constructor(props) {
@@ -12,7 +13,7 @@ class App extends React.Component {
       <div>
         <NavBar />
         <br />
-        <Posts />
+        <UserPosts />
       </div>
     )
   }
