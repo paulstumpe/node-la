@@ -3,6 +3,7 @@ import React from 'react';
 import MenuList from './MenuList.jsx';
 import Login from './Login.jsx'
 import { makeStyles, AppBar, Toolbar, Typography } from '@material-ui/core';
+//import logo from './images/Logo.png';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -16,14 +17,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const NavBar = () => {
+const NavBar = ({ changeView }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
           {/* menu button */}
-          <MenuList />
+          <MenuList changeView={changeView}/>
           {/* app title */}
           <Typography variant="h5" className={classes.title}>  Node.LA </Typography>
           {/* Login button */}
