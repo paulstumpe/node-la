@@ -1,28 +1,15 @@
-const mariadb = require('mariadb');
 const util = require('util')
-const mariaConfig = require('./config')a
-// const mariaConfig = require('./config')
+const mariaConfig = require('./config')
 const Sequelize = require('sequelize');
-const Model = Sequelize.Model;
 
+//const sequelize = new Sequelize('nodela', 'root', '', mariaConfig);
+
+//const query = util.promisify(sequelize.query).bind(sequelize)
 //must use this specific syntax to connect with sequelize
-const sqlize = new Sequelize('nodela', 'root', '', mariaConfig);
 
-//use authenticate method to test the connection
-sqlize.authenticate()
-  .then(function () {
-    console.log('Connection has been established successfully.');
-  })
-  .catch(function (err) {
-    console.log('SQLIZE ERR:', err);
-  });
-
-  const User = sqlize.define('user', {
-    username: {
-      type: Sequelize.STRING,
-      allowNull: false,
-      unique: true
-  })
+// const getPosts = () => {
+//   return query('SELECT * FROM users')
+// }
 
 
   //get all the posts or comments from the db
@@ -36,4 +23,8 @@ sqlize.authenticate()
   //update a post or comment in the db
 
   //sync all models at once to the db instead of individually
-  sqlize.sync()
+  //sqlize.sync()
+
+  module.exports = {
+    getPosts,
+  }

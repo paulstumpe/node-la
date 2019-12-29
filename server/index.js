@@ -40,6 +40,7 @@ const User = sequelize.define('user', {
   },
   main_id: {
     type: Sequelize.INTEGER,
+    allowNull: false,
   }
 })
 
@@ -74,7 +75,7 @@ User.sync({ force: true })
 const Post_Type = sequelize.define('post_type', {
   help_gen: {
     type: Sequelize.STRING,
-    allowNull: true,
+    allowNull: false,
   }
 })
 
@@ -88,34 +89,31 @@ Post_Type.sync({ force: true })
 const Post = sequelize.define('post', {
   post_hood_id: {
     type: Sequelize.INTEGER,
-    unique: true
-    // references: {
-    //   model: User,
-    //   key: 'id'
-    // }
+    allowNull: false,
+    references: {
+      model: Hood,
+      key: 'id'
+    }
   },
   post_type_id: {
     type: Sequelize.INTEGER,
+    allowNull: false,
     unique: true
-    // references: {
-    //   model: User,
-    //   key: 'id'
-    // }
   },
   post_body: {
     type: Sequelize.STRING,
-    allowNull: true,
+    allowNull: false,
   },
   post_votes: {
     type: Sequelize.INTEGER,
-    allowNull: true
+    allowNull: false
   }
 })
 
 Post.sync({ force: true })
   .then(() => {
     return Post.create({
-      post_hood: 'downtown',
+      post_hood_id: 'downtown',
       post_type_id: 1,
       post_body: 'this is a test post',
       post_votes: 1
@@ -126,6 +124,7 @@ Post.sync({ force: true })
 const Comment = sequelize.define('comment', {
   comment_user_id: {
     type: Sequelize.INTEGER,
+    allowNull: false,
     references: {
       model: User,
       key: 'id'
@@ -133,8 +132,9 @@ const Comment = sequelize.define('comment', {
   },
   comment_post_id: {
     type: Sequelize.INTEGER,
+    allowNull: false,
     references: {
-      model: Post,
+      model: User,
       key: 'id'
     }
   },
