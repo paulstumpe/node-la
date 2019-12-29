@@ -1,8 +1,13 @@
-const util = require('util')
-const mariaConfig = require('./config')
+const util = require('util');
+const mariaConfig = require('./config');
 const Sequelize = require('sequelize');
 
 const sequelize = new Sequelize('nodela', 'root', '', mariaConfig);
+
+
+sequelize.authenticate()
+  .then(() => console.log('Connection to the database has been established successfully.'))
+  .catch(err => console.log('Database Connection Error', err));
 
 //const query = util.promisify(sequelize.query).bind(sequelize)
 //must use this specific syntax to connect with sequelize
@@ -11,62 +16,65 @@ const sequelize = new Sequelize('nodela', 'root', '', mariaConfig);
 //   return query('SELECT * FROM users')
 // }
 
+//User Table
+
 const User = sequelize.define('user', {
   username: {
     type: Sequelize.STRING,
     allowNull: false,
     unique: true
   },
-  main_id: {
+  mainId: {
     type: Sequelize.INTEGER,
     allowNull: false,
   }
-})
+});
 
 User.sync({ force: true })
   .then(() => {
     return User.create({
       username: 'testUser'
-    })
-  })
+    });
+  });
 
+//Neighborhood Table
+const Hood = sequelize.define('hood', {
+  upOrDown: {
+    type: Sequelize.STRING,
+    allowNull: false,
+  },
+  hoodName: {
+    type: Sequelize.STRING,
+    allowNull: false
+  }
+});
 
-  const Hood = sequelize.define('hood', {
-    up_down: {
-      type: Sequelize.STRING,
-      allowNull: false,
-    },
-    hood_name: {
-      type: Sequelize.STRING,
-      allowNull: false
-    }
-  })
-  //on post request to board
-    Hood.sync({ force: true })
-    .then(() => {
-      return Hood.create({
-        up_down: 'downtown',
-        hood_name: 'treme'
-      })
-    })
+Hood.sync({ force: true })
+  .then(() => {
+    return Hood.create({
+      upOrDown: 'downtown',
+      hoodName: 'treme'
+    });
+  });
 
-
-const Post_Type = sequelize.define('post_type', {
-  help_gen: {
+//Post Type Table
+const PostType = sequelize.define('post_type', {
+  helpOrGen: {
     type: Sequelize.STRING,
     allowNull: false,
   }
-})
+});
 
-Post_Type.sync({ force: true })
+PostType.sync({ force: true })
   .then(() => {
-    return Post_Type.create({
-      help_gen: 'general'
-    })
-  })
+    return PostType.create({
+      helpOrGen: 'general'
+    });
+  });
 
+//Post Table
 const Post = sequelize.define('post', {
-  post_hood_id: {
+  postHoodId: {
     type: Sequelize.INTEGER,
     allowNull: false,
     references: {
@@ -74,34 +82,35 @@ const Post = sequelize.define('post', {
       key: 'id'
     }
   },
-  post_type_id: {
+  postTypeId: {
     type: Sequelize.INTEGER,
     allowNull: false,
     unique: true
   },
-  post_body: {
+  postBody: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  post_votes: {
+  postVotes: {
     type: Sequelize.INTEGER,
     allowNull: false
   }
-})
+});
 
 Post.sync({ force: true })
   .then(() => {
     return Post.create({
-      post_hood_id: 1,
-      post_type_id: 1,
-      post_body: 'this is a test post',
-      post_votes: 1
-    })
-  })
+      postHoodId: 1,
+      postTypeId: 1,
+      postBody: 'this is a test post',
+      postVotes: 1
+    });
+  });
 
+//Comment Table
 
 const Comment = sequelize.define('comment', {
-  comment_user_id: {
+  commentUserId: {
     type: Sequelize.INTEGER,
     allowNull: false,
     references: {
@@ -109,7 +118,7 @@ const Comment = sequelize.define('comment', {
       key: 'id'
     }
   },
-  comment_post_id: {
+  commentPostId: {
     type: Sequelize.INTEGER,
     allowNull: false,
     references: {
@@ -117,61 +126,56 @@ const Comment = sequelize.define('comment', {
       key: 'id'
     }
   },
-  comment_body: {
+  commentBody: {
     type: Sequelize.STRING,
     allowNull: false,
   },
-  comment_votes: {
+  commentVotes: {
     type: Sequelize.INTEGER,
     allowNull: false
   }
-})
+});
 
 Comment.sync({ force: true })
   .then(() => {
     return Comment.create({
-      comment_user_id: 1,
-      comment_post_id: 1,
-      comment_body: 'this is a test comment',
-      comment_votes: 1
-    })
-  })
+      commentUserId: 1,
+      commentPostId: 1,
+      commentBody: 'this is a test comment',
+      commentVotes: 1
+    });
+  });
+
+//Associations
+Hood.hasOne(Post);
+User.hasOne(Hood);
+User.hasOne(PostType);
+User.hasMany(Post),
+User.hasMany(Comment);
+Hood.belongsTo(User);
+Post.hasOne(PostType);
+Post.hasOne(Hood);
+Post.hasOne(User);
+Post.hasMany(Comment);
+Comment.belongsTo(User);
+PostType.hasOne(Post);
+PostType.belongsTo(Post);
 
 
 
-  Hood.hasOne(Post)
-  User.hasOne(Hood)
-  User.hasOne(Post_Type)
-  User.hasMany(Post, {
-  foreignKey: 'main_id',
-  sourceKey: 'main_id',
-  constraints: false
-  }),
-  User.hasMany(Comment)
-  Hood.belongsTo(User)
-  Post.hasOne(Post_Type)
-  Post.hasOne(Hood)
-  Post.hasOne(User)
-  Post.hasMany(Comment)
-  Comment.belongsTo(User)
-  Post_Type.hasOne(Post)
-  Post_Type.belongsTo(Post)
+//get all the posts or comments from the db
 
+//save the posts & comments to the db
 
+//delete a post or comment from the db
 
-  //get all the posts or comments from the db
+//select a single post or comment from the db
 
-  //save the posts & comments to the db
+//update a post or comment in the db
 
-  //delete a post or comment from the db
+//sync all models at once to the db instead of individually
+//sqlize.sync()
 
-  //select a single post or comment from the db
-
-  //update a post or comment in the db
-
-  //sync all models at once to the db instead of individually
-  //sqlize.sync()
-
-  // module.exports = {
-  //   getPosts,
-  // }
+// module.exports = {
+//   getPosts,
+// }
