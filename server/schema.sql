@@ -50,3 +50,5 @@ CREATE TABLE comment(
   comment_votes INT NOT NULL,
   PRIMARY KEY (id)
 )
+
+
