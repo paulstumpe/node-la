@@ -27,8 +27,8 @@ const useStyles = makeStyles(theme => ({
 }));
 
 const UserPosts = () => {
+  //use given style from above
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <Paper className={classes.paper}>

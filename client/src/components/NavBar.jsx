@@ -3,7 +3,7 @@ import React from 'react';
 import MenuList from './MenuList.jsx';
 import Login from './Login.jsx'
 import { makeStyles, AppBar, Toolbar, Typography } from '@material-ui/core';
-//import logo from './images/Logo.png';
+import Logo from './images/Logo.png';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -14,6 +14,12 @@ const useStyles = makeStyles(theme => ({
   },
   title: {
     flexGrow: 1,
+  },
+  img: {
+    margin: 'auto',
+    display: 'block',
+    maxWidth: '170px',
+    maxHeight: '170px',
   },
 }));
 
@@ -26,8 +32,8 @@ const NavBar = ({ changeView }) => {
           {/* menu button */}
           <MenuList changeView={changeView}/>
           {/* app title */}
-          <Typography variant="h5" className={classes.title}>  Node.LA </Typography>
-          
+          <img className={classes.img} src={Logo} alt="Logo" />
+          {/* <Typography variant="h5" className={classes.title}>  Node.LA </Typography> */}
           {/* Login button */}
           <div variant="contained" color="secondary"> 
             <Login />

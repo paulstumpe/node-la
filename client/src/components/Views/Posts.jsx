@@ -25,7 +25,7 @@ const Posts = () => {
             <strong>Post 1 Title</strong>
             <br />
             <small>Post 1 placeholder text here</small>
-            </Paper>
+          </Paper>
         </Grid>
         <Grid item xs={12}>
           <Paper className={classes.paper}>
