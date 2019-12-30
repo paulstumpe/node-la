@@ -27,6 +27,7 @@ const NavBar = ({ changeView }) => {
           <MenuList changeView={changeView}/>
           {/* app title */}
           <Typography variant="h5" className={classes.title}>  Node.LA </Typography>
+          
           {/* Login button */}
           <div variant="contained" color="secondary"> 
             <Login />

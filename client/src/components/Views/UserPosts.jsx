@@ -35,7 +35,7 @@ const UserPosts = () => {
         <Grid container spacing={2}>
           <Grid item>
             <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="complex" src="/static/images/grid/complex.jpg" />
+              <img className={classes.img} alt="img" src="https://images.homedepot-static.com/productImages/b8079873-ecf3-49f8-87bf-476b5f24c4d7/svn/just-add-ice-house-plants-262768-64_400_compressed.jpg" />
             </ButtonBase>
           </Grid>
           <Grid item xs={12} sm container>
