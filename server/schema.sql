@@ -52,3 +52,101 @@
 -- )
 
 
+-- //User Table
+
+-- // const User = sequelize.define('user', {
+-- //   username: {
+-- //     type: Sequelize.STRING,
+-- //     allowNull: false,
+-- //     unique: true
+-- //   },
+-- //   mainId: {
+-- //     type: Sequelize.INTEGER,
+-- //     allowNull: false,
+-- //   }
+-- // });
+
+
+-- //Neighborhood Table
+-- // const Hood = sequelize.define('hood', {
+-- //   upOrDown: {
+-- //     type: Sequelize.STRING,
+-- //     allowNull: false,
+-- //   },
+-- //   hoodName: {
+-- //     type: Sequelize.STRING,
+-- //     allowNull: false
+-- //   }
+-- // });
+
+
+
+-- // //Post Type Table
+-- // const PostType = sequelize.define('post_type', {
+-- //   helpOrGen: {
+-- //     type: Sequelize.STRING,
+-- //     allowNull: false,
+-- //   }
+-- // });
+
+
+
+-- // //Post Table
+-- // const Post = sequelize.define('post', {
+-- //   postHoodId: {
+-- //     type: Sequelize.INTEGER,
+-- //     allowNull: false,
+-- //     references: {
+-- //       model: Hood,
+-- //       key: 'id'
+-- //     }
+-- //   },
+-- //   postTypeId: {
+-- //     type: Sequelize.INTEGER,
+-- //     allowNull: false,
+-- //     unique: true
+-- //   },
+-- //   postBody: {
+-- //     type: Sequelize.STRING,
+-- //     allowNull: false,
+-- //   },
+-- //   postVotes: {
+-- //     type: Sequelize.INTEGER,
+-- //     allowNull: false
+-- //   }
+-- // });
+
+
+-- //Comment Table
+
+-- // const Comment = sequelize.define('comment', {
+-- //   commentUserId: {
+-- //     type: Sequelize.INTEGER,
+-- //     allowNull: false,
+-- //     references: {
+-- //       model: User,
+-- //       key: 'id'
+-- //     }
+-- //   },
+-- //   commentPostId: {
+-- //     type: Sequelize.INTEGER,
+-- //     allowNull: false,
+-- //     references: {
+-- //       model: Post,
+-- //       key: 'id'
+-- //     }
+-- //   },
+-- //   commentBody: {
+-- //     type: Sequelize.STRING,
+-- //     allowNull: false,
+-- //   },
+-- //   commentVotes: {
+-- //     type: Sequelize.INTEGER,
+-- //     allowNull: false
+-- //   }
+-- // });
+
+
+-- //Associations
+
+
