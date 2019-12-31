@@ -1,19 +1,46 @@
 import React from 'react';
+import NavBar from './NavBar.jsx';
+import Posts from './Views/Posts.jsx';
+import UserPosts from './Views/UserPosts.jsx';
+import Neighborhoods from './Views/Neighborhoods.jsx';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
+
     this.state = {
+      view: 'posts'
     };
+
+    this.changeView = this.changeView.bind(this);
   }
 
-  componentDidMount() {
-    //send request to server at '/posts' for all current posts
+  //function to pass down to change views
+  changeView(option) {
+    this.setState({
+      view: option,
+    });
   }
 
   render() {
+    const { view } = this.state;
     return (
-        <div>Hello</div>
+      <div>
+        <NavBar changeView={this.changeView}/>
+        <br />
+        {(() => {
+          switch (view) {
+            case 'posts':
+              return <Posts />;
+            case 'userPosts':
+              return <UserPosts />;
+            case 'neighborhoods':
+              return <Neighborhoods />;
+            default:
+              return <Posts />;
+          }
+        })()}
+      </div>
     )
   }
 }
