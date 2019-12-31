@@ -32,49 +32,49 @@ const Neighborhoods = () => {
 
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <Typography variant="h5" style={{ cursor: 'pointer' }}>Post Title</Typography>
+            <Typography variant="h5" style={{ cursor: 'pointer' }} onClick={() => { changeView("post") }}>Post Title</Typography>
             <Typography variant="body2">Post placeholder text here</Typography>
           </Paper>
         </Grid>
 
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <Typography variant="h5" style={{ cursor: 'pointer' }}>Post Title</Typography>
+            <Typography variant="h5" style={{ cursor: 'pointer' }} onClick={() => { changeView("post") }}>Post Title</Typography>
             <Typography variant="body2">Post placeholder text here</Typography>
           </Paper>
         </Grid>
 
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <Typography variant="h5" style={{ cursor: 'pointer' }}>Post Title</Typography>
+            <Typography variant="h5" style={{ cursor: 'pointer' }} onClick={() => { changeView("post") }}>Post Title</Typography>
             <Typography variant="body2">Post placeholder text here</Typography>
           </Paper>
         </Grid>
 
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <Typography variant="h5" style={{ cursor: 'pointer' }}>Post Title</Typography>
+            <Typography variant="h5" style={{ cursor: 'pointer' }} onClick={() => { changeView("post") }}>Post Title</Typography>
             <Typography variant="body2">Post placeholder text here</Typography>
           </Paper>
         </Grid>
 
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <Typography variant="h5" style={{ cursor: 'pointer' }}>Post Title</Typography>
+            <Typography variant="h5" style={{ cursor: 'pointer' }} onClick={() => { changeView("post") }}>Post Title</Typography>
             <Typography variant="body2">Post placeholder text here</Typography>
           </Paper>
         </Grid>
 
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <Typography variant="h5" style={{ cursor: 'pointer' }}>Post Title</Typography>
+            <Typography variant="h5" style={{ cursor: 'pointer' }} onClick={() => { changeView("post") }}>Post Title</Typography>
             <Typography variant="body2">Post placeholder text here</Typography>
           </Paper>
         </Grid>
 
         <Grid item xs={12}>
           <Paper className={classes.paper}>
-            <Typography variant="h5" style={{ cursor: 'pointer' }}>Post Title</Typography>
+            <Typography variant="h5" style={{ cursor: 'pointer' }} onClick={() => { changeView("post") }}>Post Title</Typography>
             <Typography variant="body2">Post placeholder text here</Typography>
           </Paper>
         </Grid>
