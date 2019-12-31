@@ -1,4 +1,4 @@
-const ctrl = require('./db/Controllers');
+const ctrl = require('./db/controllers');
 
 /*
 signup
@@ -7,7 +7,7 @@ users/post:id
 user:id
 posts
 */
-module.exports = function(app, express){
+module.exports = function(app, express) {
   //get all the posts
   app.get('/posts', ctrl.getPosts);
   //sign up for an account
@@ -15,10 +15,10 @@ module.exports = function(app, express){
   //login to an account
 
   //get a single user
-  app.get('/users:id', ctrl.getSingleUser);
+  app.get('/user:id', ctrl.getSingleUser);
   //get all users
   app.get('/users', ctrl.getUsers);
   //get single user post
-  app.get('/users:id/post', ctrl.getSinglePost);
- // app.post('/users:id', )
-}
+  app.get('/user:id/post', ctrl.getSinglePost);
+  // app.post('/users:id', )
+};
