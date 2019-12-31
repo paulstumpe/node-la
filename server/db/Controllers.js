@@ -20,6 +20,25 @@ const app = express(feathers());
 //update a post or comment in the db
 
 
+//create a user
+const postUser = function (req, res, next) {
+  const username = req.body.username; // Grab username from req body
+  const id = req.body.id; // Grab password from req body
+  User.create({
+    username: username, 
+    id: id 
+  }).then((data) => {
+    res.status(201).json({ // Send 201 status upon success.
+      status: 'success',
+      data: data,
+      message: `POSTED ${username} TO DATABASE`
+    });
+  }).catch(err =>  {// Error handling for inner callback create
+    console.log('There was an error adding the user to the db', err);
+    return next();
+  });
+}
+
 const getUsers = function(req, res, next){
 User.findAll({})
 .then((response) => {
@@ -29,14 +48,48 @@ User.findAll({})
     data: response.data,
     message: 'Here are all the users!'
   }))
-  next();
+  return next();
 })
 .catch(err => {
   console.log(err)
-  next();
+  return next();
 })
 }
 
-module.exports = {
-  getUsers
+const getSinglePost = function(req, res) {
+  const id = req.params.goal_id;
+  db.Post.find({
+    where: {
+      id: id
+    }
+  })
+  .then((singlePost) => {
+    res.status(200).json({
+      data: singlePost
+    });
+  })
+  .catch(err => res.send('ERROR: Couldnt grab that post from the DB', err))
+};
+
+const getPosts = function(req, res, next){
+  Post.findAll({})
+  .then((response) => {
+    res.status(200)
+    res.send(JSON.stringify({
+      status: 'success',
+      data: response.data,
+      message: 'Here are all the posts!'
+    }))
+    return next();
+  })
+  .catch(err => {
+    console.log(err)
+    return next();
+  })
+}
+
+  module.exports = {
+    getUsers,
+    getPosts,
+    getSinglePost
 }
