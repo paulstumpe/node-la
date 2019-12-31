@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Posts = () => {
+const Posts = ({ changeView }) => {
   //use given style from above
   const classes = useStyles();
   return (
@@ -41,7 +41,7 @@ const Posts = () => {
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography gutterBottom variant="h5" style={{ cursor: 'pointer' }}>
+                <Typography gutterBottom variant="h5" style={{ cursor: 'pointer' }} onClick={() => { changeView("post") }}>
                   Post Title
                 </Typography>
                 <Typography variant="body2" gutterBottom>
