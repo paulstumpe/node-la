@@ -1,5 +1,8 @@
 module.exports = (sequelize, type) => {
   return sequelize.define('post', {
+    title: {
+      type: type.STRING,
+      allowNull: false,
     postHoodId: {
       type: type.INTEGER,
       allowNull: false,
@@ -14,7 +17,7 @@ module.exports = (sequelize, type) => {
       unique: true
     },
     postBody: {
-      type: type.STRING,
+      type: type.TEXT,
       allowNull: false,
     },
     postVotes: {

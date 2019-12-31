@@ -12,9 +12,7 @@ module.exports = function(app, express) {
   app.get('/posts', ctrl.getPosts);
   //sign up for an account
   app.post('/signup', ctrl.createUser);
-  //login to an account
-
-  //get a single user
+  //login to an account/get a single user
   app.get('/user:id', ctrl.getSingleUser);
   //get all users
   app.get('/users', ctrl.getUsers);
