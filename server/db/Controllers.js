@@ -21,7 +21,7 @@ const app = express(feathers());
 
 
 //create a user
-const postUser = function (req, res, next) {
+const createUser = function (req, res, next) {
   const username = req.body.username; // Grab username from req body
   const id = req.body.id; // Grab password from req body
   User.create({
@@ -91,5 +91,7 @@ const getPosts = function(req, res, next){
   module.exports = {
     getUsers,
     getPosts,
-    getSinglePost
+    getSinglePost,
+    createUser,
+
 }
