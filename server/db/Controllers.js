@@ -7,7 +7,7 @@ const app = express(feathers());
 
 // ! USER CRUD
 //create & save a user to the db
-// !CREATE
+// !CREATE USER
 const createUser = function(req, res, next) {
   const username = req.body.username; // Grab username from req body
   const id = req.body.id; // Grab password from req body
@@ -84,7 +84,7 @@ User.update({
 });
 };
 
-//! DELETE
+//! DELETE USER
 const deleteUser = function(req, res, next){
   User.destroy({
     where: {
@@ -96,7 +96,7 @@ const deleteUser = function(req, res, next){
 
 //! POST CRUD
 //select a single post or comment from the db
-//! CREATE
+//! CREATE POST
 const getSinglePost = function(req, res) {
   const id = req.params.postId;
   Post.findOne({
@@ -114,7 +114,7 @@ const getSinglePost = function(req, res) {
 };
 
 //get all the posts or comments from the db based on user id
-//!READ
+//!READ POST
 const getPosts = function(req, res, next) {
   Post.findAll({
     //where id : userId
@@ -135,9 +135,24 @@ const getPosts = function(req, res, next) {
     });
 };
 
+//!UPDATE POST
+const updatePost = function(req, res){
+  Post.update({
+    title: newTitle,
+    postBody: newPostBody,
+    }, {
+    where: {
+      id: postId
+    }
+  })
+  .then((newPost) => {
+    res.status(201);
+    console.log(`This post has been updated to ${newPost}`);
+  });
+  };
 
 //delete a specific post by iD
-//!DELETE
+//!DELETE POST
 const deletePost = function(req, res, next){
   Post.destroy({
     where: {
@@ -153,9 +168,14 @@ const deletePost = function(req, res, next){
 
 
 module.exports = {
-  getUsers,
-  getPosts,
-  getSinglePost,
   createUser,
-  getSingleUser
+  getSingleUser,
+  getUsers,
+  updateUser,
+  deleteUser,
+  createPost,
+  getSinglePost,
+  getPosts,
+  updatePost,
+  deletePost,
 };
