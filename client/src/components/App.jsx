@@ -12,7 +12,9 @@ class App extends React.Component {
 
     this.state = {
       view: 'posts',
-      neighborhood: 'uptown'
+      neighborhood: 'uptown',
+      posts: [],
+      currentPost: {},
     };
 
     this.changeView = this.changeView.bind(this);
