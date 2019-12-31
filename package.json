@@ -44,7 +44,7 @@
     "webpack-dev-server": "^3.10.1"
   },
   "scripts": {
-    "start": "node server/app.js",
+    "start": "node server/index.js",
     "lint": "eslint . --ext .js,.jsx",
     "start-client": "webpack --config webpack.config.js --mode development --watch",
     "test": "echo \"Error: no test specified\" && exit 1"
