@@ -6,7 +6,6 @@ const Post = () => {
   return (
     <div>
       <Typography variant="h3" style={{ fontWeight: "bolder", textAlign: "center", color: "white" }}>Post View</Typography>
-      <Login />
     </div>
   );
 }
