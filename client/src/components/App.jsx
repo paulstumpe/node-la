@@ -22,6 +22,9 @@ class App extends React.Component {
     });
   }
 
+//TODO:send request to /posts endpoint to get all posts from db 
+//as soon as the page mounts
+
   render() {
     const { view } = this.state;
     return (
