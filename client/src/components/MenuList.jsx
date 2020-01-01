@@ -10,6 +10,7 @@ import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import IconButton from '@material-ui/core/IconButton';
 import PersonIcon from '@material-ui/icons/Person';
 import WbCloudyIcon from '@material-ui/icons/WbCloudy';
+import Weather from './Weather.jsx';
 
 const StyledMenu = withStyles({
   paper: {
@@ -99,7 +100,11 @@ const MenuList = ({ changeView }) => {
           </ListItemIcon>
           <ListItemText primary="Weather" />
         </StyledMenuItem>
+
+          <Weather />
+
       </StyledMenu>
+
     </div>
   );
 }
