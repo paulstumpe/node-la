@@ -94,14 +94,7 @@ const MenuList = ({ changeView }) => {
           <ListItemText primary="Neighborhoods" />
         </StyledMenuItem>
 
-        <StyledMenuItem>
-          <ListItemIcon>
-            <WbCloudyIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Weather" />
-        </StyledMenuItem>
-
-          <Weather />
+        <Weather />
 
       </StyledMenu>
 

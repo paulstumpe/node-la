@@ -2,7 +2,7 @@ import React from 'react';
 //style imports for all material ui 
 import MenuList from './MenuList.jsx';
 import Login from './Login.jsx'
-import { makeStyles, AppBar, Toolbar, Typography } from '@material-ui/core';
+import { makeStyles, AppBar, Toolbar } from '@material-ui/core';
 import Logo from './images/Logo.png';
 
 const useStyles = makeStyles(theme => ({
