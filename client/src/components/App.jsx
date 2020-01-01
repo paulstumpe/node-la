@@ -3,13 +3,16 @@ import NavBar from './NavBar.jsx';
 import Posts from './Views/Posts.jsx';
 import UserPosts from './Views/UserPosts.jsx';
 import Neighborhoods from './Views/Neighborhoods.jsx';
+import Post from './Views/Post.jsx';
+
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      view: 'posts'
+      view: 'posts',
+      neighborhood: 'uptown'
     };
 
     this.changeView = this.changeView.bind(this);
@@ -34,13 +37,15 @@ class App extends React.Component {
         {(() => {
           switch (view) {
             case 'posts':
-              return <Posts />;
+              return <Posts changeView={this.changeView} neighborhood={this.state.neighborhood}/>;
             case 'userPosts':
-              return <UserPosts />;
+              return <UserPosts changeView={this.changeView}/>;
             case 'neighborhoods':
-              return <Neighborhoods />;
+              return <Neighborhoods changeView={this.changeView}/>;
+            case 'post':
+              return <Post changeView={this.changeView} />;
             default:
-              return <Posts />;
+              return <Posts changeView={this.changeView}/>;
           }
         })()}
       </div>
