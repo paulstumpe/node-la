@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const Neighborhoods = () => {
+const Neighborhoods = ({ changeView }) => {
   //use given style from above
   const classes = useStyles();
   return (

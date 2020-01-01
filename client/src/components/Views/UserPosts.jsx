@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const UserPosts = () => {
+const UserPosts = ({ changeView }) => {
   //use given style from above
   const classes = useStyles();
   return (

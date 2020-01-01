@@ -39,7 +39,7 @@ class App extends React.Component {
             case 'posts':
               return <Posts changeView={this.changeView} neighborhood={this.state.neighborhood} />;
             case 'userPosts':
-              return <UserPosts changeView={this.changeView} loggedIn={this.loggedIn} />;
+              return <UserPosts changeView={this.changeView} />;
             case 'neighborhoods':
               return <Neighborhoods changeView={this.changeView} />;
             case 'post':
