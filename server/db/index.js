@@ -9,6 +9,10 @@ const PostTypeModel = require('./models/PostType');
 
 const sequelize = new Sequelize('nodela', 'root', '', mariaConfig);
 
+const database = config.nodela;
+logger.info(`Creating database "${database}"...`);
+sequelize.query(`CREATE DATABASE IF NOT EXISTS "${database}"`).then(() => logger.info('Database created'));
+
 const User = UserModel(sequelize, Sequelize);
 const Hood = HoodModel(sequelize, Sequelize);
 const Comment = CommentModel(sequelize, Sequelize);

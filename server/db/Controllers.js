@@ -23,6 +23,7 @@ const createUser = function(req, res, next) {
     });
   })
   .catch(err => {
+    res.sendStatus(400)
     console.log('There was an error adding the user to the db', err);
     return next();
   });
@@ -45,6 +46,7 @@ const getSingleUser = function(req, res, next) {
     });
   })
   .catch(function (err) {
+    res.sendStatus(400)
     console.log('Unfortunately I was unable to find that user\'s information', err);
     return next();
   });
@@ -63,25 +65,26 @@ const getUsers = function(req, res, next) {
     return next();
   })
   .catch(err => {
-    res.sendStatus(400);
+    res.status(400);
     return next();
   });
 };
 
 //Update User
 //! UPDATE
-const updateUser = function(req, res){
+const updateUser = function(req, res, next){
 User.update({
-  username: newUsername,
-  }, {
-  where: {
-    id: id
-  }
+  // username: newUsername,
+  // }, {
+  // where: {
+  //   id: id
+  // }
 })
 .then((newName) => {
   res.status(201);
   console.log(`This username has been updated to ${newName}`);
 });
+return next();
 };
 
 //! DELETE USER
@@ -91,12 +94,45 @@ const deleteUser = function(req, res, next){
       id: id,
       username: username
     }
+  })
+  .then(() => {
+    res.status(201);
+    console.log('This user has been deleted');
   });
 }
 
 //! POST CRUD
-//select a single post or comment from the db
+
 //! CREATE POST
+const createPost = function(req, res) {
+  Post.create({
+    title: title,
+    postHoodId: postHoodId,
+    postTypeId: goal_picture,
+    postBody: postBody,
+    postVotes: 0
+  })
+  .then(() => {
+    Hood.create({})
+  })
+  .then(() => {
+    PostTypes.create({})
+  })
+  .then((data) => {
+  res.status(201)
+  .json({
+    status: 'success',
+    data: data,
+    message: 'Created a new Post!'
+  })
+})
+.catch((err) => {
+  res.status(400)
+  console.log('There was an error creating that post!'), err;
+  return next();
+});
+}
+
 const getSinglePost = function(req, res) {
   const id = req.params.postId;
   Post.findOne({
@@ -114,11 +150,12 @@ const getSinglePost = function(req, res) {
 };
 
 //get all the posts or comments from the db based on user id
-//!READ POST
+//! READ POST
 const getPosts = function(req, res, next) {
   Post.findAll({
-    //where id : userId
-    limit: 5
+    where: {
+      id: 1,
+    }
   })
     .then((response) => {
       res.status(200);
@@ -130,20 +167,21 @@ const getPosts = function(req, res, next) {
       return next();
     })
     .catch(err => {
+      res.sendStatus(400)
       console.log(err);
       return next();
     });
 };
 
 //!UPDATE POST
-const updatePost = function(req, res){
+const updatePost = function(req, res, next){
   Post.update({
-    title: newTitle,
-    postBody: newPostBody,
-    }, {
-    where: {
-      id: postId
-    }
+    // title: newTitle,
+    // postBody: newPostBody,
+    // }, {
+    // where: {
+    //   id: postId
+    // }
   })
   .then((newPost) => {
     res.status(201);
@@ -158,13 +196,95 @@ const deletePost = function(req, res, next){
     where: {
       id: id,
     }
+  })
+  .then(() => {
+    res.status(201);
+    console.log('This post has been deleted');
   });
 }
 
 //COMMENT CRUD
+// ! CREATE COMMENT
+const createComment = function(req, res) {
+  Comment.create({
+    commenttHoodId: postHoodId,
+    commenttTypeId: goal_picture,
+    commentBody: postBody,
+    commenttVotes: 0
+  })
+  .then(() => {
+    Hood.create({})
+  })
+  .then(() => {
+    PostTypes.create({})
+  })
+  .then((data) => {
+  res.status(201)
+  .json({
+    status: 'success',
+    data: data,
+    message: 'Created a new Post!'
+  })
+})
+.catch((err) => {
+  res.status(400)
+  console.log('There was an error creating that post!'), err;
+  return next();
+});
+}
+
+// ! READ COMMENT
+const getComments = function(req, res, next) {
+  Comment.findAll({
+    where: {
+      id: 1,
+    }
+  })
+    .then((response) => {
+      res.status(200);
+      res.send(JSON.stringify({
+        status: 'success',
+        data: response.data,
+        message: 'Here are all that user\'s posts!'
+      }));
+      return next();
+    })
+    .catch(err => {
+      res.sendStatus(400)
+      console.log(err);
+      return next();
+    });
+};
+
+// ! UPDATE COMMENT
+const updateComment = function(req, res, next){
+  Comment.update({
+    // title: newTitle,
+    // postBody: newPostBody,
+    // }, {
+    // where: {
+    //   id: postId
+    // }
+  })
+  .then((newPost) => {
+    res.status(201);
+    console.log(`This post has been updated to ${newPost}`);
+  });
+  };
 
 
-
+  const deleteComment = function(req, res, next){
+    Comment.destroy({
+      where: {
+        id: id,
+        username: username
+      }
+    })
+    .then(() => {
+      res.status(201);
+      console.log('This user has been deleted');
+    });
+  }
 
 
 module.exports = {
@@ -178,4 +298,8 @@ module.exports = {
   getPosts,
   updatePost,
   deletePost,
+  createComment,
+  getComments,
+  updateComment,
+  deleteComment
 };
