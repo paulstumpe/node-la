@@ -15,6 +15,7 @@ class App extends React.Component {
       neighborhood: 'uptown',
       posts: [],
       currentPost: {},
+      loggedIn: false,
     };
 
     this.changeView = this.changeView.bind(this);
@@ -31,20 +32,20 @@ class App extends React.Component {
     const { view } = this.state;
     return (
       <div>
-        <NavBar changeView={this.changeView}/>
+        <NavBar changeView={this.changeView} loggedIn={this.loggedIn} />
         <br />
         {(() => {
           switch (view) {
             case 'posts':
-              return <Posts changeView={this.changeView} neighborhood={this.state.neighborhood}/>;
+              return <Posts changeView={this.changeView} neighborhood={this.state.neighborhood} />;
             case 'userPosts':
-              return <UserPosts changeView={this.changeView}/>;
+              return <UserPosts changeView={this.changeView} loggedIn={this.loggedIn} />;
             case 'neighborhoods':
-              return <Neighborhoods changeView={this.changeView}/>;
+              return <Neighborhoods changeView={this.changeView} />;
             case 'post':
               return <Post changeView={this.changeView} />;
             default:
-              return <Posts changeView={this.changeView}/>;
+              return <Posts changeView={this.changeView} />;
           }
         })()}
       </div>
