@@ -31,6 +31,14 @@ const route = router(app, express);
 
 const PORT = process.env.PORT || 8000;
 
+app.post('/login',
+  passport.authenticate('local', {
+    successRedirect: '/',
+    failureRedirect: '/login',
+    failureFlash: true,
+    successFlash: 'Welcome!'
+  }));
+
 app.listen(PORT, () => {
   console.log(`Listening on :${PORT} 🍃🌱`);
 });
