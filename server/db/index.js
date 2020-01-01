@@ -11,25 +11,27 @@ const PostTypeModel = require('./Models/PostType');
 const sequelize = new Sequelize('nodela', 'root', '', mariaConfig);
 
 const User = UserModel(sequelize, Sequelize);
-const Hood = HoodModel(sequelize, Sequelize);
-const Comment = CommentModel(sequelize, Sequelize);
 const Post = PostModel(sequelize, Sequelize);
+const Comment = CommentModel(sequelize, Sequelize);
+const Hood = HoodModel(sequelize, Sequelize);
 const PostType = PostTypeModel(sequelize, Sequelize);
 
-  User.hasOne(Hood);
-  //User.hasOne(PostType);
-  User.hasMany(Post),
-  User.hasMany(Comment);
+//   User.hasOne(Hood);
+//   //User.hasOne(PostType);
+//   User.hasMany(Post),
+//   User.hasMany(Comment);
+// Post.belongsTo(User)
+// Post.hasOne(PostType);
+// Post.hasOne(Hood);
+// Post.hasMany(Comment);
+// Comment.belongsTo(User);
+// Comment.hasOne(PostType)
   //Hood.hasOne(Post);
-  Hood.belongsTo(User);
+  //Hood.belongsTo(User);
   //Hood.belongsTo(User)
   // Post.hasOne(User);
-  Post.belongsTo(User)
-  Post.hasOne(PostType);
-  Post.hasOne(Hood);
-  Post.hasMany(Comment);
-  Comment.belongsTo(User);
-  Comment.hasOne(PostType)
+  
+  
   //PostType.hasOne(Post);
   //PostType.belongsTo(Post);
 
@@ -38,17 +40,20 @@ const PostType = PostTypeModel(sequelize, Sequelize);
   User.sync({ force: true })
   .then(() => { console.log(`Database & tables!`)})
 
+Post.sync({ force: true })
+  .then(() => { console.log(`Post synced!`) })
+
+  Comment.sync({ force: true })
+    .then(() => { console.log(`Comments Synced!`) })
+
   Hood.sync({ force: true })
   .then(() => { console.log(`Hood synced!`)})
 
-  Post.sync({ force: true })
-  .then(() => { console.log(`Post synced!`)})
 
   PostType.sync({ force: true })
   .then(() => { console.log(`PostType Synced!`)})
 
-  Comment.sync({ force: true })
-  .then(() => { console.log(`Comments Synced!`)})
+
 
   
 sequelize.authenticate()
