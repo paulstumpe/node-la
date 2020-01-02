@@ -4,6 +4,7 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import CreatePost from '../CreatePost.jsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,6 +32,7 @@ const Posts = ({ changeView }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
+      <CreatePost />
       <Paper className={classes.paper} elevation={3}>
         <Grid container spacing={4}>
           <Grid item>
