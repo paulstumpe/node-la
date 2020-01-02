@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 //all component imports needed for login dialog box
 import { TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -31,7 +32,12 @@ const CreatePost = () => {
   return (
     <div className={classes.root}>
       {/* Login button */}
-      <Button variant="contained" color="secondary" onClick={handleOpen}> Create Post </Button>
+      {/* Could only center the button by nestin inside of boxes for some reason*/}
+      <Box display="flex" width='auto' height={80}>
+        <Box m="auto">
+          <Button variant="contained" color="secondary" onClick={handleOpen}> Create Post </Button>
+        </Box>
+      </Box>
       {/* dialog box for loging in */}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title"> Create a post! </DialogTitle>

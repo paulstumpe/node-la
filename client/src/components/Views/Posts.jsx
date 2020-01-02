@@ -5,6 +5,7 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import CreatePost from '../CreatePost.jsx';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -35,7 +36,9 @@ const Posts = ({ changeView, loggedIn }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <CreatePost style={{ fontWeight: "bolder", align: "center", color: "white" }} />
+          <CreatePost />
+
+      
       {loggedIn ? <CreatePost className={classes.createPost} /> : null}
       <Paper className={classes.paper} elevation={3}>
         <Grid container spacing={4}>
