@@ -26,7 +26,7 @@ module.exports = function (app, express) {
  // deleteUser,
  // ? app.put('/posts:id'. ctrl.updatePost);
   //delete a post
-  app.delete('users:id/posts:id', ctrl.deletePost);
+  app.delete('/users:id/posts:id', ctrl.deletePost);
   //darksky current weather
   app.get('/weather', (req, res) => {
     axios.get(`https://api.darksky.net/forecast/${weatherKey}/29.9511, -90.0715`)
