@@ -26,9 +26,6 @@ const useStyles = makeStyles(theme => ({
     maxWidth: '100%',
     maxHeight: '100%',
   },
-  createPost: {
-    justifyContent: 'center'
-  }
 }));
 
 const Posts = ({ changeView, loggedIn }) => {
@@ -36,9 +33,6 @@ const Posts = ({ changeView, loggedIn }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-          <CreatePost />
-
-      
       {loggedIn ? <CreatePost className={classes.createPost} /> : null}
       <Paper className={classes.paper} elevation={3}>
         <Grid container spacing={4}>

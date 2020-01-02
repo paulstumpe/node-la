@@ -11,8 +11,21 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
+  button: {
+    background: 'linear-gradient(45deg, #00796b 30%, #43a047 90%)',
+    borderRadius: 4,
+    color: 'white',
+    height: 48,
+    padding: '0 30px',
+  },
   title: {
     flexGrow: 1,
+  },
+  alignItemsAndJustifyContent: {
+    width: 'auto',
+    height: 60,
+    display: 'flex',
+    justifyContent: 'center',
   },
 }));
 
@@ -32,12 +45,9 @@ const CreatePost = () => {
   return (
     <div className={classes.root}>
       {/* Login button */}
-      {/* Could only center the button by nestin inside of boxes for some reason*/}
-      <Box display="flex" width='auto' height={80}>
-        <Box m="auto">
-          <Button variant="contained" color="secondary" onClick={handleOpen}> Create Post </Button>
-        </Box>
-      </Box>
+      <div className={classes.alignItemsAndJustifyContent}>
+          <Button className={classes.button} onClick={handleOpen}> Create Post </Button>
+        </div>
       {/* dialog box for loging in */}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-title"> Create a post! </DialogTitle>
