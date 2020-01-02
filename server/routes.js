@@ -1,4 +1,6 @@
 const ctrl = require('./db/controllers');
+const axios = require('axios');
+const { weatherKey } = require('../config');
 /*
 signup
 login
