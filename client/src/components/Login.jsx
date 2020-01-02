@@ -10,15 +10,12 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
   title: {
     flexGrow: 1,
   },
 }));
 
-const Login = () => {
+const Login = ({ updateLogin }) => {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
@@ -46,7 +43,7 @@ const Login = () => {
             {/* buttons in dialog box */}
             <DialogActions>
               <Button onClick={handleClose} color="primary">Cancel</Button>
-              <Button onClick={handleClose} color="primary">Login</Button>
+              <Button onClick={() => { handleClose(); updateLogin(); }} color="primary">Login</Button>
             </DialogActions>
           </Dialog>
     </div>

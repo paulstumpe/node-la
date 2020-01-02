@@ -1,6 +1,6 @@
 const ctrl = require('./db/controllers');
 const axios = require('axios');
-const {weatherKey} = require('../config');
+const { weatherKey } = require('../config');
 /*
 signup
 login
@@ -8,7 +8,7 @@ users/post:id
 user:id
 posts
 */
-module.exports = function(app, express) {
+module.exports = function (app, express) {
   //login to an account/get a single user
   app.post('/signup', ctrl.createUser);
   //get single user info
@@ -26,22 +26,20 @@ module.exports = function(app, express) {
  // deleteUser,
  // ? app.put('/posts:id'. ctrl.updatePost);
   //delete a post
-  app.delete('users:id/posts:id', ctrl.deletePost);
+  app.delete('/users:id/posts:id', ctrl.deletePost);
   //darksky current weather
-  app.get('/weather', (req, res)=>{
-    axios.get(`https://api.darksky.net/forecast/${weatherKey}/29.9511, -90.0715`)
-    .then((darkSky)=>{
-      darkSkyData =darkSky.data;
-      debugger;
-      res.status(200).json({ // Send 200 status upon success.
-        status: 'success',
-        data: darkSkyData,
-        message: 'NOLA weather from darkSky'
-      });
-    })
-    .catch((err)=>{
-      console.log(err)
-    })
+  app.get('/weather', (req, res) => {
+    axios.get(`https://api.darksky.net/forecast/${weatherKey}/29.9511,-90.0715`)
+      .then((darkSky) => {
+        darkSkyData = darkSky.data;
+        res.status(200).json({ // Send 200 status upon success.
+          status: 'success',
+          data: darkSkyData,
+          message: 'NOLA weather from darkSky'
+        });
+      })
+      .catch((err) => {
+        console.log(err)
+      })
   })
-
 };
