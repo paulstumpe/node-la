@@ -45,7 +45,7 @@ const CreatePost = () => {
     <div className={classes.root}>
       {/* Login button */}
       <div className={classes.alignItemsAndJustifyContent}>
-          <Button className={classes.button} onClick={handleOpen}> Create Post </Button>
+          <Button className={classes.button} onClick={handleOpen} style={{fontWeight:"bolder"}}> Create Post </Button>
         </div>
       {/* dialog box for loging in */}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
