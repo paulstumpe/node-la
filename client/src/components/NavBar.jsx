@@ -23,14 +23,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const NavBar = ({ changeView, updateLogin, loggedIn, weatherIcon }) => {
+const NavBar = ({ changeView, updateLogin, loggedIn, weatherIcon, weatherInfo }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
       <AppBar position="static">
         <Toolbar>
           {/* menu button */}
-          <MenuList changeView={changeView} weatherIcon={weatherIcon}/>
+          <MenuList changeView={changeView} weatherIcon={weatherIcon} weatherInfo={weatherInfo}/>
           {/* app title */}
           <img className={classes.img} src={Logo} alt="Logo" />
           {/* <Typography variant="h5" className={classes.title}>  Node.LA </Typography> */}

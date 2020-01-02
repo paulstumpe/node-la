@@ -76,6 +76,7 @@ class App extends React.Component {
           updateLogin={this.updateLogin} 
           loggedIn={this.state.loggedIn}
           weatherIcon={this.state.weather.icon}
+          weatherInfo={this.state.weather}
         />
         <br />
         {(() => {
