@@ -31,7 +31,6 @@ const Login = ({ updateLogin }) => {
     setOpen(false);
   };
 
-  console.log(updateLogin);
   return (
     <div className={classes.root}>
           {/* Login button */}
@@ -46,8 +45,8 @@ const Login = ({ updateLogin }) => {
             </DialogContent>
             {/* buttons in dialog box */}
             <DialogActions>
-              <Button onClick={ () => {handleClose(); updateLogin();}} color="primary">Cancel</Button>
-              <Button onClick={handleClose} color="primary">Login</Button>
+              <Button onClick={handleClose} color="primary">Cancel</Button>
+              <Button onClick={() => { handleClose(); updateLogin(); }} color="primary">Login</Button>
             </DialogActions>
           </Dialog>
     </div>

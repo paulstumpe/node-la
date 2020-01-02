@@ -32,9 +32,10 @@ class App extends React.Component {
     });
   }
 
-  updateLogin(boolean) {
+  //function to change loggedIn state to show user posts
+  updateLogin() {
     this.setState({
-      loggedIn: boolean,
+      loggedIn: !this.state.loggedIn,
     });
   }
 
@@ -42,7 +43,6 @@ class App extends React.Component {
 //as soon as the page mounts
 
   render() {
-    console.log(this.state.loggedIn)
     const { view } = this.state;
     const { loggedIn } = this.state;
     return (
@@ -58,7 +58,6 @@ class App extends React.Component {
               : <Typography variant="h4" style={{ fontWeight: "bolder", textAlign: "center", color: "white" }}>
                   Please Login to see your posts!
                 </Typography>
-              // <UserPosts changeView={this.changeView} />;
             case 'neighborhoods':
               return <Neighborhoods changeView={this.changeView} />;
             case 'post':
