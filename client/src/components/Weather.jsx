@@ -8,6 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import WbCloudyIcon from '@material-ui/icons/WbCloudy';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
+import WeatherStuff from './WeatherStuff.jsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -36,9 +37,10 @@ const Weather = () => {
           <ListItemText primary="Weather" />
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <Typography>
+          <WeatherStuff />
+          {/* <Typography>
             Weather Info Here
-          </Typography>
+          </Typography> */}
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
