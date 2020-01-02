@@ -10,9 +10,6 @@ const useStyles = makeStyles(theme => ({
   root: {
     flexGrow: 1,
   },
-  menuButton: {
-    marginRight: theme.spacing(2),
-  },
   title: {
     flexGrow: 1,
   },
@@ -45,7 +42,7 @@ const CreatePost = () => {
         </DialogContent>
         {/* buttons in dialog box */}
         <DialogActions>
-          <Button onClick={() => { handleClose }} color="primary">Cancel</Button>
+          <Button onClick={handleClose} color="primary">Cancel</Button>
           <Button onClick={handleClose} color="primary">Post</Button>
         </DialogActions>
       </Dialog>
