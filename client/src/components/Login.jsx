@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const LoginDialog = () => {
+const Login = ({ updateLogin }) => {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
@@ -31,6 +31,7 @@ const LoginDialog = () => {
     setOpen(false);
   };
 
+  console.log(updateLogin);
   return (
     <div className={classes.root}>
           {/* Login button */}
@@ -45,7 +46,7 @@ const LoginDialog = () => {
             </DialogContent>
             {/* buttons in dialog box */}
             <DialogActions>
-              <Button onClick={handleClose} color="primary">Cancel</Button>
+          <Button onClick={() => { updateLogin; handleClose;}} color="primary">Cancel</Button>
               <Button onClick={handleClose} color="primary">Login</Button>
             </DialogActions>
           </Dialog>
@@ -53,4 +54,4 @@ const LoginDialog = () => {
   );
 }
 
-export default LoginDialog;
+export default Login;

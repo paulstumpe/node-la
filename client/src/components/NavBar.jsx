@@ -1,9 +1,10 @@
 import React from 'react';
 //style imports for all material ui 
 import MenuList from './MenuList.jsx';
-import LoginDialog from './LoginDialog.jsx'
+import Login from './Login.jsx'
 import { makeStyles, AppBar, Toolbar } from '@material-ui/core';
 import Logo from './images/Logo.png';
+import Button from '@material-ui/core/Button';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -22,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const NavBar = ({ changeView }) => {
+const NavBar = ({ changeView, updateLogin }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -35,7 +36,9 @@ const NavBar = ({ changeView }) => {
           {/* <Typography variant="h5" className={classes.title}>  Node.LA </Typography> */}
           {/* Login button */}
           <div variant="contained" color="secondary"> 
-            <LoginDialog />
+            <Login updateLogin={updateLogin} />
+            {/* { loggedIn ? <Login /> 
+              : <Button variant="contained" color="secondary" onClick={handleOpen}> Login </Button>} */}
           </div>
         </Toolbar>
       </AppBar>

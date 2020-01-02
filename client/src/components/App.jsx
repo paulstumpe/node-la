@@ -22,6 +22,7 @@ class App extends React.Component {
     };
 
     this.changeView = this.changeView.bind(this);
+    this.updateLogin = this.updateLogin.bind(this);
   }
 
   //function to pass down to change views
@@ -31,22 +32,29 @@ class App extends React.Component {
     });
   }
 
+  updateLogin() {
+    this.setState({
+      loggedIn: true,
+    });
+  }
+
 //TODO:send request to /posts endpoint to get all posts from db 
 //as soon as the page mounts
 
   render() {
+    console.log(this.state.loggedIn)
     const { view } = this.state;
     const { loggedIn } = this.state;
     return (
       <div>
-        <NavBar changeView={this.changeView} loggedIn={this.loggedIn} />
+        <NavBar changeView={this.changeView} loggedIn={this.loggedIn} updateLogin={this.updateLogin} />
         <br />
         {(() => {
           switch (view) {
             case 'posts':
               return <Posts changeView={this.changeView} neighborhood={this.state.neighborhood} />;
             case 'userPosts':
-              return loggedIn ? <UserPosts changeView={this.changeView} /> 
+              return loggedIn ? <UserPosts changeView={this.changeView}/> 
               : <Typography variant="h4" style={{ fontWeight: "bolder", textAlign: "center", color: "white" }}>
                   Please Login to see your posts!
                 </Typography>

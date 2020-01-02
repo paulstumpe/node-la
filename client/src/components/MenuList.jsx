@@ -9,7 +9,6 @@ import HomeIcon from '@material-ui/icons/Home';
 import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import IconButton from '@material-ui/core/IconButton';
 import PersonIcon from '@material-ui/icons/Person';
-import WbCloudyIcon from '@material-ui/icons/WbCloudy';
 import Weather from './Weather.jsx';
 
 const StyledMenu = withStyles({
