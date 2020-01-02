@@ -4,6 +4,8 @@ import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
+import CreatePost from '../CreatePost.jsx';
+import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -26,11 +28,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Posts = ({ changeView }) => {
+const Posts = ({ changeView, loggedIn }) => {
   //use given style from above
   const classes = useStyles();
   return (
     <div className={classes.root}>
+      {loggedIn ? <CreatePost className={classes.createPost} /> : null}
       <Paper className={classes.paper} elevation={3}>
         <Grid container spacing={4}>
           <Grid item>
@@ -71,7 +74,7 @@ const Posts = ({ changeView }) => {
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography gutterBottom variant="h5" style={{ cursor: 'pointer' }}>
+                <Typography gutterBottom variant="h5" style={{ cursor: 'pointer' }} onClick={() => { changeView("post") }}>
                   Post Title
                 </Typography>
                 <Typography variant="body2" gutterBottom>
@@ -101,7 +104,7 @@ const Posts = ({ changeView }) => {
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography gutterBottom variant="h5" style={{ cursor: 'pointer' }}>
+                <Typography gutterBottom variant="h5" style={{ cursor: 'pointer' }} onClick={() => { changeView("post") }}>
                   Post Title
                 </Typography>
                 <Typography variant="body2" gutterBottom>
@@ -131,7 +134,7 @@ const Posts = ({ changeView }) => {
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
               <Grid item xs>
-                <Typography gutterBottom variant="h5" style={{ cursor: 'pointer' }}>
+                <Typography gutterBottom variant="h5" style={{ cursor: 'pointer' }} onClick={() => { changeView("post") }}>
                   Post Title
                 </Typography>
                 <Typography variant="body2" gutterBottom>

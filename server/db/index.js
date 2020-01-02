@@ -1,5 +1,4 @@
 const mariaConfig = require('./config');
-
 const Sequelize = require('sequelize');
 const UserModel = require('./models/User');
 const HoodModel = require('./models/Hood');

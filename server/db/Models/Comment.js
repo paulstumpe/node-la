@@ -5,7 +5,7 @@ module.exports = (sequelize, type) => {
       allowNull: false,
       // references: {
       //   model: User,
-      //   key: 'id'
+      //   key: 'id'select * from posts;
       // }
     },
     commentPostId: {

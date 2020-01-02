@@ -9,7 +9,7 @@ import HomeIcon from '@material-ui/icons/Home';
 import HomeWorkIcon from '@material-ui/icons/HomeWork';
 import IconButton from '@material-ui/core/IconButton';
 import PersonIcon from '@material-ui/icons/Person';
-import WbCloudyIcon from '@material-ui/icons/WbCloudy';
+import Weather from './Weather.jsx';
 
 const StyledMenu = withStyles({
   paper: {
@@ -42,7 +42,7 @@ const StyledMenuItem = withStyles(theme => ({
   },
 }))(MenuItem);
 
-const MenuList = ({ changeView }) => {
+const MenuList = ({ changeView, weatherIcon }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   //target clicked element on menu
   const handleClick = event => {
@@ -93,13 +93,10 @@ const MenuList = ({ changeView }) => {
           <ListItemText primary="Neighborhoods" />
         </StyledMenuItem>
 
-        <StyledMenuItem>
-          <ListItemIcon>
-            <WbCloudyIcon fontSize="small" />
-          </ListItemIcon>
-          <ListItemText primary="Weather" />
-        </StyledMenuItem>
+        <Weather weatherIcon={weatherIcon}/>
+
       </StyledMenu>
+
     </div>
   );
 }

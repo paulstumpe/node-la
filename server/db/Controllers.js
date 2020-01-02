@@ -2,7 +2,6 @@ const { User, Post, PostTypes, Hood, Comment } = require('./index');
 const parser = require('body-parser');
 const feathers = require('@feathersjs/feathers');
 const express = require('@feathersjs/express');
-
 const app = express(feathers());
 
 // ! USER CRUD
@@ -141,17 +140,17 @@ const getSinglePost = function(req, res) {
       id: id
     }
   })
-  .then((singlePost) => {
-    res.status(200).json({
-      data: singlePost
-    });
-  })
-  .catch(err => res.sendStatus(400));
+    .then((singlePost) => {
+      res.status(200).json({
+        data: singlePost
+      });
+    })
+    .catch(err => res.sendStatus(400));
 };
 
 //get all the posts or comments from the db based on user id
 //! READ POST
-const getPosts = function(req, res, next) {
+const getPosts = function (req, res, next) {
   Post.findAll({
     where: {
       id: 1,
