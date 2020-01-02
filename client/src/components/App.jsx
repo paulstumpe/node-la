@@ -28,18 +28,18 @@ class App extends React.Component {
     this.getWeather = this.getWeather.bind(this);
   }
 
-  // componentDidMount() {
-  //   //load the last 5 recent dogs on a refresh
-  //   this.getWeather()
-  //     .then(weather => {
-  //       this.setState({
-  //         weather,
-  //       });
-  //     })
-  //     .catch(error => {
-  //       console.error('Failed to get weather', error);
-  //     });
-  // }
+  componentDidMount() {
+    //load the last 5 recent dogs on a refresh
+    this.getWeather()
+      .then(weather => {
+        this.setState({
+          weather: weather.data.currently,
+        });
+      })
+      .catch(error => {
+        console.error('Failed to get weather', error);
+      });
+  }
 
     //function to get the loacl weather on app startup
     getWeather() {
@@ -66,12 +66,17 @@ class App extends React.Component {
 //as soon as the page mounts
 
   render() {
-    console.log(this.state.weather.data);
     const { view } = this.state;
     const { loggedIn } = this.state;
     return (
       <div>
-        <NavBar changeView={this.changeView} loggedIn={this.loggedIn} updateLogin={this.updateLogin} loggedIn={this.state.loggedIn}/>
+        <NavBar 
+          changeView={this.changeView} 
+          loggedIn={this.loggedIn} 
+          updateLogin={this.updateLogin} 
+          loggedIn={this.state.loggedIn}
+          weatherIcon={this.state.weather.icon}
+        />
         <br />
         {(() => {
           switch (view) {

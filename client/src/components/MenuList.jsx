@@ -42,7 +42,7 @@ const StyledMenuItem = withStyles(theme => ({
   },
 }))(MenuItem);
 
-const MenuList = ({ changeView }) => {
+const MenuList = ({ changeView, weatherIcon }) => {
   const [anchorEl, setAnchorEl] = React.useState(null);
   //target clicked element on menu
   const handleClick = event => {
@@ -93,7 +93,7 @@ const MenuList = ({ changeView }) => {
           <ListItemText primary="Neighborhoods" />
         </StyledMenuItem>
 
-        <Weather />
+        <Weather weatherIcon={weatherIcon}/>
 
       </StyledMenu>
 

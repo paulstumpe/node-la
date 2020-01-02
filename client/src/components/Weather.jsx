@@ -8,7 +8,7 @@ import ExpandMoreIcon from '@material-ui/icons/ExpandMore';
 import WbCloudyIcon from '@material-ui/icons/WbCloudy';
 import ListItemIcon from '@material-ui/core/ListItemIcon';
 import ListItemText from '@material-ui/core/ListItemText';
-import WeatherStuff from './WeatherStuff.jsx';
+import WeatherIcon from './WeatherIcon.jsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -20,7 +20,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Weather = () => {
+const Weather = ({ weatherIcon }) => {
   const classes = useStyles();
 
   return (
@@ -37,10 +37,9 @@ const Weather = () => {
           <ListItemText primary="Weather" />
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          <WeatherStuff />
-          {/* <Typography>
-            Weather Info Here
-          </Typography> */}
+          {/* <WeatherStuff /> */}
+          <WeatherIcon icon={weatherIcon} />
+          <Typography>Weather Info Here</Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>
