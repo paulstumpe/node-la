@@ -53,7 +53,7 @@ class App extends React.Component {
         {(() => {
           switch (view) {
             case 'posts':
-              return <Posts changeView={this.changeView} neighborhood={this.state.neighborhood} />;
+              return <Posts changeView={this.changeView} neighborhood={this.state.neighborhood} loggedIn={this.state.loggedIn}/>;
             case 'userPosts':
               return loggedIn ? <UserPosts changeView={this.changeView}/> 
               : <Typography variant="h4" style={{ fontWeight: "bolder", textAlign: "center", color: "white" }}>
