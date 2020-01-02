@@ -23,7 +23,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const NavBar = ({ changeView, updateLogin }) => {
+const NavBar = ({ changeView, updateLogin, loggedIn }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -36,9 +36,8 @@ const NavBar = ({ changeView, updateLogin }) => {
           {/* <Typography variant="h5" className={classes.title}>  Node.LA </Typography> */}
           {/* Login button */}
           <div variant="contained" color="secondary"> 
-            <Login updateLogin={updateLogin} />
-            {/* { loggedIn ? <Login /> 
-              : <Button variant="contained" color="secondary" onClick={handleOpen}> Login </Button>} */}
+            {loggedIn ? <Button variant="contained" color="secondary" onClick={updateLogin}> Sign Out </Button>
+              : <Login updateLogin={updateLogin} />}
           </div>
         </Toolbar>
       </AppBar>

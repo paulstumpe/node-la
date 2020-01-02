@@ -47,7 +47,7 @@ class App extends React.Component {
     const { loggedIn } = this.state;
     return (
       <div>
-        <NavBar changeView={this.changeView} loggedIn={this.loggedIn} updateLogin={this.updateLogin} />
+        <NavBar changeView={this.changeView} loggedIn={this.loggedIn} updateLogin={this.updateLogin} loggedIn={this.state.loggedIn}/>
         <br />
         {(() => {
           switch (view) {
