@@ -32,9 +32,9 @@ class App extends React.Component {
     });
   }
 
-  updateLogin() {
+  updateLogin(boolean) {
     this.setState({
-      loggedIn: true,
+      loggedIn: boolean,
     });
   }
 

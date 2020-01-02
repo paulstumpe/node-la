@@ -46,7 +46,7 @@ const Login = ({ updateLogin }) => {
             </DialogContent>
             {/* buttons in dialog box */}
             <DialogActions>
-          <Button onClick={() => { updateLogin; handleClose;}} color="primary">Cancel</Button>
+              <Button onClick={ () => {handleClose(); updateLogin();}} color="primary">Cancel</Button>
               <Button onClick={handleClose} color="primary">Login</Button>
             </DialogActions>
           </Dialog>
