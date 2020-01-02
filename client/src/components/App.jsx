@@ -18,6 +18,7 @@ class App extends React.Component {
       neighborhood: 'uptown',
       posts: [],
       currentPost: {},
+      username: '',
       loggedIn: false,
     };
 
