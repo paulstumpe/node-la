@@ -18,7 +18,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Login = () => {
+const LoginDialog = () => {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
@@ -53,4 +53,4 @@ const Login = () => {
   );
 }
 
-export default Login;
+export default LoginDialog;

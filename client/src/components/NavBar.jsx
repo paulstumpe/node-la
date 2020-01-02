@@ -1,7 +1,7 @@
 import React from 'react';
 //style imports for all material ui 
 import MenuList from './MenuList.jsx';
-import Login from './Login.jsx'
+import LoginDialog from './LoginDialog.jsx'
 import { makeStyles, AppBar, Toolbar } from '@material-ui/core';
 import Logo from './images/Logo.png';
 
@@ -35,7 +35,7 @@ const NavBar = ({ changeView }) => {
           {/* <Typography variant="h5" className={classes.title}>  Node.LA </Typography> */}
           {/* Login button */}
           <div variant="contained" color="secondary"> 
-            <Login />
+            <LoginDialog />
           </div>
         </Toolbar>
       </AppBar>

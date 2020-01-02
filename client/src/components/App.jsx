@@ -5,6 +5,8 @@ import Posts from './Views/Posts.jsx';
 import UserPosts from './Views/UserPosts.jsx';
 import Neighborhoods from './Views/Neighborhoods.jsx';
 import Post from './Views/Post.jsx';
+import Typography from '@material-ui/core/Typography';
+
 
 
 class App extends React.Component {
@@ -34,6 +36,7 @@ class App extends React.Component {
 
   render() {
     const { view } = this.state;
+    const { loggedIn } = this.state;
     return (
       <div>
         <NavBar changeView={this.changeView} loggedIn={this.loggedIn} />
@@ -43,7 +46,11 @@ class App extends React.Component {
             case 'posts':
               return <Posts changeView={this.changeView} neighborhood={this.state.neighborhood} />;
             case 'userPosts':
-              return <UserPosts changeView={this.changeView} />;
+              return loggedIn ? <UserPosts changeView={this.changeView} /> 
+              : <Typography variant="h4" style={{ fontWeight: "bolder", textAlign: "center", color: "white" }}>
+                  Please Login to see your posts!
+                </Typography>
+              // <UserPosts changeView={this.changeView} />;
             case 'neighborhoods':
               return <Neighborhoods changeView={this.changeView} />;
             case 'post':
