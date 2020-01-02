@@ -54,7 +54,7 @@ const CreatePost = () => {
         {/* text fields in dialog box */}
         <DialogContent>
           <TextField id="title" label="Title" type="title" fullWidth />
-          <TextField id="body" label="Body" type="body" fullWidth />
+          <TextField id="body" label="Body" type="body" multiline rows="5" fullWidth />
         </DialogContent>
         {/* buttons in dialog box */}
         <DialogActions>
