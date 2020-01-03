@@ -28,7 +28,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    //get local weather
+    // get local weather
     this.getWeather()
       .then(weather => {
         this.setState({
@@ -38,45 +38,60 @@ class App extends React.Component {
       .catch(error => {
         console.error('Failed to get weather', error);
       });
-    //get all posts from db
-    this.getPosts()
-      .then(posts => {
-        console.log(posts);
-      })
-      .catch(error => {
-        console.error('Failed to get weather', error);
-      });
+    // // get all posts from db
+    // this.getPosts()
+    //   .then(posts => {
+    //     console.log(posts);
+    //   })
+    //   .catch(error => {
+    //     console.error('Failed to get weather', error);
+    //   });
   }
 
-  //function to get the loacl weather on app startup
+  // function to get the loacl weather on app startup
   getWeather() {
     return axios.get('/weather')
       .then(response => response.data)
       .catch(error => console.log(error))
   }
 
-  //function to get all posts from db
+  // function to get all posts from db
   getPosts() {
     return axios.get('/posts')
       .then(response => response)
       .catch(error => console.log(error))
   }
 
-  //function to save username to db and set state
-  userSignIn() {
+  // function to save username to db and set state
+  userLogin(username) {
+    this.setState({
+      username: username,
+    })
     return axios.get('/posts')
       .then(response => response)
       .catch(error => console.log(error))
   }
 
-  //function to pass down to change views
+  // function to save username to db and set state
+  userSignUp(username) {
+    this.setState({
+      username: username,
+    })
+    return axios.post('/signup', {
+      'username': `${username}`,
+    })
+      .then(response => response)
+      .catch(error => console.log(error))
+  }
+
+  // function to pass down to change views
   changeView(option) {
     this.setState({
       view: option,
     });
   }
   
-  //function to change loggedIn state to show user posts
+  // function to change loggedIn state to show user posts
   updateLogin() {
     this.setState({
       loggedIn: !this.state.loggedIn,
