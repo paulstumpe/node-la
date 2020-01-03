@@ -1,10 +1,10 @@
 const mariaConfig = require('./config');
 const Sequelize = require('sequelize');
-const UserModel = require('./models/User');
-const HoodModel = require('./models/Hood');
-const CommentModel = require('./models/Comment');
-const PostModel = require('./models/Post');
-const PostTypeModel = require('./models/PostType');
+const UserModel = require('./Models/User');
+const HoodModel = require('./Models/Hood');
+const CommentModel = require('./Models/Comment');
+const PostModel = require('./Models/Post');
+const PostTypeModel = require('./Models/PostType');
 
 const sequelize = new Sequelize('nodela', 'root', '', mariaConfig);
 
