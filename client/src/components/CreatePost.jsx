@@ -53,14 +53,17 @@ const CreatePost = () => {
   };
 
   const [hood, setHood] = React.useState('');
+  const [type, setType] = React.useState('');
 
-  const inputLabel = React.useRef(null);
-
-  const handleChange = event => {
+  const handleHoodChange = event => {
     setHood(event.target.value);
   };
 
-  //console.log(hood);
+  const handleTypeChange = event => {
+    setType(event.target.value);
+  };
+
+  console.log(type);
   return (
     <div className={classes.root}>
       {/* Login button */}
@@ -74,15 +77,14 @@ const CreatePost = () => {
         <DialogContent>
           <TextField id="title" label="Title" type="title" fullWidth />
           <TextField id="body" label="Body" type="body" multiline rows="5" fullWidth />
-
+          {/* selection for neighborhoods */}
           <FormControl className={classes.formControl}>
-            <InputLabel id="demo-simple-select-label">Neighborhood</InputLabel>
-            {/* selection for neighborhoods */}
+            <InputLabel id="hood-select-label">Neighborhood</InputLabel>
             <Select
-              labelId="demo-simple-select-label"
-              id="demo-simple-select"
+              labelId="hood-select-label"
+              id="hood-select"
               value={hood}
-              onChange={handleChange}
+              onChange={handleHoodChange}
             >
               <MenuItem value={'BayouStJohn'}>Bayou St. John</MenuItem>
               <MenuItem value={'Bywater'}>Bywater</MenuItem>
@@ -99,6 +101,18 @@ const CreatePost = () => {
               <MenuItem value={'Treme'}>Treme</MenuItem>
               <MenuItem value={'Uptown'}>Uptown</MenuItem>
               <MenuItem value={'WestBank'}>West Bank</MenuItem>
+            </Select>
+          </FormControl>
+          <FormControl className={classes.formControl}>
+            <InputLabel id="type-select-label">Post Type</InputLabel>
+            <Select
+              labelId="type-select-label"
+              id="type-select"
+              value={type}
+              onChange={handleTypeChange}
+            >
+              <MenuItem value={'gen'}>General</MenuItem>
+              <MenuItem value={'help'}>Informative</MenuItem>
             </Select>
           </FormControl>
         </DialogContent>
