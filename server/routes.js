@@ -2,11 +2,8 @@ const ctrl = require('./db/controllers');
 const axios = require('axios');
 const { weatherKey } = require('../config');
 /*
-signup
-login
-users/post:id
-user:id
-posts
+This file routes the client requests at a specific endpoint to a handling
+function.
 */
 module.exports = function (app, express) {
   //login to an account/get a single user
@@ -27,7 +24,7 @@ module.exports = function (app, express) {
  // ? app.put('/posts:id'. ctrl.updatePost);
   //delete a post
   app.delete('/users:id/posts:id', ctrl.deletePost);
-  //darksky current weather
+  //darksky current weather api request
   app.get('/weather', (req, res) => {
     axios.get(`https://api.darksky.net/forecast/${weatherKey}/29.9511,-90.0715`)
       .then((darkSky) => {
