@@ -103,18 +103,22 @@ const deleteUser = function (req, res, next) {
 
 //! CREATE POST
 const createPost = function (req, res) {
-  Post.create({
-    title: title,
-    postHoodId: postHoodId,
-    postTypeId: postTypeId,
-    postBody: postBody,
-    postVotes: 0
+  Hood.create({
+    hoodName: req.body.hoodName,
   })
     .then(() => {
-      Hood.create({});
+      PostTypes.create({
+        helpOrGen: req.body.postType,
+      });
     })
     .then(() => {
-      PostTypes.create({});
+      Post.create({
+        title: req.body.title,
+        postHoodId: postHoodId,
+        postTypeId: postTypeId,
+        postBody: req.body.postBody,
+        postVotes: 0
+      });
     })
     .then((data) => {
       res.status(201)
