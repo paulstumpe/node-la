@@ -102,7 +102,7 @@ const deleteUser = function (req, res, next) {
 //! POST CRUD
 
 //! CREATE POST
-const createPost = function (req, res) {
+const createPost = function (req, res, next) {
   Hood.create({
     hoodName: req.body.hoodName,
   })
