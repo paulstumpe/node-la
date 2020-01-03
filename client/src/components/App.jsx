@@ -15,7 +15,7 @@ class App extends React.Component {
 
     this.state = {
       view: 'posts',
-      neighborhood: 'uptown',
+      neighborhood: '',
       posts: [],
       currentPost: {},
       username: '',
@@ -28,18 +28,18 @@ class App extends React.Component {
     this.getWeather = this.getWeather.bind(this);
   }
 
-  // componentDidMount() {
-  //   //load the last 5 recent dogs on a refresh
-  //   this.getWeather()
-  //     .then(weather => {
-  //       this.setState({
-  //         weather: weather.data.currently,
-  //       });
-  //     })
-  //     .catch(error => {
-  //       console.error('Failed to get weather', error);
-  //     });
-  // }
+  componentDidMount() {
+    //load the weather every refresh
+    this.getWeather()
+      .then(weather => {
+        this.setState({
+          weather: weather.data.currently,
+        });
+      })
+      .catch(error => {
+        console.error('Failed to get weather', error);
+      });
+  }
 
     //function to get the loacl weather on app startup
     getWeather() {
