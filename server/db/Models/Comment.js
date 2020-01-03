@@ -1,4 +1,4 @@
-module.exports = (sequelize, type) => { 
+module.exports = (sequelize, type) => {
   return sequelize.define('comment', {
     commentUserId: {
       type: type.INTEGER,
@@ -6,14 +6,6 @@ module.exports = (sequelize, type) => {
       // references: {
       //   model: User,
       //   key: 'id'select * from posts;
-      // }
-    },
-    commentPostId: {
-      type: type.INTEGER,
-      allowNull: false,
-      // references: {
-      //   model: Post,
-      //   key: 'id'
       // }
     },
     commentBody: {

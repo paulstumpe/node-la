@@ -54,19 +54,17 @@ class App extends React.Component {
       view: option,
     });
   }
-
+  
   //function to change loggedIn state to show user posts
   updateLogin() {
     this.setState({
       loggedIn: !this.state.loggedIn,
     });
   }
-
-//TODO:send request to /posts endpoint to get all posts from db 
-//as soon as the page mounts
+  
+  //TODO:send request to /posts endpoint to get all posts from db as soon as the page mounts
 
   render() {
-    console.log(this.state);
     const { view } = this.state;
     const { loggedIn } = this.state;
     return (
