@@ -4,6 +4,7 @@ import Typography from '@material-ui/core/Typography';
 import Grid from '@material-ui/core/Grid';
 import Paper from '@material-ui/core/Paper';
 import { Button } from '@material-ui/core';
+import Comment from '../Comment.jsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -13,6 +14,11 @@ const useStyles = makeStyles(theme => ({
     padding: theme.spacing(1),
     margin: 'auto',
     maxWidth: 700,
+  },
+  comment: {
+    padding: theme.spacing(1),
+    margin: 'auto',
+    maxWidth: 500,
   },
   button: {
     background: 'linear-gradient(45deg, #00796b 30%, #43a047 90%)',
@@ -45,16 +51,16 @@ const Post = ({ changeView }) => {
             <Typography variant="h6">Post body placeholder text</Typography>
           </Paper>
         </Grid>
-
+        <Comment />
         <Grid item xs={12}>
-          <Paper className={classes.paper}>
+          <Paper className={classes.comment}>
             <Typography variant="h6" color="primary" style={{ fontWeight: "bolder" }}>Username</Typography>
             <Typography variant="body2">Comment 1 placeholder text</Typography>
           </Paper>
         </Grid>
 
         <Grid item xs={12}>
-          <Paper className={classes.paper}>
+          <Paper className={classes.comment}>
             <Typography variant="h6" color="primary" style={{ fontWeight: "bolder" }}>Username</Typography>
             <Typography variant="body2">Comment 2 placeholder text</Typography>
           </Paper>

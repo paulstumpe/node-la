@@ -29,7 +29,7 @@ const HoodSelect = () => {
           <FormControlLabel value="uptown" control={<Radio />} label="Uptown" />
           <FormControlLabel value="downtown" control={<Radio />} label="Downtown" />
           <FormControlLabel value="bywater" control={<Radio />} label="Bywater" />
-          <FormControlLabel value="downtown" control={<Radio />} label="Downtown" />
+          <FormControlLabel value="riverbend" control={<Radio />} label="Riverbend" />
         </RadioGroup>
         <RadioGroup aria-label="neighborhood" name="neighborhood" value={value} onChange={handleChange} row>
           <FormControlLabel value="french-quarter" control={<Radio />} label="French Quarter" />
