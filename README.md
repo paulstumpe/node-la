@@ -1,10 +1,33 @@
 # Node.LA
-Welcome to Node.LA!
 
-This app is designed for the plant enthusiasts of New Orleans. The program was designed to encourage and enhance the growing experience of growers in the Southeastern Louisiana Area.
+##Welcome to Node.LA!
 
-Whether you're new to plant cultivation or a certified master gardener, this app offers a plethora of user generated information via forum and features a subnetwork of neighborhood message boards, perfect for commentary about light, best practices, and current events based on the ward as well as events and resources for plant parents of the greater New Orleans area.
+## Copyright
 
-Node.LA utilizes a MERN stack with an overlay of feathersJS and MariaDB with Sequelize, and Authentication & Authorization via Passport &Auth0 via feathersJS, React & Material UI for client interaction and styling.
+&copy; 2020 OperationSpark.  This material is copyrighted by OperationSparks and may not be distributed to the public
 
-To start the app, run `npm run start` in the command line interface to start the server, and  `npm run start-client` to start the compiler.
+
+Node.LA utilizes a MERN stack with display views created from data in a [MariaDB] database using [Sequelize],and a [feathersJS] web server,Authentication & Authorization strategy via feathersJS's [Passport] adapter. The front-end of this application utilizes [React](https://facebook.github.io/react/) & [Material UI] for client interaction and styling.
+
+*For the best experience, please view this app in the browser*
+
+HOW TO START THIS APP
+Run `npm install` to install the dependencies, then this app can be started by running an instance of a mysql database, `brew servies start mariadb`,
+start the web pack builder to watch the build by using `npm run start-client`, and finally `npm run start` to start the server, which will alert you to which port the app is listening on.
+
+
+
+##Resources
+
+* [Postman](https://www.getpostman.com/)
+* [ReactJS Docs](https://facebook.github.io/react/)
+* [Webpack Docs](https://webpack.github.io/docs/)
+* [Babel Docs](https://babeljs.io/docs/setup/)
+* [NodeJS Docs](https://nodejs.org/)
+* [FeathersJS Docs](https://docs.feathersjs.com/guides/)
+* [AWS](https://aws.amazon.com/codedeploy/)
+* [mariadDB Docs](https://mariadb.org/documentation/)
+* [Material UI](https://materializecss.com/getting-started.html)
+* [Passport](http://www.passportjs.org/packages/passport-google-oauth/)
+
+TODO: finish resource list
