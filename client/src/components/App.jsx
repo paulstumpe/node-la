@@ -25,6 +25,8 @@ class App extends React.Component {
     this.updateLogin = this.updateLogin.bind(this);
     this.getWeather = this.getWeather.bind(this);
     this.getPosts = this.getPosts.bind(this);
+    this.userLogin = this.userLogin.bind(this);
+    this.userSignUp = this.userSignUp.bind(this);
   }
 
   componentDidMount() {
@@ -72,7 +74,7 @@ class App extends React.Component {
       .catch(error => console.log(error))
   }
 
-  // function to save username to db and set state
+  // // function to save username to db and set state
   userSignUp(username) {
     this.setState({
       username: username,
@@ -98,7 +100,9 @@ class App extends React.Component {
     });
   }
 
+  
   render() {
+    console.log(this.state.username);
     const { view } = this.state;
     const { loggedIn } = this.state;
     return (

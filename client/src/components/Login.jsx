@@ -29,7 +29,7 @@ const Login = ({ updateLogin }) => {
     setOpen(false);
   };
 
-  console.log(usernameValue);
+  // console.log(usernameValue);
 
   return (
     <div className={classes.root}>
