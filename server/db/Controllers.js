@@ -206,28 +206,21 @@ const deletePost = function(req, res, next){
 // ! CREATE COMMENT
 const createComment = function(req, res) {
   Comment.create({
-    commenttHoodId: postHoodId,
-    commenttTypeId: goal_picture,
-    commentBody: postBody,
-    commenttVotes: 0
+    commentUserId: userId,
+    commentBody: commentBody,
+    commentVotes: 0
   })
-  .then(() => {
-    Hood.create({})
-  })
-  .then(() => {
-    PostTypes.create({})
-  })
-  .then((data) => {
+  .then((response) => {
   res.status(201)
   .json({
     status: 'success',
-    data: data,
-    message: 'Created a new Post!'
+    data: response.data,
+    message: 'Created a new Comment!'
   })
 })
 .catch((err) => {
   res.status(400)
-  console.log('There was an error creating that post!'), err;
+  console.log('There was an error creating that comment!'), err;
   return next();
 });
 }
@@ -235,16 +228,14 @@ const createComment = function(req, res) {
 // ! READ COMMENT
 const getComments = function(req, res, next) {
   Comment.findAll({
-    where: {
-      id: 1,
-    }
+    //where
   })
     .then((response) => {
       res.status(200);
       res.send(JSON.stringify({
         status: 'success',
         data: response.data,
-        message: 'Here are all that user\'s posts!'
+        message: 'Here are all that user\'s comments!'
       }));
       return next();
     })
@@ -272,6 +263,7 @@ const updateComment = function(req, res, next){
   };
 
 
+  //! DELETE COMMENT
   const deleteComment = function(req, res, next){
     Comment.destroy({
       where: {

@@ -8,14 +8,6 @@ module.exports = (sequelize, type) => {
       //   key: 'id'select * from posts;
       // }
     },
-    commentPostId: {
-      type: type.INTEGER,
-      allowNull: false,
-      // references: {
-      //   model: Post,
-      //   key: 'id'
-      // }
-    },
     commentBody: {
       type: type.STRING,
       allowNull: false,
