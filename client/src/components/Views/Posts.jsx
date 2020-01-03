@@ -27,12 +27,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Posts = ({ changeView, loggedIn }) => {
+const Posts = ({ changeView, loggedIn, createPost }) => {
   //use given style from above
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      {loggedIn ? <CreatePost className={classes.createPost} /> : null}
+      {loggedIn ? <CreatePost className={classes.createPost} createPost={createPost} /> : null}
       <Paper className={classes.paper} elevation={3}>
         <Grid container spacing={4}>
           <Grid item>

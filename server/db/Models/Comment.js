@@ -1,4 +1,4 @@
-module.exports = (sequelize, type) => { 
+module.exports = (sequelize, type) => {
   return sequelize.define('comment', {
     commentUserId: {
       type: type.INTEGER,

@@ -1,26 +1,28 @@
 # Node.LA
 
-##Welcome to Node.LA!
+## Greetings from Node.LA!
 
-## Copyright
-
-&copy; 2020 OperationSpark.  This material is copyrighted by OperationSparks and may not be distributed to the public
-
-
-Node.LA utilizes a MERN stack with display views created from data in a [MariaDB] database using [Sequelize],and a [feathersJS] web server,Authentication & Authorization strategy via feathersJS's [Passport] adapter. The front-end of this application utilizes [React](https://facebook.github.io/react/) & [Material UI] for client interaction and styling.
+Node.LA utilizes a MERN stack with display views created from data in a __MariaDB__ database using __Sequelize__, and a __FeathersJS__ web server, with an Authentication & Authorization strategy via FeathersJS's __Passport__ adapter. The front-end of this application utilizes __React__ & __Material UI__ for client interaction and styling.
 
 *For the best experience, please view this app in the browser*
 
-HOW TO START THIS APP
-Run `npm install` to install the dependencies, then this app can be started by running an instance of a mysql database, `brew servies start mariadb`,
-start the web pack builder to watch the build by using `npm run start-client`, and finally `npm run start` to start the server, which will alert you to which port the app is listening on.
+### How to Start
+From the command line, run: <br>
+`npm install`<br>
+to install this app's dependencies, then this app can be started by running an instance of a mysql database with:
+<br>`brew services start mariadb`<br>
+start the web pack builder to watch the build by using: 
+<br> `npm run start-client`<br> 
+Finally, to start the server run:
+<br>`npm run start`<br> 
+which will alert you to which port the app is listening on.
 
 
 
-##Resources
+### Resources
 
 * [Postman](https://www.getpostman.com/)
-* [ReactJS Docs](https://facebook.github.io/react/)
+* [React Docs](https://facebook.github.io/react/)
 * [Webpack Docs](https://webpack.github.io/docs/)
 * [Babel Docs](https://babeljs.io/docs/setup/)
 * [NodeJS Docs](https://nodejs.org/)
@@ -31,3 +33,9 @@ start the web pack builder to watch the build by using `npm run start-client`, a
 * [Passport](http://www.passportjs.org/packages/passport-google-oauth/)
 
 TODO: finish resource list
+
+
+### Copyright
+
+&copy; 2020 OperationSpark.  This material is copyrighted by OperationSparks and may not be distributed to the public
+

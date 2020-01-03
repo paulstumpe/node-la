@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { useState } from 'react';
 //style imports for all material ui 
 import { makeStyles } from '@material-ui/core/styles';
 //all component imports needed for navbar
@@ -15,10 +15,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Login = ({ updateLogin }) => {
+const Login = ({ updateLogin, userLogin, userSignUp }) => {
   const classes = useStyles();
-
+  //user react hooks to set temp state of username
   const [open, setOpen] = React.useState(false);
+  const [usernameValue, setUsernameValue] = useState('')
 
   const handleOpen = () => {
     setOpen(true);
@@ -27,6 +28,8 @@ const Login = ({ updateLogin }) => {
   const handleClose = () => {
     setOpen(false);
   };
+
+  // console.log(usernameValue);
 
   return (
     <div className={classes.root}>
@@ -37,13 +40,16 @@ const Login = ({ updateLogin }) => {
             <DialogTitle id="form-dialog-title"> Login </DialogTitle>
             {/* text fields in dialog box */}
             <DialogContent>
-              <TextField id="username" label="Username" type="username" fullWidth />
+          <TextField id="username" label="Username" type="username" 
+            value={usernameValue}
+            onChange={(e) => setUsernameValue(e.target.value)} fullWidth />
               <TextField id="password" label="Password" type="password" fullWidth />
             </DialogContent>
             {/* buttons in dialog box */}
             <DialogActions>
               <Button onClick={handleClose} color="primary">Cancel</Button>
-              <Button onClick={() => { handleClose(); updateLogin(); }} color="primary">Login</Button>
+          <Button onClick={() => { handleClose(); updateLogin(); userLogin(usernameValue); }} color="primary">Login</Button>
+          <Button onClick={() => { handleClose(); updateLogin(); userSignUp(usernameValue); }} color="primary">Sign Up</Button>
             </DialogActions>
           </Dialog>
     </div>

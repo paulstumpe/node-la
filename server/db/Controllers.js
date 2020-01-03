@@ -7,7 +7,7 @@ const app = express(feathers());
 // ! USER CRUD
 //create & save a user to the db
 // !CREATE USER
-const createUser = function(req, res, next) {
+const createUser = function (req, res, next) {
   const username = req.body.username; // Grab username from req body
   const id = req.body.id; // Grab password from req body
   User.create({
@@ -30,8 +30,8 @@ const createUser = function(req, res, next) {
 
 //user login function
 // ! READ
-const getSingleUser = function(req, res, next) {
-  const username = req.params.username;
+const getSingleUser = function (req, res, next) {
+  const id = req.params.id;
   User.findOrCreate({
     where: {
       username: username
@@ -52,7 +52,7 @@ const getSingleUser = function(req, res, next) {
 };
 
 //get all users
-const getUsers = function(req, res, next) {
+const getUsers = function (req, res, next) {
   User.findAll({})
     .then((users) => {
       res.status(200);
@@ -71,13 +71,13 @@ const getUsers = function(req, res, next) {
 
 //Update User
 //! UPDATE
-const updateUser = function(req, res, next) {
+const updateUser = function (req, res, next) {
   User.update({})
-  // username: newUsername,
-  // }, {
-  // where: {
-  //   id: id
-  // }
+    // username: newUsername,
+    // }, {
+    // where: {
+    //   id: id
+    // }
     .then((newName) => {
       res.status(201);
       console.log(`This username has been updated to ${newName}`);
@@ -86,7 +86,7 @@ const updateUser = function(req, res, next) {
 };
 
 //! DELETE USER
-const deleteUser = function(req, res, next) {
+const deleteUser = function (req, res, next) {
   User.destroy({
     where: {
       id: id,
@@ -102,19 +102,23 @@ const deleteUser = function(req, res, next) {
 //! POST CRUD
 
 //! CREATE POST
-const createPost = function(req, res) {
-  Post.create({
-    title: title,
-    postHoodId: postHoodId,
-    postTypeId: postTypeId,
-    postBody: postBody,
-    postVotes: 0
+const createPost = function (req, res) {
+  Hood.create({
+    hoodName: req.body.hoodName,
   })
     .then(() => {
-      Hood.create({});
+      PostTypes.create({
+        helpOrGen: req.body.postType,
+      });
     })
     .then(() => {
-      PostTypes.create({});
+      Post.create({
+        title: req.body.title,
+        postHoodId: postHoodId,
+        postTypeId: postTypeId,
+        postBody: req.body.postBody,
+        postVotes: 0
+      });
     })
     .then((data) => {
       res.status(201)
@@ -131,7 +135,7 @@ const createPost = function(req, res) {
     });
 };
 
-const getSinglePost = function(req, res) {
+const getSinglePost = function (req, res) {
   const id = req.params.postId;
   Post.findOne({
     where: {
@@ -172,7 +176,7 @@ const getPosts = function (req, res, next) {
 };
 
 //!UPDATE POST
-const updatePost = function(req, res, next) {
+const updatePost = function (req, res, next) {
   Post.update({
     // title: newTitle,
     // postBody: newPostBody,
@@ -189,7 +193,7 @@ const updatePost = function(req, res, next) {
 
 //delete a specific post by iD
 //!DELETE POST
-const deletePost = function(req, res, next) {
+const deletePost = function (req, res, next) {
   Post.destroy({
     where: {
       id: id,
@@ -203,7 +207,7 @@ const deletePost = function(req, res, next) {
 
 //COMMENT CRUD
 // ! CREATE COMMENT
-const createComment = function(req, res) {
+const createComment = function (req, res) {
   Comment.create({
     commentUserId: userId,
     commentBody: commentBody,
@@ -224,7 +228,7 @@ const createComment = function(req, res) {
 };
 
 // ! READ COMMENT
-const getComments = function(req, res, next) {
+const getComments = function (req, res, next) {
   Comment.findAll({
     //where
   })
@@ -245,7 +249,7 @@ const getComments = function(req, res, next) {
 };
 
 // ! UPDATE COMMENT
-const updateComment = function(req, res, next) {
+const updateComment = function (req, res, next) {
   Comment.update({
     // title: newTitle,
     // postBody: newPostBody,
@@ -262,7 +266,7 @@ const updateComment = function(req, res, next) {
 
 
 //! DELETE COMMENT
-const deleteComment = function(req, res, next) {
+const deleteComment = function (req, res, next) {
   Comment.destroy({
     where: {
       id: id,
