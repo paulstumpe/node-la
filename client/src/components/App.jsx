@@ -15,7 +15,7 @@ class App extends React.Component {
 
     this.state = {
       view: 'posts',
-      neighborhood: 'uptown',
+      neighborhood: '',
       posts: [],
       currentPost: {},
       username: '',
@@ -29,7 +29,7 @@ class App extends React.Component {
   }
 
   componentDidMount() {
-    //load the last 5 recent dogs on a refresh
+    //load the weather every refresh
     this.getWeather()
       .then(weather => {
         this.setState({
@@ -66,6 +66,7 @@ class App extends React.Component {
 //as soon as the page mounts
 
   render() {
+    console.log(this.state);
     const { view } = this.state;
     const { loggedIn } = this.state;
     return (
@@ -76,6 +77,7 @@ class App extends React.Component {
           updateLogin={this.updateLogin} 
           loggedIn={this.state.loggedIn}
           weatherIcon={this.state.weather.icon}
+          weatherInfo={this.state.weather}
         />
         <br />
         {(() => {

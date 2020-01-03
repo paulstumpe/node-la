@@ -16,6 +16,9 @@ const useStyles = makeStyles(theme => ({
   title: {
     flexGrow: 1,
   },
+  appBar: {
+    background: 'linear-gradient(45deg, #43a047 30%, #00796b 90%)',
+  },
   img: {
     margin: 'auto',
     maxWidth: '170px',
@@ -23,14 +26,14 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const NavBar = ({ changeView, updateLogin, loggedIn, weatherIcon }) => {
+const NavBar = ({ changeView, updateLogin, loggedIn, weatherIcon, weatherInfo }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      <AppBar position="static">
+      <AppBar className={classes.appBar} position="static">
         <Toolbar>
           {/* menu button */}
-          <MenuList changeView={changeView} weatherIcon={weatherIcon}/>
+          <MenuList changeView={changeView} weatherIcon={weatherIcon} weatherInfo={weatherInfo}/>
           {/* app title */}
           <img className={classes.img} src={Logo} alt="Logo" />
           {/* <Typography variant="h5" className={classes.title}>  Node.LA </Typography> */}
