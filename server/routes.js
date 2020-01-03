@@ -1,4 +1,4 @@
-const ctrl = require('./db/controllers');
+const ctrl = require('./db/Controllers');
 const axios = require('axios');
 const { weatherKey } = require('../config');
 /*
