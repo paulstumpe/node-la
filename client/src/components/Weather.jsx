@@ -20,9 +20,8 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Weather = ({ weatherIcon }) => {
+const Weather = ({ weatherIcon, weatherInfo }) => {
   const classes = useStyles();
-
   return (
     <div className={classes.root}>
       <ExpansionPanel>
@@ -38,8 +37,14 @@ const Weather = ({ weatherIcon }) => {
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
           {/* <WeatherStuff /> */}
-          <WeatherIcon icon={weatherIcon} />
-          <Typography>Weather Info Here</Typography>
+          <WeatherIcon icon={weatherIcon}/>
+          <Typography variant="body2">
+            {weatherInfo.summary} 
+            <br /> 
+            Temp:{weatherInfo.temperature}
+            <br />
+            Wind: {weatherInfo.windSpeed}mph
+            </Typography>
         </ExpansionPanelDetails>
       </ExpansionPanel>
     </div>

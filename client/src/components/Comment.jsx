@@ -16,7 +16,7 @@ const useStyles = makeStyles(theme => ({
     borderRadius: 4,
     color: 'white',
     height: 48,
-    padding: '0 30px',
+    padding: '0 20px',
   },
   title: {
     flexGrow: 1,
@@ -29,7 +29,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const CreatePost = () => {
+const Comment = () => {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
@@ -46,25 +46,23 @@ const CreatePost = () => {
     <div className={classes.root}>
       {/* Login button */}
       <div className={classes.alignItemsAndJustifyContent}>
-          <Button className={classes.button} onClick={handleOpen} style={{fontWeight:"bolder"}}> Create Post </Button>
-        </div>
+        <Button className={classes.button} onClick={handleOpen}> Comment </Button>
+      </div>
       {/* dialog box for loging in */}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
-        <DialogTitle id="form-dialog-title"> Create a post! </DialogTitle>
+        <DialogTitle id="form-dialog-comment"> Leave a comment! </DialogTitle>
         {/* text fields in dialog box */}
         <DialogContent>
-          <TextField id="title" label="Title" type="title" fullWidth />
-          <TextField id="body" label="Body" type="body" multiline rows="5" fullWidth />
-          <HoodSelect />
+          <TextField id="comment" label="Comment" type="comment" multiline rows="3" fullWidth />
         </DialogContent>
         {/* buttons in dialog box */}
         <DialogActions>
           <Button onClick={handleClose} color="primary">Cancel</Button>
-          <Button onClick={handleClose} color="primary">Post</Button>
+          <Button onClick={handleClose} color="primary">Comment</Button>
         </DialogActions>
       </Dialog>
     </div>
   );
 }
 
-export default CreatePost;
+export default Comment;
