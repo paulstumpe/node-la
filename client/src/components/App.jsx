@@ -42,14 +42,15 @@ class App extends React.Component {
         console.error('Failed to get weather', error);
       });
     // get all posts from db
-    this.getPosts()
-      .then(posts => {
-        console.log(posts);
-      })
-      .catch(error => {
-        console.error('Failed to get posts', error);
-      });
+    // this.getPosts()
+    //   .then(posts => {
+    //     console.log(posts);
+    //   })
+    //   .catch(error => {
+    //     console.error('Failed to get posts', error);
+    //   });
   }
+
 
   // function to get the loacl weather on app startup
   getWeather() {
@@ -87,11 +88,13 @@ class App extends React.Component {
       .catch(error => console.log(error))
   }
 
+  // function to create a new post and save to the db
   createPost(title, body, neighborhood, type) {
-    return axios.post('/signup', {
+    console.log(title, body, neighborhood, type);
+    return axios.post('/posts', {
       'title': `${title}`,
-      'postHoodId': `${neighborhood}`,
-      'postTypeId': `${type}`,
+      'hoodName': `${neighborhood}`,
+      'postType': `${type}`,
       'postBody': `${body}`
     })
       .then(response => response)
