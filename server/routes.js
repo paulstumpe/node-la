@@ -20,8 +20,8 @@ module.exports = function (app, express) {
   app.get('/posts', ctrl.getPosts);
   //get single user's post
   app.get('/users:id/post', ctrl.getSinglePost);
- // deleteUser,
- // ? app.put('/posts:id'. ctrl.updatePost);
+  // deleteUser,
+  // ? app.put('/posts:id'. ctrl.updatePost);
   //delete a post
   app.delete('/users:id/posts:id', ctrl.deletePost);
   //darksky current weather api request
@@ -36,7 +36,7 @@ module.exports = function (app, express) {
         });
       })
       .catch((err) => {
-        console.log(err)
-      })
-  })
+        console.log(err);
+      });
+  });
 };
