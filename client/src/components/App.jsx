@@ -27,6 +27,7 @@ class App extends React.Component {
     this.getPosts = this.getPosts.bind(this);
     this.userLogin = this.userLogin.bind(this);
     this.userSignUp = this.userSignUp.bind(this);
+    this.createPost = this.createPost.bind(this);
   }
 
   componentDidMount() {
@@ -133,9 +134,14 @@ class App extends React.Component {
         {(() => {
           switch (view) {
             case 'posts':
-              return <Posts changeView={this.changeView} neighborhood={this.state.neighborhood} loggedIn={this.state.loggedIn}/>;
+              return <Posts 
+                changeView={this.changeView} 
+                neighborhood={this.state.neighborhood} 
+                loggedIn={this.state.loggedIn} 
+                createPost={this.createPost}
+                />;
             case 'userPosts':
-              return loggedIn ? <UserPosts changeView={this.changeView}/> 
+              return loggedIn ? <UserPosts changeView={this.changeView} /> 
               : <Typography variant="h4" style={{ fontWeight: "bolder", textAlign: "center", color: "white" }}>
                   Please Login to see your posts!
                 </Typography>

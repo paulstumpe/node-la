@@ -39,7 +39,7 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const CreatePost = () => {
+const CreatePost = ({ createPost}) => {
   const classes = useStyles();
 
   const [open, setOpen] = React.useState(false);
