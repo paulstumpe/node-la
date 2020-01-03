@@ -52,6 +52,8 @@ const CreatePost = ({ createPost }) => {
   //react hook to set temporary state
   const [hood, setHood] = React.useState('');
   const [type, setType] = React.useState('');
+  const [title, setTitleValue] = React.useState('');
+  const [body, setBodyValue] = React.useState('');
   //handle state change of neighborhood type
   const handleHoodChange = event => {
     setHood(event.target.value);
@@ -60,7 +62,6 @@ const CreatePost = ({ createPost }) => {
   const handleTypeChange = event => {
     setType(event.target.value);
   };
-
   return (
     <div className={classes.root}>
       {/* Login button */}
@@ -72,8 +73,8 @@ const CreatePost = ({ createPost }) => {
         <DialogTitle id="form-dialog-title"> Create a post! </DialogTitle>
         {/* text fields in dialog box */}
         <DialogContent>
-          <TextField id="title" label="Title" type="title" fullWidth />
-          <TextField id="body" label="Body" type="body" multiline rows="5" fullWidth />
+          <TextField id="title" label="Title" type="title" value={title} onChange={(e) => setTitleValue(e.target.value)}fullWidth />
+          <TextField id="body" label="Body" type="body" value={body} onChange={(e) => setBodyValue(e.target.value)} multiline rows="5" fullWidth />
           {/* selection for neighborhoods */}
           <FormControl className={classes.formControl}>
             <InputLabel id="hood-select-label">Neighborhood</InputLabel>
@@ -116,7 +117,7 @@ const CreatePost = ({ createPost }) => {
         {/* buttons in dialog box */}
         <DialogActions>
           <Button onClick={handleClose} color="primary">Cancel</Button>
-          <Button onClick={() => {handleClose(); createPost(hood, type)}} color="primary">Post</Button>
+          <Button onClick={() => {handleClose(); createPost(title, body, hood, type)}} color="primary">Post</Button>
         </DialogActions>
       </Dialog>
     </div>

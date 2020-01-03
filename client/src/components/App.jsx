@@ -111,10 +111,8 @@ class App extends React.Component {
       loggedIn: !this.state.loggedIn,
     });
   }
-
   
   render() {
-    console.log(this.state.username);
 
     const { view } = this.state;
     const { loggedIn } = this.state;
