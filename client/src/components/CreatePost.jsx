@@ -5,6 +5,7 @@ import { makeStyles } from '@material-ui/core/styles';
 import { Button } from '@material-ui/core';
 //all component imports needed for login dialog box
 import { TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import HoodSelect from './HoodSelect.jsx';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -54,6 +55,7 @@ const CreatePost = () => {
         <DialogContent>
           <TextField id="title" label="Title" type="title" fullWidth />
           <TextField id="body" label="Body" type="body" multiline rows="5" fullWidth />
+          <HoodSelect />
         </DialogContent>
         {/* buttons in dialog box */}
         <DialogActions>
