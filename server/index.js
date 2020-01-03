@@ -5,6 +5,8 @@ const express = require('@feathersjs/express');
 const socketio = require('@feathersjs/socketio');
 const router = require('./routes.js');
 const CLIENT_PATH = path.join(__dirname, '../client/dist');
+//const auth = require('./auth')
+
 
 const app = express(feathers());
 
@@ -26,18 +28,11 @@ app.configure(express.rest());
 app.configure(socketio());
 //catch errors
 app.use(express.errorHandler());
+//app.configure(auth)
 
 const route = router(app, express);
 
 const PORT = process.env.PORT || 8000;
-
-// app.post('/login',
-//   passport.authenticate('local', {
-//     successRedirect: '/',
-//     failureRedirect: '/login',
-//     failureFlash: true,
-//     successFlash: 'Welcome!'
-//   }));
 
 app.listen(PORT, () => {
   console.log(`Listening on :${PORT} 🍃🌱`);
