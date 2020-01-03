@@ -71,6 +71,7 @@ const getUsers = function (req, res, next) {
 
 //Update User
 //! UPDATE
+<<<<<<< HEAD
 const updateUser = function (req, res, next) {
   User.update({})
     // username: newUsername,
@@ -78,6 +79,15 @@ const updateUser = function (req, res, next) {
     // where: {
     //   id: id
     // }
+=======
+const updateUser = function(req, res, next) {
+  User.update({})
+  // username: newUsername,
+  // }, {
+  // where: {
+  //   id: id
+  // }
+>>>>>>> 55cf491bebbf3822b499b93ed0effdc872aa7317
     .then((newName) => {
       res.status(201);
       console.log(`This username has been updated to ${newName}`);
@@ -86,7 +96,11 @@ const updateUser = function (req, res, next) {
 };
 
 //! DELETE USER
+<<<<<<< HEAD
 const deleteUser = function (req, res, next) {
+=======
+const deleteUser = function(req, res, next) {
+>>>>>>> 55cf491bebbf3822b499b93ed0effdc872aa7317
   User.destroy({
     where: {
       id: id,
@@ -172,7 +186,11 @@ const getPosts = function (req, res, next) {
 };
 
 //!UPDATE POST
+<<<<<<< HEAD
 const updatePost = function (req, res, next) {
+=======
+const updatePost = function(req, res, next) {
+>>>>>>> 55cf491bebbf3822b499b93ed0effdc872aa7317
   Post.update({
     // title: newTitle,
     // postBody: newPostBody,
@@ -189,7 +207,11 @@ const updatePost = function (req, res, next) {
 
 //delete a specific post by iD
 //!DELETE POST
+<<<<<<< HEAD
 const deletePost = function (req, res, next) {
+=======
+const deletePost = function(req, res, next) {
+>>>>>>> 55cf491bebbf3822b499b93ed0effdc872aa7317
   Post.destroy({
     where: {
       id: id,
@@ -245,7 +267,11 @@ const getComments = function (req, res, next) {
 };
 
 // ! UPDATE COMMENT
+<<<<<<< HEAD
 const updateComment = function (req, res, next) {
+=======
+const updateComment = function(req, res, next) {
+>>>>>>> 55cf491bebbf3822b499b93ed0effdc872aa7317
   Comment.update({
     // title: newTitle,
     // postBody: newPostBody,
@@ -262,7 +288,11 @@ const updateComment = function (req, res, next) {
 
 
 //! DELETE COMMENT
+<<<<<<< HEAD
 const deleteComment = function (req, res, next) {
+=======
+const deleteComment = function(req, res, next) {
+>>>>>>> 55cf491bebbf3822b499b93ed0effdc872aa7317
   Comment.destroy({
     where: {
       id: id,
