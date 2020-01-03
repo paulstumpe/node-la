@@ -86,6 +86,17 @@ class App extends React.Component {
       .catch(error => console.log(error))
   }
 
+  createPost(title, body, neighborhood, type) {
+    return axios.post('/signup', {
+      'title': `${title}`,
+      'postHoodId': `${neighborhood}`,
+      'postTypeId': `${type}`,
+      'postBody': `${body}`
+    })
+      .then(response => response)
+      .catch(error => console.log(error))
+  }
+
   // function to pass down to change views
   changeView(option) {
     this.setState({
