@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Login = ({ updateLogin }) => {
+const Login = ({ updateLogin, userLogin, userSignUp }) => {
   const classes = useStyles();
   //user react hooks to set temp state of username
   const [open, setOpen] = React.useState(false);

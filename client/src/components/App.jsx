@@ -64,7 +64,7 @@ class App extends React.Component {
       .catch(error => console.log(error))
   }
 
-  // function to save username to db and set state
+  // function to load username from the db and set username state
   userLogin(username) {
     this.setState({
       username: username,
@@ -74,7 +74,7 @@ class App extends React.Component {
       .catch(error => console.log(error))
   }
 
-  // // function to save username to db and set state
+  // function to save username to db and set username state
   userSignUp(username) {
     this.setState({
       username: username,
@@ -93,7 +93,7 @@ class App extends React.Component {
     });
   }
   
-  // function to change loggedIn state to show user posts
+  // function to change loggedIn state to show user posts and sign out button
   updateLogin() {
     this.setState({
       loggedIn: !this.state.loggedIn,
@@ -103,6 +103,7 @@ class App extends React.Component {
   
   render() {
     console.log(this.state.username);
+
     const { view } = this.state;
     const { loggedIn } = this.state;
     return (
@@ -114,6 +115,8 @@ class App extends React.Component {
           loggedIn={this.state.loggedIn}
           weatherIcon={this.state.weather.icon}
           weatherInfo={this.state.weather}
+          userLogin={this.userLogin}
+          userSignUp={this.userSignUp}
         />
         <br />
         {(() => {
