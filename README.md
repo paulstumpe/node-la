@@ -1,4 +1,3 @@
-# Node.LA
 Welcome to Node.LA!
 
 This app is designed for the plant enthusiasts of New Orleans. The program was designed to encourage and enhance the growing experience of growers in the Southeastern Louisiana Area.
