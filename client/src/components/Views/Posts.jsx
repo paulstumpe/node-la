@@ -5,7 +5,6 @@ import Paper from '@material-ui/core/Paper';
 import Typography from '@material-ui/core/Typography';
 import ButtonBase from '@material-ui/core/ButtonBase';
 import CreatePost from '../CreatePost.jsx';
-import Box from '@material-ui/core/Box';
 
 const useStyles = makeStyles(theme => ({
   root: {

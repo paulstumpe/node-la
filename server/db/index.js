@@ -18,17 +18,17 @@ const Comment = CommentModel(sequelize, Sequelize);
 const Post = PostModel(sequelize, Sequelize);
 const PostType = PostTypeModel(sequelize, Sequelize);
 
-User.hasOne(Hood);
-User.hasMany(Post);
-User.hasMany(Comment);
-Hood.belongsTo(User);
-Post.hasOne(User);
-Post.belongsTo(User);
-Post.hasOne(PostType);
-Post.hasOne(Hood);
-Post.hasMany(Comment);
-Comment.belongsTo(User);
-Comment.hasOne(PostType);
+// User.hasOne(Hood);
+// User.hasMany(Post);
+// User.hasMany(Comment);
+// Hood.belongsTo(User);
+// Post.hasOne(User);
+// Post.belongsTo(User);
+// Post.hasOne(PostType);
+// Post.hasOne(Hood);
+// Post.hasMany(Comment);
+// Comment.belongsTo(User);
+// Comment.hasOne(PostType);
 
 // sequelize.sync({ force: true });
 
