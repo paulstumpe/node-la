@@ -41,14 +41,14 @@ class App extends React.Component {
       .catch(error => {
         console.error('Failed to get weather', error);
       });
-    // // get all posts from db
-    // this.getPosts()
-    //   .then(posts => {
-    //     console.log(posts);
-    //   })
-    //   .catch(error => {
-    //     console.error('Failed to get weather', error);
-    //   });
+    // get all posts from db
+    this.getPosts()
+      .then(posts => {
+        console.log(posts);
+      })
+      .catch(error => {
+        console.error('Failed to get posts', error);
+      });
   }
 
   // function to get the loacl weather on app startup

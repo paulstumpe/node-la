@@ -39,31 +39,28 @@ const useStyles = makeStyles(theme => ({
   }
 }));
 
-const CreatePost = ({ createPost}) => {
+const CreatePost = ({ createPost }) => {
   const classes = useStyles();
-
+  //handle state of dialog box being open or closed
   const [open, setOpen] = React.useState(false);
-
   const handleOpen = () => {
     setOpen(true);
   };
-
   const handleClose = () => {
     setOpen(false);
   };
-
+  //react hook to set temporary state
   const [hood, setHood] = React.useState('');
   const [type, setType] = React.useState('');
-
+  //handle state change of neighborhood type
   const handleHoodChange = event => {
     setHood(event.target.value);
   };
-
+  //handle state change of post type
   const handleTypeChange = event => {
     setType(event.target.value);
   };
 
-  console.log(type);
   return (
     <div className={classes.root}>
       {/* Login button */}
@@ -119,7 +116,7 @@ const CreatePost = ({ createPost}) => {
         {/* buttons in dialog box */}
         <DialogActions>
           <Button onClick={handleClose} color="primary">Cancel</Button>
-          <Button onClick={handleClose} color="primary">Post</Button>
+          <Button onClick={() => {handleClose(); createPost(hood, type)}} color="primary">Post</Button>
         </DialogActions>
       </Dialog>
     </div>
