@@ -31,16 +31,16 @@ const createUser = function (req, res, next) {
 //user login function
 // ! READ
 const getSingleUser = function (req, res, next) {
-  const id = req.params.id;
+  const username = req.params.username;
   User.findOrCreate({
     where: {
-      id: id
+      username: username
     }
   })
-    .then((data) => { // Find the user with the given auth0_id.
+    .then((response) => { // Find the user with the given auth0_id.
       res.status(200).json({ // Send 200 status upon success.
         status: 'success',
-        data: data,
+        data: response.data,
         message: 'Here\'s that user you asked for'
       });
     })
