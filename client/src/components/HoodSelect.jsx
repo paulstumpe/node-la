@@ -20,6 +20,8 @@ const HoodSelect = () => {
     setValue(event.target.value);
   };
 
+  console.log(value);
+
   return (
     <div>
       <FormControl component="fieldset" className={classes.formControl}>
