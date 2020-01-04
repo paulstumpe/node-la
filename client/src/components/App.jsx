@@ -45,11 +45,6 @@ class App extends React.Component {
       });
     // set posts state with all posts from db
     this.getAllPosts()
-      .then(posts => {
-        this.setState({
-          posts: posts.data,
-        })
-      })
       .catch(error => {
         console.error('Failed to get posts', error);
       });
@@ -66,7 +61,11 @@ class App extends React.Component {
   // function to get all posts from db
   getAllPosts() {
     return axios.get('/posts')
-      .then(response => response.data)
+      .then(response => {
+        this.setState({
+          posts: response.data.data,
+        })
+      })
       .catch(error => console.log(error))
   }
 
@@ -142,9 +141,6 @@ class App extends React.Component {
           userLogin={this.userLogin}
           userSignUp={this.userSignUp}
         />
-        <br />
-        <Button variant="contained" color="secondary" onClick={this.getAllPosts}>Get All Posts</Button>
-
         {(() => {
           switch (view) {
             case 'posts':
@@ -154,6 +150,7 @@ class App extends React.Component {
                 createPost={this.createPost}
                 posts={this.state.posts}
                 changeCurrentPost={this.changeCurrentPost}
+                getAllPosts={this.getAllPosts}
                 />;
             case 'userPosts':
               return loggedIn ? <UserPosts changeView={this.changeView} /> 
