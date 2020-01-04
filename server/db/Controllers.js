@@ -31,7 +31,7 @@ const createUser = function (req, res, next) {
 //user login function
 // ! READ
 const getSingleUser = function (req, res, next) {
-  const id = req.params.id;
+  const username = req.params.username;
   User.findOrCreate({
     where: {
       username: username
@@ -116,7 +116,7 @@ const createPost = function (req, res) {
     hoodName: hoodName,
     upOrDown: upOrDown,
   }})
-  .catch((err)=>{ err; debugger;})
+  .catch((err)=>{ err })
   .then((tuple) => {
     const createdHoodObj = tuple[0];
     const newHoodObj = tuple[1];
@@ -126,7 +126,7 @@ const createPost = function (req, res) {
         helpOrGen: postType,
     }})
   })
-  .catch((err)=>{err; debugger;})
+  .catch((err)=>{err})
   .then((tuple) => {
     const createdPostTypeObj = tuple[0];
     const newPostTypeObj = tuple[1];
@@ -178,7 +178,6 @@ const usersPosts = function (req, res, next) {
   Post.findAll({where:{userId : userId}})
   .then((response)=>{
     response;
-    debugger;
   })
   .catch()
 }
@@ -187,11 +186,10 @@ const getPosts = function (req, res, next) {
   const {userId} = req.query;
   Post.findAll()
     .then((response) => {
-      debugger;
       res.status(200);
       res.send(JSON.stringify({
         status: 'success',
-        data: response.data,
+        data: response,
         message: 'Here are all that user\'s posts!'
       }));
       return next();

@@ -6,6 +6,7 @@ import UserPosts from './Views/UserPosts.jsx';
 import Neighborhoods from './Views/Neighborhoods.jsx';
 import Post from './Views/Post.jsx';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 class App extends React.Component {
   constructor(props) {
@@ -16,6 +17,7 @@ class App extends React.Component {
       neighborhood: '',
       posts: [],
       currentPost: {},
+      userPosts: {},
       username: '',
       loggedIn: false,
       weather: {},
@@ -24,10 +26,12 @@ class App extends React.Component {
     this.changeView = this.changeView.bind(this);
     this.updateLogin = this.updateLogin.bind(this);
     this.getWeather = this.getWeather.bind(this);
-    this.getPosts = this.getPosts.bind(this);
+    this.getAllPosts = this.getAllPosts.bind(this);
     this.userLogin = this.userLogin.bind(this);
     this.userSignUp = this.userSignUp.bind(this);
     this.createPost = this.createPost.bind(this);
+    this.getUserPosts = this.getUserPosts.bind(this);
+    this.changeCurrentPost = this.changeCurrentPost.bind(this);
   }
 
   componentDidMount() {
@@ -41,16 +45,12 @@ class App extends React.Component {
       .catch(error => {
         console.error('Failed to get weather', error);
       });
-    // get all posts from db
-    // this.getPosts()
-    //   .then(posts => {
-    //     console.log(posts);
-    //   })
-    //   .catch(error => {
-    //     console.error('Failed to get posts', error);
-    //   });
+    // set posts state with all posts from db
+    this.getAllPosts()
+      .catch(error => {
+        console.error('Failed to get posts', error);
+      });
   }
-
 
   // function to get the loacl weather on app startup
   getWeather() {
@@ -60,9 +60,25 @@ class App extends React.Component {
   }
 
   // function to get all posts from db
-  getPosts() {
+  getAllPosts() {
     return axios.get('/posts')
-      .then(response => response)
+      .then(response => {
+        this.setState({
+          posts: response.data.data,
+        })
+      })
+      .catch(error => console.log(error))
+  }
+
+  // function to get all posts from the signed in user
+  getUserPosts() {
+    return axios.get(`/posts/${this.state.username}`)
+      .then(response => {
+        // this.setState({
+        //   userPosts: response.data.data,
+        // })
+        console.log('getUserPosts => ', response);
+      })
       .catch(error => console.log(error))
   }
 
@@ -71,7 +87,7 @@ class App extends React.Component {
     this.setState({
       username: username,
     })
-    return axios.get(`users:/${username}`)
+    return axios.get(`/users/${username}`)
       .then(response => response)
       .catch(error => console.log(error))
   }
@@ -90,7 +106,6 @@ class App extends React.Component {
 
   // function to create a new post and save to the db
   createPost(title, body, neighborhood, type) {
-    console.log(title, body, neighborhood, type);
     return axios.post('/posts', {
       'title': `${title}`,
       'hoodName': `${neighborhood}`,
@@ -101,11 +116,19 @@ class App extends React.Component {
       .catch(error => console.log(error))
   }
 
+
   // function to pass down to change views
   changeView(option) {
     this.setState({
       view: option,
     });
+  }
+
+  // function to change currentPost state
+  changeCurrentPost(post) {
+    this.setState({
+      currentPost: post
+    })
   }
   
   // function to change loggedIn state to show user posts and sign out button
@@ -116,30 +139,29 @@ class App extends React.Component {
   }
   
   render() {
-
     const { view } = this.state;
     const { loggedIn } = this.state;
     return (
       <div>
         <NavBar 
-          changeView={this.changeView} 
-          loggedIn={this.loggedIn} 
-          updateLogin={this.updateLogin} 
           loggedIn={this.state.loggedIn}
-          weatherIcon={this.state.weather.icon}
           weatherInfo={this.state.weather}
+          weatherIcon={this.state.weather.icon}
+          changeView={this.changeView} 
+          updateLogin={this.updateLogin} 
           userLogin={this.userLogin}
           userSignUp={this.userSignUp}
+          getUserPosts={this.getUserPosts}
         />
-        <br />
         {(() => {
           switch (view) {
             case 'posts':
               return <Posts 
-                changeView={this.changeView} 
-                neighborhood={this.state.neighborhood} 
+                changeView={this.changeView}
                 loggedIn={this.state.loggedIn} 
                 createPost={this.createPost}
+                posts={this.state.posts}
+                changeCurrentPost={this.changeCurrentPost}
                 />;
             case 'userPosts':
               return loggedIn ? <UserPosts changeView={this.changeView} /> 
@@ -149,7 +171,7 @@ class App extends React.Component {
             case 'neighborhoods':
               return <Neighborhoods changeView={this.changeView} />;
             case 'post':
-              return <Post changeView={this.changeView} />;
+              return <Post changeView={this.changeView} currentPost={this.state.currentPost}/>;
             default:
               return <Posts changeView={this.changeView} />;
           }
