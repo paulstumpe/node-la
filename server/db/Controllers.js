@@ -106,7 +106,12 @@ const deleteUser = function (req, res, next) {
 const createPost = function (req, res) {
   //todo
   //comment that in
+<<<<<<< HEAD
   const {username, hoodName, postBody, postType, title, /*upOrDown*/} = req.body;
+=======
+  const {hoodName, postBody, postType, title, /*upOrDown*/} = req.body;
+  username = 'paul';
+>>>>>>> working on foreign id key in createpost
   let postTypeId = null;
   let postHoodId = null;
   let postUserId = null;
@@ -129,6 +134,19 @@ const createPost = function (req, res) {
   })
   .catch((err)=>{err; debugger;})
     //should check for use userid
+<<<<<<< HEAD
+=======
+  .then((tuple) => {
+    const createdUserObj = tuple[0];
+    const newUserObj = tuple[1];
+    postUserId = createdUserObj.dataValues.id;
+    return PostType.findOrCreate({
+      where: {
+        helpOrGen: postType,
+      }
+    })
+  })
+>>>>>>> working on foreign id key in createpost
   .then((tuple) => {
     const createdUserObj = tuple[0];
     const newUserObj = tuple[1];
