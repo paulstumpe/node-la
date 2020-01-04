@@ -33,7 +33,7 @@ const Posts = ({ changeView, loggedIn, createPost, posts, changeCurrentPost }) =
   console.log(posts)
   return (
     <div className={classes.root}>
-      {loggedIn ? <p><CreatePost className={classes.createPost} createPost={createPost} /></p> : null}
+      {loggedIn ? <p><CreatePost className={classes.createPost} createPost={createPost}/></p> : null}
       {posts.map(post => 
       <p>
         <Paper className={classes.paper} elevation={3}>

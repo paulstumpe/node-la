@@ -93,7 +93,6 @@ class App extends React.Component {
 
   // function to create a new post and save to the db
   createPost(title, body, neighborhood, type) {
-    console.log(title, body, neighborhood, type);
     return axios.post('/posts', {
       'title': `${title}`,
       'hoodName': `${neighborhood}`,
@@ -126,7 +125,6 @@ class App extends React.Component {
   }
   
   render() {
-    console.log(this.state.currentPost);
     const { view } = this.state;
     const { loggedIn } = this.state;
     return (
@@ -150,7 +148,6 @@ class App extends React.Component {
                 createPost={this.createPost}
                 posts={this.state.posts}
                 changeCurrentPost={this.changeCurrentPost}
-                getAllPosts={this.getAllPosts}
                 />;
             case 'userPosts':
               return loggedIn ? <UserPosts changeView={this.changeView} /> 

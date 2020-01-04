@@ -40,17 +40,19 @@ const Post = ({ changeView, currentPost }) => {
   return (
     <div className={classes.root}>
       <div className={classes.alignItemsAndJustifyContent}>
-        <Button className={classes.button} style={{ fontWeight: "bolder" }} onClick={() => { changeView("posts") }}> Back To Posts </Button>
+        <p><Button className={classes.button} style={{ fontWeight: "bolder" }} 
+          onClick={() => { changeView("posts") }}> Back To Posts </Button></p>
       </div>
       <Grid container spacing={2}>
         <Grid item xs={12}>
-          <Paper className={classes.paper}>
+          <p><Paper className={classes.paper}>
             <Typography variant="h3" style={{ fontWeight: "bolder", textAlign: "center" }}>{currentPost.title}</Typography>
             <Typography variant="h6" color="primary" style={{ fontWeight: "bolder", textAlign: "right" }}>Username</Typography>
             <Typography variant="subtitle2" color="textSecondary" style={{textAlign: "right" }}>{currentPost.createdAt}</Typography>
             <Typography variant="h6">{currentPost.postBody}</Typography>
-          </Paper>
+          </Paper></p>
         </Grid>
+        
         <Comment />
         <Grid item xs={12}>
           <Paper className={classes.comment}>
