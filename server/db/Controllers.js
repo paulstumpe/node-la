@@ -111,7 +111,10 @@ const createPost = function (req, res) {
 =======
   const {hoodName, postBody, postType, title, /*upOrDown*/} = req.body;
   username = 'paul';
+<<<<<<< HEAD
 >>>>>>> working on foreign id key in createpost
+=======
+>>>>>>> 49b06054df9f632e2cfc6add7a7a78bc49334362
   let postTypeId = null;
   let postHoodId = null;
   let postUserId = null;
@@ -135,7 +138,10 @@ const createPost = function (req, res) {
   .catch((err)=>{err; debugger;})
     //should check for use userid
 <<<<<<< HEAD
+<<<<<<< HEAD
 =======
+=======
+>>>>>>> 49b06054df9f632e2cfc6add7a7a78bc49334362
   .then((tuple) => {
     const createdUserObj = tuple[0];
     const newUserObj = tuple[1];
@@ -146,7 +152,10 @@ const createPost = function (req, res) {
       }
     })
   })
+<<<<<<< HEAD
 >>>>>>> working on foreign id key in createpost
+=======
+>>>>>>> 49b06054df9f632e2cfc6add7a7a78bc49334362
   .then((tuple) => {
     const createdUserObj = tuple[0];
     const newUserObj = tuple[1];
