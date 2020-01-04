@@ -74,7 +74,7 @@ class App extends React.Component {
     this.setState({
       username: username,
     })
-    return axios.get(`users:/${username}`)
+    return axios.get(`/users/${username}`)
       .then(response => console.log(response))
       .catch(error => console.log(error))
   }

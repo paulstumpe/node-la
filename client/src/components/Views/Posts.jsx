@@ -30,7 +30,6 @@ const useStyles = makeStyles(theme => ({
 const Posts = ({ changeView, loggedIn, createPost, posts, changeCurrentPost }) => {
   //use given style from above
   const classes = useStyles();
-  console.log(posts)
   return (
     <div className={classes.root}>
       {loggedIn ? <p><CreatePost className={classes.createPost} createPost={createPost}/></p> : null}
