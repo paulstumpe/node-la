@@ -106,11 +106,10 @@ const deleteUser = function (req, res, next) {
 const createPost = function (req, res) {
   //todo
   //comment that in
-  const {hoodName, postBody, postType, title, /*upOrDown*/} = req.body;
-  debugger;
-  username = 'paul';
+  const {username, hoodName, postBody, postType, title, /*upOrDown*/} = req.body;
   let postTypeId = null;
   let postHoodId = null;
+  let postUserId = null;
   //comment this line out
   let upOrDown = 'up';
   Hood.findOrCreate({
@@ -141,6 +140,7 @@ const createPost = function (req, res) {
     })
   })
   .then((tuple) => {
+    debugger;
     const createdPostTypeObj = tuple[0];
     const newPostTypeObj = tuple[1];
     postTypeId = createdPostTypeObj.dataValues.id;
@@ -149,7 +149,8 @@ const createPost = function (req, res) {
       postHoodId: postHoodId,
       postTypeId: postTypeId,
       postBody: req.body.postBody,
-      postVotes: 0
+      postVotes: 0,
+      userId: postUserId,
     });
   })
   .then((data) => {
