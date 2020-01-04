@@ -173,10 +173,19 @@ const getSinglePost = function (req, res) {
 };
 
 //get all the posts or comments from the db based on user id
+const usersPosts = function (req, res, next) {
+  const { userId } = req.query;
+  Post.findAll({where:{userId : userId}})
+  .then((response)=>{
+    response;
+    debugger;
+  })
+  .catch()
+}
 //! READ POST
 const getPosts = function (req, res, next) {
   const {userId} = req.query;
-  Post.findAll({ where: { "userId": userId } })
+  Post.findAll()
     .then((response) => {
       debugger;
       res.status(200);
@@ -313,5 +322,6 @@ module.exports = {
   createComment,
   getComments,
   updateComment,
-  deleteComment
+  deleteComment,
+  usersPosts
 };
