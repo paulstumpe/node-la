@@ -29,6 +29,7 @@ class App extends React.Component {
     this.userLogin = this.userLogin.bind(this);
     this.userSignUp = this.userSignUp.bind(this);
     this.createPost = this.createPost.bind(this);
+    this.changeCurrentPost = this.changeCurrentPost.bind(this);
   }
 
   componentDidMount() {
@@ -110,6 +111,13 @@ class App extends React.Component {
       view: option,
     });
   }
+
+  // function to change currentPost state
+  changeCurrentPost(post) {
+    this.setState({
+      currentPost: post
+    })
+  }
   
   // function to change loggedIn state to show user posts and sign out button
   updateLogin() {
@@ -119,6 +127,7 @@ class App extends React.Component {
   }
   
   render() {
+    console.log(this.state.currentPost);
     const { view } = this.state;
     const { loggedIn } = this.state;
     return (
@@ -144,6 +153,7 @@ class App extends React.Component {
                 loggedIn={this.state.loggedIn} 
                 createPost={this.createPost}
                 posts={this.state.posts}
+                changeCurrentPost={this.changeCurrentPost}
                 />;
             case 'userPosts':
               return loggedIn ? <UserPosts changeView={this.changeView} /> 
