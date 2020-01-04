@@ -106,15 +106,7 @@ const deleteUser = function (req, res, next) {
 const createPost = function (req, res) {
   //todo
   //comment that in
-<<<<<<< HEAD
   const {username, hoodName, postBody, postType, title, /*upOrDown*/} = req.body;
-=======
-  const {hoodName, postBody, postType, title, /*upOrDown*/} = req.body;
-  username = 'paul';
-<<<<<<< HEAD
->>>>>>> working on foreign id key in createpost
-=======
->>>>>>> 49b06054df9f632e2cfc6add7a7a78bc49334362
   let postTypeId = null;
   let postHoodId = null;
   let postUserId = null;
