@@ -17,6 +17,7 @@ class App extends React.Component {
       neighborhood: '',
       posts: [],
       currentPost: {},
+      userPosts: {},
       username: '',
       loggedIn: false,
       weather: {},
