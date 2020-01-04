@@ -30,6 +30,7 @@ class App extends React.Component {
     this.userLogin = this.userLogin.bind(this);
     this.userSignUp = this.userSignUp.bind(this);
     this.createPost = this.createPost.bind(this);
+    this.getUserPosts = this.getUserPosts.bind(this);
     this.changeCurrentPost = this.changeCurrentPost.bind(this);
   }
 
@@ -51,7 +52,6 @@ class App extends React.Component {
       });
   }
 
-
   // function to get the loacl weather on app startup
   getWeather() {
     return axios.get('/weather')
@@ -66,6 +66,18 @@ class App extends React.Component {
         this.setState({
           posts: response.data.data,
         })
+      })
+      .catch(error => console.log(error))
+  }
+
+  // function to get all posts from the signed in user
+  getUserPosts() {
+    return axios.get(`/posts/${this.state.username}`)
+      .then(response => {
+        // this.setState({
+        //   userPosts: response.data.data,
+        // })
+        console.log('getUserPosts => ', response);
       })
       .catch(error => console.log(error))
   }
@@ -104,6 +116,7 @@ class App extends React.Component {
       .catch(error => console.log(error))
   }
 
+
   // function to pass down to change views
   changeView(option) {
     this.setState({
@@ -131,14 +144,14 @@ class App extends React.Component {
     return (
       <div>
         <NavBar 
-          changeView={this.changeView} 
-          loggedIn={this.loggedIn} 
-          updateLogin={this.updateLogin} 
           loggedIn={this.state.loggedIn}
-          weatherIcon={this.state.weather.icon}
           weatherInfo={this.state.weather}
+          weatherIcon={this.state.weather.icon}
+          changeView={this.changeView} 
+          updateLogin={this.updateLogin} 
           userLogin={this.userLogin}
           userSignUp={this.userSignUp}
+          getUserPosts={this.getUserPosts}
         />
         {(() => {
           switch (view) {
