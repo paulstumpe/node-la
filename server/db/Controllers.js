@@ -129,25 +129,6 @@ const createPost = function (req, res) {
   })
   .catch((err)=>{err; debugger;})
     //should check for use userid
-<<<<<<< HEAD
-<<<<<<< HEAD
-=======
-=======
->>>>>>> 49b06054df9f632e2cfc6add7a7a78bc49334362
-  .then((tuple) => {
-    const createdUserObj = tuple[0];
-    const newUserObj = tuple[1];
-    postUserId = createdUserObj.dataValues.id;
-    return PostType.findOrCreate({
-      where: {
-        helpOrGen: postType,
-      }
-    })
-  })
-<<<<<<< HEAD
->>>>>>> working on foreign id key in createpost
-=======
->>>>>>> 49b06054df9f632e2cfc6add7a7a78bc49334362
   .then((tuple) => {
     const createdUserObj = tuple[0];
     const newUserObj = tuple[1];
@@ -159,7 +140,6 @@ const createPost = function (req, res) {
     })
   })
   .then((tuple) => {
-    debugger;
     const createdPostTypeObj = tuple[0];
     const newPostTypeObj = tuple[1];
     postTypeId = createdPostTypeObj.dataValues.id;
@@ -174,7 +154,6 @@ const createPost = function (req, res) {
   })
   .then((data) => {
     data;
-    debugger;
     res.status(201)
       .json({
         status: 'success',
