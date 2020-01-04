@@ -1,3 +1,10 @@
-node_modules
+.DS_Store
+node_modules/
+compiled/
 /config.js
-/auth.js
+config.js
+auth.js
+server/db/config.js
+client/dist/bundle.js
+*.log
+bower_components
