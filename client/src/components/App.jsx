@@ -42,14 +42,16 @@ class App extends React.Component {
       .catch(error => {
         console.error('Failed to get weather', error);
       });
-    // get all posts from db
-    // this.getAllPosts()
-    //   .then(posts => {
-    //     console.log(posts);
-    //   })
-    //   .catch(error => {
-    //     console.error('Failed to get posts', error);
-    //   });
+    // set posts state with all posts from db
+    this.getAllPosts()
+      .then(posts => {
+        this.setState({
+          posts: posts.data,
+        })
+      })
+      .catch(error => {
+        console.error('Failed to get posts', error);
+      });
   }
 
 
@@ -63,7 +65,7 @@ class App extends React.Component {
   // function to get all posts from db
   getAllPosts() {
     return axios.get('/posts')
-      .then(response => console.log(response))
+      .then(response => response.data)
       .catch(error => console.log(error))
   }
 
@@ -117,7 +119,6 @@ class App extends React.Component {
   }
   
   render() {
-
     const { view } = this.state;
     const { loggedIn } = this.state;
     return (
@@ -139,10 +140,10 @@ class App extends React.Component {
           switch (view) {
             case 'posts':
               return <Posts 
-                changeView={this.changeView} 
-                neighborhood={this.state.neighborhood} 
+                changeView={this.changeView}
                 loggedIn={this.state.loggedIn} 
                 createPost={this.createPost}
+                posts={this.state.posts}
                 />;
             case 'userPosts':
               return loggedIn ? <UserPosts changeView={this.changeView} /> 
@@ -152,7 +153,7 @@ class App extends React.Component {
             case 'neighborhoods':
               return <Neighborhoods changeView={this.changeView} />;
             case 'post':
-              return <Post changeView={this.changeView} />;
+              return <Post changeView={this.changeView} currentPost={this.state.currentPost}/>;
             default:
               return <Posts changeView={this.changeView} />;
           }

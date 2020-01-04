@@ -11,7 +11,6 @@ module.exports = (sequelize, type) => {
     postTypeId: {
       type: type.INTEGER,
       allowNull: false,
-      unique: true
     },
     postBody: {
       type: type.TEXT,
