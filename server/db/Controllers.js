@@ -1,4 +1,4 @@
-const { User, Post, PostTypes, Hood, Comment } = require('./index');
+const { User, Post, PostType, Hood, Comment } = require('./index');
 const parser = require('body-parser');
 const feathers = require('@feathersjs/feathers');
 const express = require('@feathersjs/express');
@@ -103,36 +103,53 @@ const deleteUser = function (req, res, next) {
 
 //! CREATE POST
 const createPost = function (req, res) {
-  Hood.create({
-    hoodName: req.body.hoodName,
+  const {hoodName, postBody, postType, title, upOrDown } = req.body;
+  let postTypeId = null;
+  let postHoodId = null;
+
+  Hood.findOrCreate({
+    where:{
+    hoodName: hoodName,
+    upOrDown: upOrDown,
+  }})
+  .catch((err)=>{ err; debugger;})
+  .then((tuple) => {
+    const createdHoodObj = tuple[0];
+    const newHoodObj = tuple[1];
+    postHoodId = createdHoodObj.dataValues.id;
+    return PostType.findOrCreate({
+      where:{
+        helpOrGen: postType,
+    }})
   })
-    .then(() => {
-      PostTypes.create({
-        helpOrGen: req.body.postType,
-      });
-    })
-    .then(() => {
-      Post.create({
-        title: req.body.title,
-        postHoodId: postHoodId,
-        postTypeId: postTypeId,
-        postBody: req.body.postBody,
-        postVotes: 0
-      });
-    })
-    .then((data) => {
-      res.status(201)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Created a new Post!'
-        });
-    })
-    .catch((err) => {
-      res.status(400);
-      console.log('There was an error creating that post!'), err;
-      return next();
+  .catch((err)=>{err; debugger;})
+  .then((tuple) => {
+    const createdPostTypeObj = tuple[0];
+    const newPostTypeObj = tuple[1];
+    postTypeId = createdPostTypeObj.dataValues.id;
+    return Post.create({
+      title: title,
+      postHoodId: postHoodId,
+      postTypeId: postTypeId,
+      postBody: req.body.postBody,
+      postVotes: 0
     });
+  })
+  .then((data) => {
+    data;
+    debugger;
+    res.status(201)
+      .json({
+        status: 'success',
+        data: data,
+        message: 'Created a new Post!'
+      });
+  })
+  .catch((err) => {
+    res.status(400);
+    console.log('There was an error creating that post!'), err;
+    return next();
+  });
 };
 
 const getSinglePost = function (req, res) {
