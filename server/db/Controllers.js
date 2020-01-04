@@ -179,7 +179,7 @@ const getPosts = function (req, res, next) {
       res.status(200);
       res.send(JSON.stringify({
         status: 'success',
-        data: response.data.data,
+        data: response,
         message: 'Here are all that user\'s posts!'
       }));
       return next();
