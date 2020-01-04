@@ -66,7 +66,6 @@ const Post = ({ changeView, currentPost }) => {
           </Paper>
         </Grid>
       </Grid>
-
     </div>
   );
 }

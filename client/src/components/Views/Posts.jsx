@@ -11,7 +11,7 @@ const useStyles = makeStyles(theme => ({
     flexGrow: 1,
   },
   paper: {
-    padding: theme.spacing(4),
+    padding: theme.spacing(3),
     margin: 'auto',
     maxWidth: 700,
   },
@@ -35,33 +35,25 @@ const Posts = ({ changeView, loggedIn, createPost, posts, changeCurrentPost }) =
     <div className={classes.root}>
       {loggedIn ? <CreatePost className={classes.createPost} createPost={createPost} /> : null}
       {posts.map(post => 
-      <Paper className={classes.paper} elevation={3}>
-        <Grid container spacing={4}>
-          <Grid item>
-          </Grid>
-          <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
-                <Typography gutterBottom id={post.id} variant="h5" style={{ cursor: 'pointer' }} 
-                onClick={() => { changeView("post"), changeCurrentPost(posts[post.id - 1]) }}>
-                  {post.title}
-                </Typography>
-                <Typography variant="body2" gutterBottom>
-                  {post.body}
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="body2">
-                  0 comments
-                </Typography>
-              </Grid>
-            </Grid>
+      <p>
+        <Paper className={classes.paper} elevation={3}>
+          <Grid container spacing={3}>
             <Grid item>
-                <Typography variant="subtitle2" color="textSecondary">{post.createdAt}</Typography>
+            </Grid>
+            <Grid item xs={12} sm container>
+              <Grid item xs container direction="column" spacing={2}>
+                  <Typography gutterBottom id={post.id} variant="h5" style={{ cursor: 'pointer' }} 
+                  onClick={() => { changeView("post"), changeCurrentPost(posts[post.id - 1]) }}>
+                    {post.title}
+                  </Typography>
+                  <Typography variant="body2">{post.body}</Typography>
+                  <Typography variant="body2"> 0 comments</Typography>
+              </Grid>
+                  <Typography variant="subtitle2" color="textSecondary">{post.createdAt}</Typography>
             </Grid>
           </Grid>
-        </Grid>
-      </Paper>
+        </Paper>
+      </p>
       )}
     </div>
   );
