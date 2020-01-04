@@ -20,7 +20,6 @@ which will alert you to which port the app is listening on.
 
 
 ### Resources
-
 * [Postman](https://www.getpostman.com/)
 * [React Docs](https://facebook.github.io/react/)
 * [Webpack Docs](https://webpack.github.io/docs/)
