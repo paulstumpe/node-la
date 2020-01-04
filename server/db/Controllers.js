@@ -107,6 +107,7 @@ const createPost = function (req, res) {
   //todo
   //comment that in
   const {hoodName, postBody, postType, title, /*upOrDown*/} = req.body;
+  debugger;
   username = 'paul';
   let postTypeId = null;
   let postHoodId = null;
