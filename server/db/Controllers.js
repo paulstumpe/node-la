@@ -116,7 +116,7 @@ const createPost = function (req, res) {
     hoodName: hoodName,
     upOrDown: upOrDown,
   }})
-  .catch((err)=>{ err; debugger;})
+  .catch((err)=>{ err })
   .then((tuple) => {
     const createdHoodObj = tuple[0];
     const newHoodObj = tuple[1];
@@ -126,7 +126,7 @@ const createPost = function (req, res) {
         helpOrGen: postType,
     }})
   })
-  .catch((err)=>{err; debugger;})
+  .catch((err)=>{err})
   .then((tuple) => {
     const createdPostTypeObj = tuple[0];
     const newPostTypeObj = tuple[1];
@@ -156,6 +156,7 @@ const createPost = function (req, res) {
 };
 
 const getSinglePost = function (req, res) {
+  debugger;
   const id = req.params.postId;
   Post.findOne({
     where: {
@@ -172,8 +173,17 @@ const getSinglePost = function (req, res) {
 };
 
 //get all the posts or comments from the db based on user id
+const usersPosts = function (req, res, next) {
+  const { userId } = req.query;
+  Post.findAll({where:{userId : userId}})
+  .then((response)=>{
+    response;
+  })
+  .catch()
+}
 //! READ POST
 const getPosts = function (req, res, next) {
+  const {userId} = req.query;
   Post.findAll()
     .then((response) => {
       res.status(200);
@@ -310,5 +320,6 @@ module.exports = {
   createComment,
   getComments,
   updateComment,
-  deleteComment
+  deleteComment,
+  usersPosts
 };
