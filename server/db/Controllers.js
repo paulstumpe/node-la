@@ -103,9 +103,13 @@ const deleteUser = function (req, res, next) {
 
 //! CREATE POST
 const createPost = function (req, res) {
-  const {hoodName, postBody, postType, title, upOrDown } = req.body;
+  //todo
+  //comment that in
+  const {hoodName, postBody, postType, title, /*upOrDown*/} = req.body;
   let postTypeId = null;
   let postHoodId = null;
+  //comment this line out
+  let upOrDown = 'up';
 
   Hood.findOrCreate({
     where:{
@@ -137,7 +141,6 @@ const createPost = function (req, res) {
   })
   .then((data) => {
     data;
-    debugger;
     res.status(201)
       .json({
         status: 'success',
@@ -171,11 +174,7 @@ const getSinglePost = function (req, res) {
 //get all the posts or comments from the db based on user id
 //! READ POST
 const getPosts = function (req, res, next) {
-  Post.findAll({
-    where: {
-      id: 1,
-    }
-  })
+  Post.findAll()
     .then((response) => {
       res.status(200);
       res.send(JSON.stringify({
