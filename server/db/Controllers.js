@@ -156,6 +156,7 @@ const createPost = function (req, res) {
 };
 
 const getSinglePost = function (req, res) {
+  debugger;
   const id = req.params.postId;
   Post.findOne({
     where: {
@@ -174,8 +175,10 @@ const getSinglePost = function (req, res) {
 //get all the posts or comments from the db based on user id
 //! READ POST
 const getPosts = function (req, res, next) {
-  Post.findAll()
+  const {userId} = req.query;
+  Post.findAll({ where: { "userId": userId } })
     .then((response) => {
+      debugger;
       res.status(200);
       res.send(JSON.stringify({
         status: 'success',
