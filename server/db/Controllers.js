@@ -1,4 +1,4 @@
-const { User, Post, PostTypes, Hood, Comment } = require('./index');
+const { User, Post, PostType, Hood, Comment } = require('./index');
 const parser = require('body-parser');
 const feathers = require('@feathersjs/feathers');
 const express = require('@feathersjs/express');
@@ -103,8 +103,7 @@ const deleteUser = function (req, res, next) {
 
 //! CREATE POST
 const createPost = function (req, res) {
-  const {hoodName, postBody, postType, title, } = req.body;
-  const upOrDown = "up";
+  const {hoodName, postBody, postType, title, upOrDown } = req.body;
   let postTypeId = null;
   let postHoodId = null;
 
@@ -118,7 +117,7 @@ const createPost = function (req, res) {
     const createdHoodObj = tuple[0];
     const newHoodObj = tuple[1];
     postHoodId = createdHoodObj.dataValues.id;
-    return PostTypes.findOrCreate({
+    return PostType.findOrCreate({
       where:{
         helpOrGen: postType,
     }})
@@ -128,8 +127,7 @@ const createPost = function (req, res) {
     const createdPostTypeObj = tuple[0];
     const newPostTypeObj = tuple[1];
     postTypeId = createdPostTypeObj.dataValues.id;
-    debugger;
-    Post.create({
+    return Post.create({
       title: title,
       postHoodId: postHoodId,
       postTypeId: postTypeId,
@@ -138,6 +136,8 @@ const createPost = function (req, res) {
     });
   })
   .then((data) => {
+    data;
+    debugger;
     res.status(201)
       .json({
         status: 'success',
