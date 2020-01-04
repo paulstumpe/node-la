@@ -187,10 +187,24 @@ const getSinglePost = function (req, res) {
 
 //get all the posts or comments from the db based on user id
 const usersPosts = function (req, res, next) {
-  const { userId } = req.query;
-  Post.findAll({where:{userId : userId}})
+  const { username } = req.query;
+  debugger;
+  User.findOne({where:{username : username}})
+  .then((user)=>{
+    debugger;
+    id = user.dataValues.id;
+    return Post.findAll({ where: { userId: id } })
+  })
   .then((response)=>{
+    debugger;
     response;
+    res.status(200);
+    res.send(JSON.stringify({
+      status: 'success',
+      data: response,
+      message: 'Here are all that user\'s posts!'
+    }));
+    return next();
   })
   .catch()
 }
@@ -203,7 +217,7 @@ const getPosts = function (req, res, next) {
       res.send(JSON.stringify({
         status: 'success',
         data: response,
-        message: 'Here are all that user\'s posts!'
+        message: 'Here are all the posts!'
       }));
       return next();
     })
