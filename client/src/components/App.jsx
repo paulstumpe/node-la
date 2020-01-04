@@ -110,7 +110,8 @@ class App extends React.Component {
       'title': `${title}`,
       'hoodName': `${neighborhood}`,
       'postType': `${type}`,
-      'postBody': `${body}`
+      'postBody': `${body}`,
+      'username': `${this.state.username}`,
     })
       .then(response => response)
       .catch(error => console.log(error))
