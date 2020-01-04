@@ -6,13 +6,19 @@ const CommentModel = require('./Models/Comment');
 const PostModel = require('./Models/Post');
 const PostTypeModel = require('./Models/PostType');
 
+//connect to mariadb using Sequelize methods
 const sequelize = new Sequelize('nodela', 'root', '', mariaConfig);
+
 
 const User = UserModel(sequelize, Sequelize);
 const Hood = HoodModel(sequelize, Sequelize);
 const Comment = CommentModel(sequelize, Sequelize);
 const Post = PostModel(sequelize, Sequelize);
 const PostType = PostTypeModel(sequelize, Sequelize);
+
+// //Post.belongsTo(User);
+User.hasMany(Post);
+Post.belongsTo(User);
 
 User.sync({ force: true })
   .then(() => console.log('Users synced!'));
