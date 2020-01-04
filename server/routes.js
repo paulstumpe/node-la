@@ -12,8 +12,6 @@ module.exports = function (app, express) {
   app.get('/users/?username', ctrl.getSingleUser);
   //get all users
   app.get('/users', ctrl.getUsers);
-  //update a user
-  // ? app.put('/users:id/', ctrl.updateUser)
   //create a post
   app.post('/posts', ctrl.createPost);
   // get all the posts
