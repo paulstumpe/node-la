@@ -19,7 +19,7 @@ module.exports = function (app, express) {
   // get all the posts
   app.get('/posts', ctrl.getPosts);
   //get all post by single user
-  app.get('/posts/?userId', ctrl.getSinglePost);
+  app.get('/posts/?username', ctrl.getSinglePost);
   // deleteUser,
   // ? app.put('/posts:id'. ctrl.updatePost);
   //delete a post

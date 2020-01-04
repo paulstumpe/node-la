@@ -88,7 +88,7 @@ class App extends React.Component {
       username: username,
     })
     return axios.get(`/users/${username}`)
-      .then(response => console.log(response))
+      .then(response => response)
       .catch(error => console.log(error))
   }
 
