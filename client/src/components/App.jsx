@@ -6,6 +6,7 @@ import UserPosts from './Views/UserPosts.jsx';
 import Neighborhoods from './Views/Neighborhoods.jsx';
 import Post from './Views/Post.jsx';
 import Typography from '@material-ui/core/Typography';
+import Button from '@material-ui/core/Button';
 
 class App extends React.Component {
   constructor(props) {
@@ -24,7 +25,7 @@ class App extends React.Component {
     this.changeView = this.changeView.bind(this);
     this.updateLogin = this.updateLogin.bind(this);
     this.getWeather = this.getWeather.bind(this);
-    this.getPosts = this.getPosts.bind(this);
+    this.getAllPosts = this.getAllPosts.bind(this);
     this.userLogin = this.userLogin.bind(this);
     this.userSignUp = this.userSignUp.bind(this);
     this.createPost = this.createPost.bind(this);
@@ -42,7 +43,7 @@ class App extends React.Component {
         console.error('Failed to get weather', error);
       });
     // get all posts from db
-    // this.getPosts()
+    // this.getAllPosts()
     //   .then(posts => {
     //     console.log(posts);
     //   })
@@ -60,9 +61,9 @@ class App extends React.Component {
   }
 
   // function to get all posts from db
-  getPosts() {
+  getAllPosts() {
     return axios.get('/posts')
-      .then(response => response)
+      .then(response => console.log(response))
       .catch(error => console.log(error))
   }
 
@@ -132,6 +133,8 @@ class App extends React.Component {
           userSignUp={this.userSignUp}
         />
         <br />
+        <Button variant="contained" color="secondary" onClick={this.getAllPosts}>Get All Posts</Button>
+
         {(() => {
           switch (view) {
             case 'posts':

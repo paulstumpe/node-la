@@ -36,9 +36,7 @@ const Posts = ({ changeView, loggedIn, createPost }) => {
       <Paper className={classes.paper} elevation={3}>
         <Grid container spacing={4}>
           <Grid item>
-            <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTXX_8A3WrgqK9KBAmB2P_aQyqJIpxIIk3pvAoG6kT0wbT36GHO" />
-            </ButtonBase>
+            
           </Grid>
           <Grid item xs={12} sm container>
             <Grid item xs container direction="column" spacing={2}>
