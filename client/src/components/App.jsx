@@ -27,7 +27,6 @@ class App extends React.Component {
     this.updateLogin = this.updateLogin.bind(this);
     this.getWeather = this.getWeather.bind(this);
     this.getAllPosts = this.getAllPosts.bind(this);
-    this.userLogin = this.userLogin.bind(this);
     this.userSignUp = this.userSignUp.bind(this);
     this.createPost = this.createPost.bind(this);
     this.getUserPosts = this.getUserPosts.bind(this);
@@ -72,6 +71,9 @@ class App extends React.Component {
 
   // function to get all posts from the signed in user
   getUserPosts(username) {
+    this.setState({
+      username: username,
+    })
     return axios.get(`/usersposts`, {
       params: {
         'username': `${username}`
@@ -83,16 +85,6 @@ class App extends React.Component {
         // })
         console.log('getUserPosts => ', response);
       })
-      .catch(error => console.log(error))
-  }
-
-  // function to load username from the db and set username state
-  userLogin(username) {
-    this.setState({
-      username: username,
-    })
-    return axios.get(`/users/${username}`)
-      .then(response => response)
       .catch(error => console.log(error))
   }
 
@@ -154,7 +146,6 @@ class App extends React.Component {
           weatherIcon={this.state.weather.icon}
           changeView={this.changeView} 
           updateLogin={this.updateLogin} 
-          userLogin={this.userLogin}
           userSignUp={this.userSignUp}
           getUserPosts={this.getUserPosts}
         />
