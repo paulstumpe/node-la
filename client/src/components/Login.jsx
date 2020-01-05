@@ -15,7 +15,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Login = ({ updateLogin, userLogin, userSignUp }) => {
+const Login = ({ updateLogin, userSignUp, userLogin, getUserPosts }) => {
   const classes = useStyles();
   //user react hooks to set temp state of username
   const [open, setOpen] = React.useState(false);
@@ -48,7 +48,7 @@ const Login = ({ updateLogin, userLogin, userSignUp }) => {
             {/* buttons in dialog box */}
             <DialogActions>
               <Button onClick={handleClose} color="primary">Cancel</Button>
-          <Button onClick={() => { handleClose(); updateLogin(); userLogin(usernameValue); }} color="primary">Login</Button>
+          <Button onClick={() => { handleClose(); updateLogin(); userLogin(usernameValue); getUserPosts(usernameValue) }} color="primary">Login</Button>
           <Button onClick={() => { handleClose(); updateLogin(); userSignUp(usernameValue); }} color="primary">Sign Up</Button>
             </DialogActions>
           </Dialog>

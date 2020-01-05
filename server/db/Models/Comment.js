@@ -17,6 +17,7 @@ module.exports = (sequelize, type) => {
       //   model: Post,
       //   key: 'id'
       // }
+      //allowNull: false,
     },
     // commentUserName: {
     //   type:type.STRING,

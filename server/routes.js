@@ -12,18 +12,21 @@ module.exports = function (app, express) {
   app.get('users:username', ctrl.getSingleUser);
   //get all users
   app.get('/users', ctrl.getUsers);
-  //update a user
-  // ? app.put('/users:id/', ctrl.updateUser)
   //create a post
   app.post('/posts', ctrl.createPost);
   // get all the posts
   app.get('/posts', ctrl.getPosts);
-  //get single user's post
-  app.get('/users:id/post', ctrl.getSinglePost);
-  // deleteUser,
-  // ? app.put('/posts:id'. ctrl.updatePost);
+  //get all post by single user
+  app.get('/usersposts', ctrl.usersPosts);
   //delete a post
   app.delete('/users:id/posts:id', ctrl.deletePost);
+  //create comment
+  app.post('/comments', ctrl.createComment);
+  //get comments for a post
+  app.get('/comments', ctrl.getComments);
+  //get all posts for a neighborhood
+  app.get('/neighborhoods/posts', ctrl.getNeighborhoodsPosts);
+
   //darksky current weather api request
   app.get('/weather', (req, res) => {
     axios.get(`https://api.darksky.net/forecast/${weatherKey}/29.9511,-90.0715`)

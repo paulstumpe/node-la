@@ -15,16 +15,6 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
     maxWidth: 700,
   },
-  image: {
-    width: 128,
-    height: 128,
-  },
-  img: {
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-  },
 }));
 
 const Posts = ({ changeView, loggedIn, createPost }) => {
@@ -32,128 +22,32 @@ const Posts = ({ changeView, loggedIn, createPost }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
-      {loggedIn ? <CreatePost className={classes.createPost} createPost={createPost} /> : null}
-      <Paper className={classes.paper} elevation={3}>
-        <Grid container spacing={4}>
-          <Grid item>
-            <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTXX_8A3WrgqK9KBAmB2P_aQyqJIpxIIk3pvAoG6kT0wbT36GHO" />
-            </ButtonBase>
-          </Grid>
-          <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
-                <Typography gutterBottom variant="h5" style={{ cursor: 'pointer' }} onClick={() => { changeView("post") }}>
-                  Post Title
-                </Typography>
-                <Typography variant="body2" gutterBottom>
-                  Post placeholder text
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="body2">
-                  0 comments
-                </Typography>
-              </Grid>
-            </Grid>
+      {/* If logged in, show an 'add post' button */}
+      {loggedIn ? <p><CreatePost className={classes.createPost} createPost={createPost}/></p> : null}
+      {/* Contaner for each post */}
+      {posts.map((post, index) => {
+      <p>
+        <Paper className={classes.paper} elevation={3}>
+          <Grid container spacing={3}>
             <Grid item>
               <Typography variant="subtitle2" color="textSecondary">Post Time</Typography>
             </Grid>
-          </Grid>
-        </Grid>
-      </Paper>
-      <br />
-      <Paper className={classes.paper} elevation={3}>
-        <Grid container spacing={4}>
-          <Grid item>
-            <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSXrt2REJSzRybvlD09MPy2PLRv4KQjRPfzYAsTOjw-Kn5visry" />
-            </ButtonBase>
-          </Grid>
-          <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
-                <Typography gutterBottom variant="h5" style={{ cursor: 'pointer' }} onClick={() => { changeView("post") }}>
-                  Post Title
-                </Typography>
-                <Typography variant="body2" gutterBottom>
-                  Post placeholder text
-                </Typography>
+            <Grid item xs={12} sm container>
+              <Grid item xs container direction="column" spacing={2}>
+                  <Typography gutterBottom id={index} variant="h5" style={{ cursor: 'pointer' }}
+                  onClick={() => { changeView("post"), changeCurrentPost(posts[index]) }}>
+                    {post.title}
+                  </Typography>
+                  <Typography variant="body2">{post.body}</Typography>
+                  <Typography variant="body2">0 comments</Typography>
               </Grid>
-              <Grid item>
-                <Typography variant="body2">
-                  0 comments
-                </Typography>
+                  <Typography variant="subtitle2" color="textSecondary">{post.createdAt}</Typography>
               </Grid>
             </Grid>
-            <Grid item>
-              <Typography variant="subtitle2" color="textSecondary">Post Time</Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Paper>
-      <br />
-      <Paper className={classes.paper} elevation={3}>
-        <Grid container spacing={4}>
-          <Grid item>
-            <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcQc8cjPya7tDcbXItfiaxTL99_pVENSXaS4jWZz-bmbDjEhYRn3" />
-            </ButtonBase>
-          </Grid>
-          <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
-                <Typography gutterBottom variant="h5" style={{ cursor: 'pointer' }} onClick={() => { changeView("post") }}>
-                  Post Title
-                </Typography>
-                <Typography variant="body2" gutterBottom>
-                  Post placeholder text
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="body2">
-                  0 comments
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid item>
-              <Typography variant="subtitle2" color="textSecondary">Post Time</Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Paper>
-      <br />
-      <Paper className={classes.paper} elevation={3}>
-        <Grid container spacing={4}>
-          <Grid item>
-            <ButtonBase className={classes.image}>
-              <img className={classes.img} alt="img" src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcSTbzeyoOlKcuCs_f4Z6wjZ1JXSi-qAXmxZI2IoPdLMda8nirw5" />
-            </ButtonBase>
-          </Grid>
-          <Grid item xs={12} sm container>
-            <Grid item xs container direction="column" spacing={2}>
-              <Grid item xs>
-                <Typography gutterBottom variant="h5" style={{ cursor: 'pointer' }} onClick={() => { changeView("post") }}>
-                  Post Title
-                </Typography>
-                <Typography variant="body2" gutterBottom>
-                  Post placeholder text
-                </Typography>
-              </Grid>
-              <Grid item>
-                <Typography variant="body2">
-                  0 comments
-                </Typography>
-              </Grid>
-            </Grid>
-            <Grid item>
-              <Typography variant="subtitle2" color="textSecondary">Post Time</Typography>
-            </Grid>
-          </Grid>
-        </Grid>
-      </Paper>
-    </div>
-  );
+        </Paper>
+      </p>
+      })};
+  </div>
 }
 
 export default Posts;

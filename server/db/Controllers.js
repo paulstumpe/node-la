@@ -40,7 +40,7 @@ const getSingleUser = function (req, res, next) {
     .then((response) => { // Find the user with the given auth0_id.
       res.status(200).json({ // Send 200 status upon success.
         status: 'success',
-        data: response.data,
+        data: response,
         message: 'Here\'s that user you asked for'
       });
     })
@@ -175,6 +175,25 @@ const getSinglePost = function (req, res) {
 };
 
 //get all the posts or comments from the db based on user id
+const usersPosts = function (req, res, next) {
+  const { username } = req.query;
+  User.findOne({where:{username : username}})
+  .then((user)=>{
+    id = user.dataValues.id;
+    return Post.findAll({ where: { userId: id } })
+  })
+  .then((response)=>{
+    response;
+    res.status(200);
+    res.send(JSON.stringify({
+      status: 'success',
+      data: response,
+      message: 'Here are all that user\'s posts!'
+    }));
+    return next();
+  })
+  .catch()
+}
 //! READ POST
 const getPosts = function (req, res, next) {
   Post.findAll({
@@ -311,8 +330,34 @@ const deleteComment = function (req, res) {
     });
 };
 
+const getNeighborhoodsPosts = function(req, res, next) {
+  const { hoodName } = req.query;
+  let postHoodId = null;
+  Hood.findOne({
+    where: {
+      hoodName: hoodName,
+  }})
+  .catch((err) => { debugger; })
+  .then((hood) => {
+      debugger;
+      postHoodId = hood.dataValues.id;
+      return Post.findAll( {where: {
+        postHoodId: postHoodId
+      }})
+  })
+  .then((posts)=>{
+    res.send(posts);
+    posts;
+    debugger;
+  })
+  .catch((err)=>{
+    debugger;
+  })
+}
+
 
 module.exports = {
+  getNeighborhoodsPosts,
   createUser,
   getSingleUser,
   getUsers,
