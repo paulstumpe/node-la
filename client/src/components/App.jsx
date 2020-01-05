@@ -17,7 +17,7 @@ class App extends React.Component {
       neighborhood: '',
       posts: [],
       currentPost: {},
-      userPosts: {},
+      userPosts: [],
       username: '',
       loggedIn: false,
       weather: {},
@@ -80,9 +80,9 @@ class App extends React.Component {
       }
     })
       .then(response => {
-        // this.setState({
-        //   userPosts: response.data.data,
-        // })
+        this.setState({
+          userPosts: response.data.data,
+        })
         console.log('getUserPosts => ', response);
       })
       .catch(error => console.log(error))
