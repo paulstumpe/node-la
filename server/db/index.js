@@ -20,6 +20,9 @@ const PostType = PostTypeModel(sequelize, Sequelize);
 User.hasMany(Post);
 Post.belongsTo(User);
 
+Post.hasMany(Comment);
+Comment.belongsTo(Post);
+
 User.sync({ force: true })
   .then(() => console.log('Users synced!'));
 

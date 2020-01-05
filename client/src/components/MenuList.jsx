@@ -63,7 +63,7 @@ const MenuList = ({ changeView, weatherIcon, weatherInfo }) => {
       >
         <MenuIcon />
       </IconButton>
-      {/* Drop down menu */}
+      {/* Drop down menu on NavBar*/}
       <StyledMenu
         id="customized-menu"
         anchorEl={anchorEl}
@@ -77,23 +77,20 @@ const MenuList = ({ changeView, weatherIcon, weatherInfo }) => {
           </ListItemIcon>
           <ListItemText primary="Home" />
         </StyledMenuItem>
-
         <StyledMenuItem onClick={() => {changeView("userPosts")}}>
           <ListItemIcon>
             <PersonIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="User" />
         </StyledMenuItem>
-
         <StyledMenuItem onClick={() => {changeView("neighborhoods")}}>
           <ListItemIcon>
             <HomeWorkIcon fontSize="small" />
           </ListItemIcon>
           <ListItemText primary="Neighborhoods" />
         </StyledMenuItem>
-
+        {/* Drop down weather widget */}
         <Weather weatherIcon={weatherIcon} weatherInfo={weatherInfo}/>
-
       </StyledMenu>
 
     </div>

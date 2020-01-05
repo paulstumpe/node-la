@@ -36,7 +36,7 @@ const Weather = ({ weatherIcon, weatherInfo }) => {
           <ListItemText primary="Weather" />
         </ExpansionPanelSummary>
         <ExpansionPanelDetails>
-          {/* <WeatherStuff /> */}
+          {/* Weather information from api */}
           <WeatherIcon icon={weatherIcon}/>
           <Typography variant="body2">
             {weatherInfo.summary} 
