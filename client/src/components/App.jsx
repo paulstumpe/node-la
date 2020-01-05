@@ -90,6 +90,8 @@ class App extends React.Component {
       .catch(error => console.log(error))
   }
 
+  userLogin
+
   // function to save new username to the db and set username state
   userSignUp(username) {
     this.setState({

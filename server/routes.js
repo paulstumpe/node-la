@@ -24,7 +24,13 @@ module.exports = function (app, express) {
   app.post('/comments', ctrl.createComment);
   //get comments for a post
   app.get('/comments', ctrl.getComments);
+<<<<<<< HEAD
   
+=======
+  //get all posts for a neighborhood
+  app.get('/neighborhoods/posts', ctrl.getNeighborhoodsPosts);
+
+>>>>>>> a26027d05872e44a9e70ea647bf0a17639eb0f4b
   //darksky current weather api request
   app.get('/weather', (req, res) => {
     axios.get(`https://api.darksky.net/forecast/${weatherKey}/29.9511,-90.0715`)

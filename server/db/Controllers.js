@@ -337,8 +337,34 @@ const deleteComment = function (req, res, next) {
     });
 };
 
+const getNeighborhoodsPosts = function(req, res, next) {
+  const { hoodName } = req.query;
+  let postHoodId = null;
+  Hood.findOne({
+    where: {
+      hoodName: hoodName,
+  }})
+  .catch((err) => { debugger; })
+  .then((hood) => {
+      debugger;
+      postHoodId = hood.dataValues.id;
+      return Post.findAll( {where: {
+        postHoodId: postHoodId
+      }})
+  })
+  .then((posts)=>{
+    res.send(posts);
+    posts;
+    debugger;
+  })
+  .catch((err)=>{
+    debugger;
+  })
+}
+
 
 module.exports = {
+  getNeighborhoodsPosts,
   createUser,
   getSingleUser,
   getUsers,
