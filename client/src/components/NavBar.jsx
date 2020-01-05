@@ -36,8 +36,7 @@ const NavBar = ({ changeView, updateLogin, loggedIn, weatherIcon, weatherInfo, u
           <MenuList changeView={changeView} weatherIcon={weatherIcon} weatherInfo={weatherInfo}/>
           {/* app title */}
           <img className={classes.img} src={Logo} alt="Logo" />
-          {/* <Typography variant="h5" className={classes.title}>  Node.LA </Typography> */}
-          {/* Login button */}
+          {/* Login button (changes to sign out button when logged in) */}
           <div variant="contained" color="secondary"> 
             {loggedIn ? <Button variant="contained" color="secondary" onClick={updateLogin}> Sign Out </Button>
               : <Login updateLogin={updateLogin} userSignUp={userSignUp} getUserPosts={getUserPosts}/>}

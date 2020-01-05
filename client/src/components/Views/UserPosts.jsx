@@ -16,11 +16,12 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const UserPosts = ({ changeView, userPosts }) => {
+const UserPosts = ({ changeView, userPosts, changeCurrentPost }) => {
   //use given style from above
   const classes = useStyles();
   return (
     <div className={classes.root}>
+      {/* Contaner for each post */}
       {userPosts.map((post, index) =>
         <p>
           <Paper className={classes.paper} elevation={3}>

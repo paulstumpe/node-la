@@ -22,7 +22,9 @@ const Posts = ({ changeView, loggedIn, createPost, posts, changeCurrentPost }) =
   const classes = useStyles();
   return (
     <div className={classes.root}>
+      {/* If logged in, show an 'add post' button */}
       {loggedIn ? <p><CreatePost className={classes.createPost} createPost={createPost}/></p> : null}
+      {/* Contaner for each post */}
       {posts.map((post, index) => 
       <p>
         <Paper className={classes.paper} elevation={3}>
@@ -38,7 +40,7 @@ const Posts = ({ changeView, loggedIn, createPost, posts, changeCurrentPost }) =
                   <Typography variant="body2">{post.body}</Typography>
                   <Typography variant="body2">0 comments</Typography>
               </Grid>
-                  <Typography variant="subtitle2" color="textSecondary">{post.createdAt}</Typography>
+                <Typography variant="subtitle2" color="textSecondary">{post.createdAt}</Typography>
             </Grid>
           </Grid>
         </Paper>

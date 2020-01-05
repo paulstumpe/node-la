@@ -7,7 +7,6 @@ import CloudyNight from './images/weatherImages/CloudyNight.png'
 import Fog from './images/weatherImages/Fog.png'
 import Rain from './images/weatherImages/Rain.png'
 import Snow from './images/weatherImages/Snow.png'
-import Thunderstorm from './images/weatherImages/Thunderstorm.png'
 
 const useStyles = makeStyles(theme => ({
   img: {
@@ -19,6 +18,7 @@ const WeatherIcon = ({ icon }) => {
   const classes = useStyles();
   return (
     <div>
+      {/* Weather icon changes depending on status from api */}
       {(() => {
         switch (icon) {
           case 'cloudy':

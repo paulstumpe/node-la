@@ -101,6 +101,7 @@ const CreatePost = ({ createPost }) => {
               <MenuItem value={'WestBank'}>West Bank</MenuItem>
             </Select>
           </FormControl>
+          {/* Selection for type of post */}
           <FormControl className={classes.formControl}>
             <InputLabel id="type-select-label">Post Type</InputLabel>
             <Select
@@ -114,7 +115,7 @@ const CreatePost = ({ createPost }) => {
             </Select>
           </FormControl>
         </DialogContent>
-        {/* buttons in dialog box */}
+        {/* buttons at bottom of dialog box */}
         <DialogActions>
           <Button onClick={handleClose} color="primary">Cancel</Button>
           <Button onClick={() => {handleClose(); createPost(title, body, hood, type)}} color="primary">Post</Button>

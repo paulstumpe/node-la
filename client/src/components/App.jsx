@@ -139,6 +139,7 @@ class App extends React.Component {
     const { loggedIn } = this.state;
     return (
       <div>
+        {/* NavBar component for all navigation and logging in */}
         <NavBar 
           loggedIn={this.state.loggedIn}
           weatherInfo={this.state.weather}
@@ -148,8 +149,10 @@ class App extends React.Component {
           userSignUp={this.userSignUp}
           getUserPosts={this.getUserPosts}
         />
+        {/* Post view changes base on state */}
         {(() => {
           switch (view) {
+            // posts view shows all posts
             case 'posts':
               return <Posts 
                 changeView={this.changeView}
@@ -158,13 +161,17 @@ class App extends React.Component {
                 posts={this.state.posts}
                 changeCurrentPost={this.changeCurrentPost}
                 />;
+            // userPosts shows posts from the user once logged in
             case 'userPosts':
-              return loggedIn ? <UserPosts changeCurrentPost={this.changeCurrentPost} changeView={this.changeView} userPosts={this.state.userPosts}/> 
+              return (
+                loggedIn ? <UserPosts changeCurrentPost={this.changeCurrentPost} changeView={this.changeView} userPosts={this.state.userPosts}/> 
               : <Typography variant="h4" style={{ fontWeight: "bolder", textAlign: "center", color: "white" }}>
                   Please Login to see your posts!
-                </Typography>
+                </Typography>)
+            // neighborhoods shows posts based on what neighborhood is selected
             case 'neighborhoods':
               return <Neighborhoods changeView={this.changeView} />;
+            // post view shows the post clicked on with it's comments
             case 'post':
               return <Post
               changeView={this.changeView}
