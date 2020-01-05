@@ -28,6 +28,7 @@ class App extends React.Component {
     this.getWeather = this.getWeather.bind(this);
     this.userSignUp = this.userSignUp.bind(this);
     this.createPost = this.createPost.bind(this);
+    
     this.updateLogin = this.updateLogin.bind(this);
     this.getAllPosts = this.getAllPosts.bind(this);
     this.getComments = this.getComments.bind(this);
@@ -90,7 +91,12 @@ class App extends React.Component {
       .catch(error => console.log(error))
   }
 
-  userLogin
+  // function to load user info into state
+  userLogin(username) {
+    return axios.get(`/users/${username}`)
+      .then(response => console.log(response))
+      .catch(error => consonle.log(error))
+  }
 
   // function to save new username to the db and set username state
   userSignUp(username) {
