@@ -20,6 +20,7 @@ class App extends React.Component {
       view: 'posts',
       loggedIn: false,
       username: '',
+      userId:'',
       neighborhood: '',
     };
 
@@ -115,12 +116,11 @@ class App extends React.Component {
   }
 
   // function to create a new post
-  createComment(postId, body){
+  createComment(postId, comment){
     return axios.post('/comments', {
-      params: {
-        'postId' : postId
-      },
-      'commentBody': body,
+      'postId': postId,
+      'commentUserId': this.state.userId,
+      'commentBody': comment,
       'commentVotes': 0,
     })
       .then(response => console.log(response))

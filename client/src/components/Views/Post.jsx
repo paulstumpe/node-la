@@ -55,7 +55,7 @@ const Post = ({ changeView, currentPost, createComment }) => {
           </Paper></p>
         </Grid>
         {/* Button with dialog box for adding comments*/}
-        <Comment createComment={createComment} />
+        <Comment currentPost={currentPost} createComment={createComment} />
         {/* Comment layout goes here */}
         <Grid item xs={12}>
           <Paper className={classes.comment}>
