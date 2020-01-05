@@ -15,16 +15,6 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
     maxWidth: 700,
   },
-  image: {
-    width: 128,
-    height: 128,
-  },
-  img: {
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-  },
 }));
 
 const Posts = ({ changeView, loggedIn, createPost, posts, changeCurrentPost }) => {
