@@ -1,3 +1,5 @@
+'use strict'
+
 const mariaConfig = require('./config');
 const Sequelize = require('sequelize');
 const UserModel = require('./Models/User');
@@ -17,8 +19,26 @@ const Post = PostModel(sequelize, Sequelize);
 const PostType = PostTypeModel(sequelize, Sequelize);
 
 // //Post.belongsTo(User);
-User.hasMany(Post);
-Post.belongsTo(User);
+/*
+Associations are tricky, try to remember: 'the table belongs to the column'(posts belongs to user(Id))
+source.hasOne(Target)
+source.hasMany(Target[s])
+target.belongsTo(Source)
+*/
+  User.hasMany(Post, {
+    foreignKey: 'userPostId',
+    constraints: false
+  });
+
+  Post.hasMany(Comment, {
+    foreignKey: 'userCommentId',
+    constraints: false
+  });
+
+  User.hasMany(Comment, {
+    foreignKey: 'username',
+    constraints: false
+  })
 
 User.sync({ force: true })
   .then(() => console.log('Users synced!'));
