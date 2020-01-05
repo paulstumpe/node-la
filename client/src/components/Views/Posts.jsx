@@ -47,7 +47,8 @@ const Posts = ({ changeView, loggedIn, createPost }) => {
         </Paper>
       </p>
       })};
-  </div>
-}
+      </div>
+  );
+};
 
 export default Posts;
