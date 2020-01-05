@@ -20,15 +20,15 @@ class App extends React.Component {
       view: 'posts',
       loggedIn: false,
       username: '',
-      userId:'',
+      userId: '',
       neighborhood: '',
     };
 
+    this.userLogin = this.userLogin.bind(this);
     this.changeView = this.changeView.bind(this);
     this.getWeather = this.getWeather.bind(this);
     this.userSignUp = this.userSignUp.bind(this);
     this.createPost = this.createPost.bind(this);
-    
     this.updateLogin = this.updateLogin.bind(this);
     this.getAllPosts = this.getAllPosts.bind(this);
     this.getComments = this.getComments.bind(this);
@@ -94,8 +94,12 @@ class App extends React.Component {
   // function to load user info into state
   userLogin(username) {
     return axios.get(`/users/${username}`)
-      .then(response => console.log(response))
-      .catch(error => consonle.log(error))
+      .then(response => {
+        this.setState({
+          userId: response.data.data[0].id,
+        })
+      })
+      .catch(error => console.log(error))
   }
 
   // function to save new username to the db and set username state
@@ -140,7 +144,6 @@ class App extends React.Component {
 
   }
 
-
   // function to change views
   changeView(option) {
     this.setState({
@@ -163,6 +166,7 @@ class App extends React.Component {
   }
   
   render() {
+    console.log(this.state.userId);
     const { view } = this.state;
     const { loggedIn } = this.state;
     return (
@@ -175,6 +179,7 @@ class App extends React.Component {
           changeView={this.changeView} 
           updateLogin={this.updateLogin} 
           userSignUp={this.userSignUp}
+          userLogin={this.userLogin}
           getUserPosts={this.getUserPosts}
         />
         {/* Post view changes base on state */}

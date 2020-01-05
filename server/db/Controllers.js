@@ -41,7 +41,7 @@ const getSingleUser = function (req, res, next) {
     .then((response) => { // Find the user with the given auth0_id.
       res.status(200).json({ // Send 200 status upon success.
         status: 'success',
-        data: response.data,
+        data: response,
         message: 'Here\'s that user you asked for'
       });
     })
