@@ -6,35 +6,37 @@ import UserPosts from './Views/UserPosts.jsx';
 import Neighborhoods from './Views/Neighborhoods.jsx';
 import Post from './Views/Post.jsx';
 import Typography from '@material-ui/core/Typography';
-import Button from '@material-ui/core/Button';
 
 class App extends React.Component {
   constructor(props) {
     super(props);
 
     this.state = {
-      view: 'posts',
-      neighborhood: '',
-      posts: [],
-      currentPost: {},
-      userPosts: [],
-      username: '',
-      loggedIn: false,
       weather: {},
+      currentPost: {},
+      posts: [],
+      comments: [],
+      userPosts: [],
+      view: 'posts',
+      loggedIn: false,
+      username: '',
+      neighborhood: '',
     };
 
     this.changeView = this.changeView.bind(this);
-    this.updateLogin = this.updateLogin.bind(this);
     this.getWeather = this.getWeather.bind(this);
-    this.getAllPosts = this.getAllPosts.bind(this);
     this.userSignUp = this.userSignUp.bind(this);
     this.createPost = this.createPost.bind(this);
+    this.updateLogin = this.updateLogin.bind(this);
+    this.getAllPosts = this.getAllPosts.bind(this);
+    this.getComments = this.getComments.bind(this);
     this.getUserPosts = this.getUserPosts.bind(this);
+    this.createComment = this.createComment.bind(this);
     this.changeCurrentPost = this.changeCurrentPost.bind(this);
   }
 
   componentDidMount() {
-    // get local weather
+    // get local weather for menu widget
     this.getWeather()
       .then(weather => {
         this.setState({
@@ -51,14 +53,14 @@ class App extends React.Component {
       });
   }
 
-  // function to get the loacl weather on app startup
+  // function to get the loacl weather when app renders
   getWeather() {
     return axios.get('/weather')
       .then(response => response.data)
       .catch(error => console.log(error))
   }
 
-  // function to get all posts from db
+  // function to get all posts from db to display in posts view
   getAllPosts() {
     return axios.get('/posts')
       .then(response => {
@@ -69,7 +71,7 @@ class App extends React.Component {
       .catch(error => console.log(error))
   }
 
-  // function to get all posts from the signed in user
+  // function to get all posts from the signed in user and set username state
   getUserPosts(username) {
     this.setState({
       username: username,
@@ -87,7 +89,7 @@ class App extends React.Component {
       .catch(error => console.log(error))
   }
 
-  // function to save username to db and set username state
+  // function to save new username to the db and set username state
   userSignUp(username) {
     this.setState({
       username: username,
@@ -99,7 +101,7 @@ class App extends React.Component {
       .catch(error => console.log(error))
   }
 
-  // function to create a new post and save to the db
+  // function to create a new post and save it to the db
   createPost(title, body, neighborhood, type) {
     return axios.post('/posts', {
       'title': `${title}`,
@@ -112,22 +114,32 @@ class App extends React.Component {
       .catch(error => console.log(error))
   }
 
+  // function to create a new post
+  createComment(){
 
-  // function to pass down to change views
+  }
+
+  // function to store all current comments in state for main post view
+  getComments(){
+
+  }
+
+
+  // function to change views
   changeView(option) {
     this.setState({
       view: option,
     });
   }
 
-  // function to change currentPost state
+  // function to change currentPost state for main post view
   changeCurrentPost(post) {
     this.setState({
       currentPost: post
     })
   }
   
-  // function to change loggedIn state to show user posts and sign out button
+  // function to change loggedIn state to show user their posts and sign out button
   updateLogin() {
     this.setState({
       loggedIn: !this.state.loggedIn,
@@ -176,6 +188,7 @@ class App extends React.Component {
               return <Post
               changeView={this.changeView}
               currentPost={this.state.currentPost}
+              createComment={this.createComment}
               />;
           }
         })()}

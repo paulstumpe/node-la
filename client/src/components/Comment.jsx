@@ -28,7 +28,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Comment = () => {
+const Comment = ({ createComment }) => {
   const classes = useStyles();
   // react hook to set open and close state of dialog box
   const [open, setOpen] = React.useState(false);
