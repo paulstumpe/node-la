@@ -48,11 +48,14 @@ class App extends React.Component {
       .catch(error => {
         console.error('Failed to get weather', error);
       });
-    // set posts state with all posts from db
-    this.getAllPosts()
-      .catch(error => {
-        console.error('Failed to get posts', error);
-      });
+    // get all posts from db
+    // this.getPosts()
+    //   .then(posts => {
+    //     console.log(posts);
+    //   })
+    //   .catch(error => {
+    //     console.error('Failed to get posts', error);
+    //   });
   }
 
   // function to get the loacl weather when app renders
@@ -116,6 +119,7 @@ class App extends React.Component {
 
   // function to create a new post and save it to the db
   createPost(title, body, neighborhood, type) {
+    console.log(title, body, neighborhood, type);
     return axios.post('/posts', {
       'title': title,
       'hoodName': neighborhood,
@@ -173,10 +177,8 @@ class App extends React.Component {
       <div>
         {/* NavBar component for all navigation and logging in */}
         <NavBar 
-          loggedIn={this.state.loggedIn}
-          weatherInfo={this.state.weather}
-          weatherIcon={this.state.weather.icon}
           changeView={this.changeView} 
+          loggedIn={this.loggedIn} 
           updateLogin={this.updateLogin} 
           userSignUp={this.userSignUp}
           userLogin={this.userLogin}
@@ -188,11 +190,10 @@ class App extends React.Component {
             // posts view shows all posts
             case 'posts':
               return <Posts 
-                changeView={this.changeView}
+                changeView={this.changeView} 
+                neighborhood={this.state.neighborhood} 
                 loggedIn={this.state.loggedIn} 
                 createPost={this.createPost}
-                posts={this.state.posts}
-                changeCurrentPost={this.changeCurrentPost}
                 />;
             // userPosts shows posts from the user once logged in
             case 'userPosts':

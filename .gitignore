@@ -1,10 +1,18 @@
+## Mac OSX ##
 .DS_Store
+
+## NPM ##
 node_modules/
-compiled/
-/config.js
-config.js
+
+
+## Authentication ##
 auth.js
+
+## API Keys ##
+/config.js
+
+## Database Configurations ##
 server/db/config.js
-client/dist/bundle.js
-*.log
-bower_components
+
+client/dist
+

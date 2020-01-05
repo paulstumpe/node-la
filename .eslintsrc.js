@@ -4,10 +4,24 @@ module.exports = {
     'es6': true
   },
   parserOptions: {
-    ecmaFeatures: {
-      'jsx': true
+    'ecmaFeatures': {
+        'jsx': true,
+        'modules': true,
+        'spread': true,
+        'restParams': true
+    },
+    'env' : {
+        'browser' : true,
+        'node' : true,
+        'es6' : true
+    },
+    'rules' : {
+        'no-unused-vars' : 2,
+        'no-undef' : 2
+    },
+    'sourceType': 'module'
     }
-  },
+},
   rules: {
     /* Indentation */
     'no-mixed-spaces-and-tabs': 2,
