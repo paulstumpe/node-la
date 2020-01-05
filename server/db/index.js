@@ -34,7 +34,7 @@ User.hasMany(Post, {
 });
 
 Post.hasMany(Comment, {
-  foreignKey: 'commentUsersgId',
+  foreignKey: 'commentUsersId',
   constraints: false
 });
 

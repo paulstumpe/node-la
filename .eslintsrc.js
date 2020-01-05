@@ -1,9 +1,7 @@
 
 module.exports = {
-  env: {
-    'es6': true
-  },
-  parserOptions: {
+  'root': true,
+  'parserOptions': {
     'ecmaFeatures': {
         'jsx': true,
         'modules': true,
@@ -15,14 +13,10 @@ module.exports = {
         'node' : true,
         'es6' : true
     },
-    'rules' : {
-        'no-unused-vars' : 2,
-        'no-undef' : 2
-    },
     'sourceType': 'module'
-    }
 },
-  rules: {
+'extends': ['airbnb', 'airbnb/hooks'],
+  'rules': {
     /* Indentation */
     'no-mixed-spaces-and-tabs': 2,
     'indent': [2, 2],
@@ -49,6 +43,8 @@ module.exports = {
     'space-infix-ops': 1,
     /* Minuta */
     'comma-style': [2, 'last'],
-    'quotes': [1, 'single']
+    'quotes': [1, 'single'],
+    'no-unused-vars': 2,
+    'no-undef': 2
   }
 };
