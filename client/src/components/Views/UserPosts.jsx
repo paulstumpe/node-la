@@ -26,11 +26,33 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const UserPosts = ({ changeView }) => {
+const UserPosts = ({ changeView, userPosts, changeCurrentPost }) => {
   //use given style from above
   const classes = useStyles();
+  console.log(userPosts);
   return (
     <div className={classes.root}>
+      {userPosts.map((post, index) => 
+        <p>
+          <Paper className={classes.paper} elevation={3}>
+            <Grid container spacing={3}>
+              <Grid item>
+              </Grid>
+              <Grid item xs={12} sm container>
+                <Grid item xs container direction="column" spacing={2}>
+                  <Typography gutterBottom id={index} variant="h5" style={{ cursor: 'pointer' }}
+                    onClick={() => { changeView("post"), changeCurrentPost(userPosts[index]) }}>
+                    {post.title}
+                  </Typography>
+                  <Typography variant="body2">{post.body}</Typography>
+                  <Typography variant="body2"> 0 comments</Typography>
+                </Grid>
+                <Typography variant="subtitle2" color="textSecondary">{post.createdAt}</Typography>
+              </Grid>
+            </Grid>
+          </Paper>
+        </p>
+        )}
       <Paper className={classes.paper} elevation={3}>
         <Grid container spacing={4}>
           <Grid item>

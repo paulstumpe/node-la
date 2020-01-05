@@ -83,7 +83,6 @@ class App extends React.Component {
         this.setState({
           userPosts: response.data.data,
         })
-        console.log('getUserPosts => ', response);
       })
       .catch(error => console.log(error))
   }
@@ -160,16 +159,17 @@ class App extends React.Component {
                 changeCurrentPost={this.changeCurrentPost}
                 />;
             case 'userPosts':
-              return loggedIn ? <UserPosts changeView={this.changeView} /> 
+              return loggedIn ? <UserPosts changeCurrentPost={this.changeCurrentPost} changeView={this.changeView} userPosts={this.state.userPosts}/> 
               : <Typography variant="h4" style={{ fontWeight: "bolder", textAlign: "center", color: "white" }}>
                   Please Login to see your posts!
                 </Typography>
             case 'neighborhoods':
               return <Neighborhoods changeView={this.changeView} />;
             case 'post':
-              return <Post changeView={this.changeView} currentPost={this.state.currentPost}/>;
-            default:
-              return <Posts changeView={this.changeView} />;
+              return <Post
+              changeView={this.changeView}
+              currentPost={this.state.currentPost}
+              />;
           }
         })()}
       </div>
