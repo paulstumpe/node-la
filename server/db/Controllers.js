@@ -10,7 +10,7 @@ const app = express(feathers());
 const createUser = function (req, res, next) {
   const username = req.body.username; // Grab username from req body
   const id = req.body.id; // Grab password from req body
-  debugger;
+  // debugger;
   User.create({
     username: username,
     id: id
@@ -261,7 +261,9 @@ const deletePost = function (req, res, next) {
 //COMMENT CRUD
 // ! CREATE COMMENT
 const createComment = function (req, res) {
+  const {postId, userId, commentBody} =req.body
   Comment.create({
+    postId: postId,
     commentUserId: userId,
     commentBody: commentBody,
     commentVotes: 0
@@ -274,6 +276,7 @@ const createComment = function (req, res) {
       });
     })
     .catch((err) => {
+      debugger;
       res.status(400);
       console.log('There was an error creating that comment!'), err;
       return next();
@@ -282,15 +285,20 @@ const createComment = function (req, res) {
 
 // ! READ COMMENT
 const getComments = function (req, res, next) {
+  const {postId} = req.query;
   Comment.findAll({
     //where
+    where:{
+      postId: postId,
+    }
   })
     .then((response) => {
       res.status(200);
+      debugger;
       res.send(JSON.stringify({
         status: 'success',
-        data: response.data,
-        message: 'Here are all that user\'s comments!'
+        data: response,
+        message: 'Here are all that post\'s comments!'
       }));
       return next();
     })
