@@ -17,7 +17,7 @@ class App extends React.Component {
       neighborhood: '',
       posts: [],
       currentPost: {},
-      userPosts: {},
+      userPosts: [],
       username: '',
       loggedIn: false,
       weather: {},
@@ -27,7 +27,6 @@ class App extends React.Component {
     this.updateLogin = this.updateLogin.bind(this);
     this.getWeather = this.getWeather.bind(this);
     this.getAllPosts = this.getAllPosts.bind(this);
-    this.userLogin = this.userLogin.bind(this);
     this.userSignUp = this.userSignUp.bind(this);
     this.createPost = this.createPost.bind(this);
     this.getUserPosts = this.getUserPosts.bind(this);
@@ -71,24 +70,20 @@ class App extends React.Component {
   }
 
   // function to get all posts from the signed in user
-  getUserPosts() {
-    return axios.get(`/posts/${this.state.username}`)
-      .then(response => {
-        // this.setState({
-        //   userPosts: response.data.data,
-        // })
-        console.log('getUserPosts => ', response);
-      })
-      .catch(error => console.log(error))
-  }
-
-  // function to load username from the db and set username state
-  userLogin(username) {
+  getUserPosts(username) {
     this.setState({
       username: username,
     })
-    return axios.get(`/users/${username}`)
-      .then(response => response)
+    return axios.get(`/usersposts`, {
+      params: {
+        'username': `${username}`
+      }
+    })
+      .then(response => {
+        this.setState({
+          userPosts: response.data.data,
+        })
+      })
       .catch(error => console.log(error))
   }
 
@@ -144,18 +139,20 @@ class App extends React.Component {
     const { loggedIn } = this.state;
     return (
       <div>
+        {/* NavBar component for all navigation and logging in */}
         <NavBar 
           loggedIn={this.state.loggedIn}
           weatherInfo={this.state.weather}
           weatherIcon={this.state.weather.icon}
           changeView={this.changeView} 
           updateLogin={this.updateLogin} 
-          userLogin={this.userLogin}
           userSignUp={this.userSignUp}
           getUserPosts={this.getUserPosts}
         />
+        {/* Post view changes base on state */}
         {(() => {
           switch (view) {
+            // posts view shows all posts
             case 'posts':
               return <Posts 
                 changeView={this.changeView}
@@ -164,17 +161,22 @@ class App extends React.Component {
                 posts={this.state.posts}
                 changeCurrentPost={this.changeCurrentPost}
                 />;
+            // userPosts shows posts from the user once logged in
             case 'userPosts':
-              return loggedIn ? <UserPosts changeView={this.changeView} /> 
+              return (
+                loggedIn ? <UserPosts changeCurrentPost={this.changeCurrentPost} changeView={this.changeView} userPosts={this.state.userPosts}/> 
               : <Typography variant="h4" style={{ fontWeight: "bolder", textAlign: "center", color: "white" }}>
                   Please Login to see your posts!
-                </Typography>
+                </Typography>)
+            // neighborhoods shows posts based on what neighborhood is selected
             case 'neighborhoods':
               return <Neighborhoods changeView={this.changeView} />;
+            // post view shows the post clicked on with it's comments
             case 'post':
-              return <Post changeView={this.changeView} currentPost={this.state.currentPost}/>;
-            default:
-              return <Posts changeView={this.changeView} />;
+              return <Post
+              changeView={this.changeView}
+              currentPost={this.state.currentPost}
+              />;
           }
         })()}
       </div>

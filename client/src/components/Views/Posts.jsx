@@ -15,16 +15,6 @@ const useStyles = makeStyles(theme => ({
     margin: 'auto',
     maxWidth: 700,
   },
-  image: {
-    width: 128,
-    height: 128,
-  },
-  img: {
-    margin: 'auto',
-    display: 'block',
-    maxWidth: '100%',
-    maxHeight: '100%',
-  },
 }));
 
 const Posts = ({ changeView, loggedIn, createPost, posts, changeCurrentPost }) => {
@@ -32,8 +22,10 @@ const Posts = ({ changeView, loggedIn, createPost, posts, changeCurrentPost }) =
   const classes = useStyles();
   return (
     <div className={classes.root}>
+      {/* If logged in, show an 'add post' button */}
       {loggedIn ? <p><CreatePost className={classes.createPost} createPost={createPost}/></p> : null}
-      {posts.map(post => 
+      {/* Contaner for each post */}
+      {posts.map((post, index) => 
       <p>
         <Paper className={classes.paper} elevation={3}>
           <Grid container spacing={3}>
@@ -41,14 +33,14 @@ const Posts = ({ changeView, loggedIn, createPost, posts, changeCurrentPost }) =
             </Grid>
             <Grid item xs={12} sm container>
               <Grid item xs container direction="column" spacing={2}>
-                  <Typography gutterBottom id={post.id} variant="h5" style={{ cursor: 'pointer' }} 
-                  onClick={() => { changeView("post"), changeCurrentPost(posts[post.id - 1]) }}>
+                  <Typography gutterBottom id={index} variant="h5" style={{ cursor: 'pointer' }} 
+                  onClick={() => { changeView("post"), changeCurrentPost(posts[index]) }}>
                     {post.title}
                   </Typography>
                   <Typography variant="body2">{post.body}</Typography>
-                  <Typography variant="body2"> 0 comments</Typography>
+                  <Typography variant="body2">0 comments</Typography>
               </Grid>
-                  <Typography variant="subtitle2" color="textSecondary">{post.createdAt}</Typography>
+                <Typography variant="subtitle2" color="textSecondary">{post.createdAt}</Typography>
             </Grid>
           </Grid>
         </Paper>
