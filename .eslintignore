@@ -1,1 +1,3 @@
-node/modules
+.eslint*
+**/node_modules
+client/dist

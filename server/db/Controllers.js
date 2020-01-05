@@ -150,7 +150,7 @@ const createPost = function (req, res) {
   })
   .catch((err) => {
     res.status(400);
-    console.log('There was an error creating that post!'), err;
+    console.log('There was an error creating that post!', err);
     return next();
   });
 };
@@ -168,13 +168,21 @@ const getSinglePost = function (req, res) {
         data: singlePost
       });
     })
-    .catch(err => res.sendStatus(400));
+    .catch(err => {
+      console.log('there was an error gettin that post', err);
+      res.sendStatus(400)
+    });
 };
 
 //get all the posts or comments from the db based on user id
 //! READ POST
 const getPosts = function (req, res, next) {
-  Post.findAll()
+  Post.findAll({
+    include: [{
+      model: User,
+      required: true
+     }]
+  })
     .then((response) => {
       res.status(200);
       res.send(JSON.stringify({
@@ -186,13 +194,13 @@ const getPosts = function (req, res, next) {
     })
     .catch(err => {
       res.sendStatus(400);
-      console.log(err);
+      console.log('there was an error gettin that user\'s posts', err);
       return next();
     });
 };
 
 //!UPDATE POST
-const updatePost = function (req, res, next) {
+const updatePost = function (req, res) {
   Post.update({
     // title: newTitle,
     // postBody: newPostBody,
@@ -209,7 +217,7 @@ const updatePost = function (req, res, next) {
 
 //delete a specific post by iD
 //!DELETE POST
-const deletePost = function (req, res, next) {
+const deletePost = function (req, res) {
   Post.destroy({
     where: {
       id: id,
@@ -238,7 +246,7 @@ const createComment = function (req, res) {
     })
     .catch((err) => {
       res.status(400);
-      console.log('There was an error creating that comment!'), err;
+      console.log('There was an error creating that comment!', err);
       return next();
     });
 };
@@ -259,13 +267,13 @@ const getComments = function (req, res, next) {
     })
     .catch(err => {
       res.sendStatus(400);
-      console.log(err);
+      console.log('there was an error getting that user\'s posts', err);
       return next();
     });
 };
 
 // ! UPDATE COMMENT
-const updateComment = function (req, res, next) {
+const updateComment = function (req, res) {
   Comment.update({
     // title: newTitle,
     // postBody: newPostBody,
@@ -277,12 +285,16 @@ const updateComment = function (req, res, next) {
     .then((newPost) => {
       res.status(201);
       console.log(`This post has been updated to ${newPost}`);
+    })
+    .catch(err => {
+      res.sendStatus(400);
+      console.log('there was an error updating this comment', err);
     });
 };
 
 
 //! DELETE COMMENT
-const deleteComment = function (req, res, next) {
+const deleteComment = function (req, res) {
   Comment.destroy({
     where: {
       id: id,
@@ -291,7 +303,11 @@ const deleteComment = function (req, res, next) {
   })
     .then(() => {
       res.status(201);
-      console.log('This user has been deleted');
+      console.log('This comment has been deleted');
+    })
+    .catch(err => {
+      res.sendStatus(400);
+      console.log('there was an error deleting this comment', err);
     });
 };
 
