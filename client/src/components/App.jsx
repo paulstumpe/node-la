@@ -71,8 +71,12 @@ class App extends React.Component {
   }
 
   // function to get all posts from the signed in user
-  getUserPosts() {
-    return axios.get(`/posts/${this.state.username}`)
+  getUserPosts(username) {
+    return axios.get(`/usersposts`, {
+      params: {
+        'username': `${username}`
+      }
+    })
       .then(response => {
         // this.setState({
         //   userPosts: response.data.data,
