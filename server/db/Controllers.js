@@ -112,47 +112,47 @@ const createPost = function (req, res) {
   let upOrDown = 'up';
 
   Hood.findOrCreate({
-    where:{
-    hoodName: hoodName,
-    upOrDown: upOrDown,
-  }})
-  .catch((err)=>{ err; debugger;})
-  .then((tuple) => {
-    const createdHoodObj = tuple[0];
-    const newHoodObj = tuple[1];
-    postHoodId = createdHoodObj.dataValues.id;
-    return PostType.findOrCreate({
-      where:{
-        helpOrGen: postType,
+    where: {
+      hoodName: hoodName,
+      upOrDown: upOrDown,
     }})
-  })
-  .catch((err)=>{err; debugger;})
-  .then((tuple) => {
-    const createdPostTypeObj = tuple[0];
-    const newPostTypeObj = tuple[1];
-    postTypeId = createdPostTypeObj.dataValues.id;
-    return Post.create({
-      title: title,
-      postHoodId: postHoodId,
-      postTypeId: postTypeId,
-      postBody: req.body.postBody,
-      postVotes: 0
-    });
-  })
-  .then((data) => {
-    data;
-    res.status(201)
-      .json({
-        status: 'success',
-        data: data,
-        message: 'Created a new Post!'
+    .catch(err => console.log('this hood has bugs!', err))
+    .then((tuple) => {
+      const createdHoodObj = tuple[0];
+      const newHoodObj = tuple[1];
+      postHoodId = createdHoodObj.dataValues.id;
+      return PostType.findOrCreate({
+        where: {
+          helpOrGen: postType,
+        }});
+    })
+    .catch(err => console.log('this post type has bugs!', err))
+    .then((tuple) => {
+      const createdPostTypeObj = tuple[0];
+      const newPostTypeObj = tuple[1];
+      postTypeId = createdPostTypeObj.dataValues.id;
+      return Post.create({
+        title: title,
+        postHoodId: postHoodId,
+        postTypeId: postTypeId,
+        postBody: req.body.postBody,
+        postVotes: 0
       });
-  })
-  .catch((err) => {
-    res.status(400);
-    console.log('There was an error creating that post!', err);
-    return next();
-  });
+    })
+    .then((data) => {
+      data;
+      res.status(201)
+        .json({
+          status: 'success',
+          data: data,
+          message: 'Created a new Post!'
+        });
+    })
+    .catch((err) => {
+      res.status(400);
+      console.log('There was an error creating that post!', err);
+      return next();
+    });
 };
 
 const getSinglePost = function (req, res) {
@@ -170,7 +170,7 @@ const getSinglePost = function (req, res) {
     })
     .catch(err => {
       console.log('there was an error gettin that post', err);
-      res.sendStatus(400)
+      res.sendStatus(400);
     });
 };
 
@@ -181,7 +181,7 @@ const getPosts = function (req, res, next) {
     include: [{
       model: User,
       required: true
-     }]
+    }]
   })
     .then((response) => {
       res.status(200);
