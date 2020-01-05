@@ -91,7 +91,8 @@ const deleteUser = function (req, res, next) {
     where: {
       id: id,
       username: username
-    }
+    },
+    force: true
   })
     .then(() => {
       res.status(201);
@@ -188,11 +189,19 @@ const getSinglePost = function (req, res) {
 //! READ ALL
 //get all the posts or comments from the db based on user id
 const usersPosts = function (req, res, next) {
-  const { username } = req.query;
-  User.findOne({where:{username : username}})
-  .then((user)=>{
-    id = user.dataValues.id;
-    return Post.findAll({ where: { userId: id } })
+  let {id} = req.params.id
+  User.findOne({
+    where: {
+      id: id
+    }
+  })
+  .then((userId)=>{
+    id = username.dataValues.id;
+    Post.findAll({
+      where: {
+        userId: userId
+      }
+    })
   })
   .then((response)=>{
     response;
@@ -331,7 +340,8 @@ const deleteComment = function (req, res, next) {
     where: {
       id: id,
       username: username
-    }
+    },
+    force: true
   })
     .then(() => {
       res.status(201);

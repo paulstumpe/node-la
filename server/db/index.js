@@ -11,7 +11,9 @@ const PostTypeModel = require('./Models/PostType');
 //connect to mariadb using Sequelize methods
 const sequelize = new Sequelize('nodela', 'root', '', mariaConfig);
 
-//call the sequelize model instances
+/*
+Next, we instantiate our models by passing a sequelize instance and library itself to required model files.
+ */
 const User = UserModel(sequelize, Sequelize);
 const Hood = HoodModel(sequelize, Sequelize);
 const Comment = CommentModel(sequelize, Sequelize);
@@ -22,7 +24,9 @@ const PostType = PostTypeModel(sequelize, Sequelize);
 Associations are tricky, try to remember: 'the table belongs to the column'(posts belongs to user(Id))
 source.hasOne(Target)
 source.hasMany(Target[s])
-target.belongsTo(Source), 
+target.belongsTo(Source),s
+
+https://lorenstewart.me/2016/09/12/sequelize-table-associations-joins/
 
 Set constraints to false to avoid errors
 */
