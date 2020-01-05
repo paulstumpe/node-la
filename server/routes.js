@@ -1,15 +1,18 @@
 const ctrl = require('./db/Controllers');
 const axios = require('axios');
 const { weatherKey } = require('../config');
+
 /*
 This file routes the client requests at a specific endpoint to a handling
-function.
+function
 */
+
+
 module.exports = function (app, express) {
   //login to an account/get a single user
   app.post('/signup', ctrl.createUser);
   //get single user info
-  app.get('users:username', ctrl.getSingleUser);
+  app.get('/users/:username', ctrl.getSingleUser);
   //get all users
   app.get('/users', ctrl.getUsers);
   //create a post
