@@ -24,7 +24,7 @@ module.exports = function (app, express) {
   app.post('/comments', ctrl.createComment);
   //get comments for a post
   app.get('/comments', ctrl.getComments);
-
+  
   //darksky current weather api request
   app.get('/weather', (req, res) => {
     axios.get(`https://api.darksky.net/forecast/${weatherKey}/29.9511,-90.0715`)

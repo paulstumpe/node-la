@@ -78,7 +78,7 @@ class App extends React.Component {
     })
     return axios.get(`/usersposts`, {
       params: {
-        'username': `${username}`
+        'username': username
       }
     })
       .then(response => {
@@ -95,7 +95,7 @@ class App extends React.Component {
       username: username,
     })
     return axios.post('/signup', {
-      'username': `${username}`,
+      'username': username,
     })
       .then(response => response)
       .catch(error => console.log(error))
@@ -104,19 +104,27 @@ class App extends React.Component {
   // function to create a new post and save it to the db
   createPost(title, body, neighborhood, type) {
     return axios.post('/posts', {
-      'title': `${title}`,
-      'hoodName': `${neighborhood}`,
-      'postType': `${type}`,
-      'postBody': `${body}`,
-      'username': `${this.state.username}`,
+      'title': title,
+      'hoodName': neighborhood,
+      'postType': type,
+      'postBody': body,
+      'username': this.state.username,
     })
       .then(response => response)
       .catch(error => console.log(error))
   }
 
   // function to create a new post
-  createComment(){
-
+  createComment(postId, body){
+    return axios.post('/comments', {
+      params: {
+        'postId' : postId
+      },
+      'commentBody': body,
+      'commentVotes': 0,
+    })
+      .then(response => console.log(response))
+      .catch(error => console.log(error))
   }
 
   // function to store all current comments in state for main post view
