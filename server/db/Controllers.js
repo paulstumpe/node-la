@@ -189,22 +189,13 @@ const getSinglePost = function (req, res) {
 //! READ ALL
 //get all the posts or comments from the db based on user id
 const usersPosts = function (req, res, next) {
-  let {id} = req.params.id
-  User.findOne({
-    where: {
-      id: id
-    }
-  })
-  .then((userId)=>{
-    id = username.dataValues.id;
-    Post.findAll({
-      where: {
-        userId: userId
-      }
-    })
+  const { username } = req.query;
+  User.findOne({where:{username : username}})
+  .then((user)=>{
+    id = user.dataValues.id;
+    return Post.findAll({ where: { userPostId: id } })
   })
   .then((response)=>{
-    response;
     res.status(200);
     res.send(JSON.stringify({
       status: 'success',
