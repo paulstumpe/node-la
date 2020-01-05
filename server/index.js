@@ -1,4 +1,3 @@
-
 const path = require('path');
 const feathers = require('@feathersjs/feathers');
 const express = require('@feathersjs/express');
@@ -30,6 +29,7 @@ app.configure(socketio());
 app.use(express.errorHandler());
 //app.configure(auth)
 
+//call the router to initialize the routes
 const route = router(app, express);
 
 const PORT = process.env.PORT || 8000;

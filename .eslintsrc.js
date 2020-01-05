@@ -1,4 +1,8 @@
 
+/*
+oddly, the sourceType command is not working
+https://www.freecodecamp.org/news/the-essentials-eslint/
+*/
 module.exports = {
   'root': true,
   'parserOptions': {

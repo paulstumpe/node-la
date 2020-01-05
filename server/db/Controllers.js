@@ -5,11 +5,11 @@ const express = require('@feathersjs/express');
 const app = express(feathers());
 
 // ! USER CRUD
-//create & save a user to the db
-// !CREATE USER
+// !CREATE
 const createUser = function (req, res, next) {
   const username = req.body.username; // Grab username from req body
   const id = req.body.id; // Grab password from req body
+  // debugger;
   User.create({
     username: username,
     id: id
@@ -31,7 +31,7 @@ const createUser = function (req, res, next) {
 //user login function
 // ! READ
 const getSingleUser = function (req, res, next) {
-  const id = req.params.id;
+  const username = req.params.username;
   User.findOrCreate({
     where: {
       username: username
@@ -101,61 +101,75 @@ const deleteUser = function (req, res, next) {
 
 //! POST CRUD
 
-//! CREATE POST
+//! CREATE
 const createPost = function (req, res) {
   //todo
   //comment that in
-  const {hoodName, postBody, postType, title, /*upOrDown*/} = req.body;
+  const {username, hoodName, postBody, postType, title, /*upOrDown*/} = req.body;
   let postTypeId = null;
   let postHoodId = null;
+  let postUserId = null;
   //comment this line out
   let upOrDown = 'up';
-
   Hood.findOrCreate({
-    where: {
-      hoodName: hoodName,
-      upOrDown: upOrDown,
+    where:{
+    hoodName: hoodName,
+    upOrDown: upOrDown,
+  }})
+  .catch((err)=>{ err })
+  .then((tuple) => {
+    const createdHoodObj = tuple[0];
+    const newHoodObj = tuple[1];
+    postHoodId = createdHoodObj.dataValues.id;
+    return User.findOrCreate({
+      where:{
+        username: username,
     }})
-    .catch(err => console.log('this hood has bugs!', err))
-    .then((tuple) => {
-      const createdHoodObj = tuple[0];
-      const newHoodObj = tuple[1];
-      postHoodId = createdHoodObj.dataValues.id;
-      return PostType.findOrCreate({
-        where: {
-          helpOrGen: postType,
-        }});
+  })
+  .catch((err)=>{err; debugger;})
+    //should check for use userid
+  .then((tuple) => {
+    const createdUserObj = tuple[0];
+    const newUserObj = tuple[1];
+    postUserId = createdUserObj.dataValues.id;
+    return PostType.findOrCreate({
+      where: {
+        helpOrGen: postType,
+      }
     })
-    .catch(err => console.log('this post type has bugs!', err))
-    .then((tuple) => {
-      const createdPostTypeObj = tuple[0];
-      const newPostTypeObj = tuple[1];
-      postTypeId = createdPostTypeObj.dataValues.id;
-      return Post.create({
-        title: title,
-        postHoodId: postHoodId,
-        postTypeId: postTypeId,
-        postBody: req.body.postBody,
-        postVotes: 0
-      });
-    })
-    .then((data) => {
-      data;
-      res.status(201)
-        .json({
-          status: 'success',
-          data: data,
-          message: 'Created a new Post!'
-        });
-    })
-    .catch((err) => {
-      res.status(400);
-      console.log('There was an error creating that post!', err);
-      return next();
+  })
+  .then((tuple) => {
+    const createdPostTypeObj = tuple[0];
+    const newPostTypeObj = tuple[1];
+    postTypeId = createdPostTypeObj.dataValues.id;
+    return Post.create({
+      title: title,
+      postHoodId: postHoodId,
+      postTypeId: postTypeId,
+      postBody: req.body.postBody,
+      postVotes: 0,
+      userId: postUserId,
     });
+  })
+  .then((data) => {
+    data;
+    res.status(201)
+      .json({
+        status: 'success',
+        data: data,
+        message: 'Created a new Post!'
+      });
+  })
+  .catch((err) => {
+    res.status(400);
+    console.log('There was an error creating that post!'), err;
+    return next();
+  });
 };
 
+// !READ ONE
 const getSinglePost = function (req, res) {
+  debugger;
   const id = req.params.postId;
   Post.findOne({
     where: {
@@ -168,12 +182,10 @@ const getSinglePost = function (req, res) {
         data: singlePost
       });
     })
-    .catch(err => {
-      console.log('there was an error gettin that post', err);
-      res.sendStatus(400);
-    });
+    .catch(err => res.sendStatus(400));
 };
 
+//! READ ALL
 //get all the posts or comments from the db based on user id
 const usersPosts = function (req, res, next) {
   const { username } = req.query;
@@ -194,32 +206,29 @@ const usersPosts = function (req, res, next) {
   })
   .catch()
 }
+
 //! READ POST
 const getPosts = function (req, res, next) {
-  Post.findAll({
-    include: [{
-      model: User,
-      required: true
-    }]
-  })
+  const {userId} = req.query;
+  Post.findAll()
     .then((response) => {
       res.status(200);
       res.send(JSON.stringify({
         status: 'success',
-        data: response.data,
-        message: 'Here are all that user\'s posts!'
+        data: response,
+        message: 'Here are all the posts!'
       }));
       return next();
     })
     .catch(err => {
       res.sendStatus(400);
-      console.log('there was an error gettin that user\'s posts', err);
+      console.log(err);
       return next();
     });
 };
 
 //!UPDATE POST
-const updatePost = function (req, res) {
+const updatePost = function (req, res, next) {
   Post.update({
     // title: newTitle,
     // postBody: newPostBody,
@@ -236,7 +245,7 @@ const updatePost = function (req, res) {
 
 //delete a specific post by iD
 //!DELETE POST
-const deletePost = function (req, res) {
+const deletePost = function (req, res, next) {
   Post.destroy({
     where: {
       id: id,
@@ -251,7 +260,9 @@ const deletePost = function (req, res) {
 //COMMENT CRUD
 // ! CREATE COMMENT
 const createComment = function (req, res) {
+  const {postId, userId, commentBody} =req.body
   Comment.create({
+    postId: postId,
     commentUserId: userId,
     commentBody: commentBody,
     commentVotes: 0
@@ -264,35 +275,41 @@ const createComment = function (req, res) {
       });
     })
     .catch((err) => {
+      debugger;
       res.status(400);
-      console.log('There was an error creating that comment!', err);
+      console.log('There was an error creating that comment!'), err;
       return next();
     });
 };
 
 // ! READ COMMENT
 const getComments = function (req, res, next) {
+  const {postId} = req.query;
   Comment.findAll({
     //where
+    where:{
+      postId: postId,
+    }
   })
     .then((response) => {
       res.status(200);
+      debugger;
       res.send(JSON.stringify({
         status: 'success',
-        data: response.data,
-        message: 'Here are all that user\'s comments!'
+        data: response,
+        message: 'Here are all that post\'s comments!'
       }));
       return next();
     })
     .catch(err => {
       res.sendStatus(400);
-      console.log('there was an error getting that user\'s posts', err);
+      console.log(err);
       return next();
     });
 };
 
 // ! UPDATE COMMENT
-const updateComment = function (req, res) {
+const updateComment = function (req, res, next) {
   Comment.update({
     // title: newTitle,
     // postBody: newPostBody,
@@ -304,16 +321,12 @@ const updateComment = function (req, res) {
     .then((newPost) => {
       res.status(201);
       console.log(`This post has been updated to ${newPost}`);
-    })
-    .catch(err => {
-      res.sendStatus(400);
-      console.log('there was an error updating this comment', err);
     });
 };
 
 
 //! DELETE COMMENT
-const deleteComment = function (req, res) {
+const deleteComment = function (req, res, next) {
   Comment.destroy({
     where: {
       id: id,
@@ -322,14 +335,11 @@ const deleteComment = function (req, res) {
   })
     .then(() => {
       res.status(201);
-      console.log('This comment has been deleted');
-    })
-    .catch(err => {
-      res.sendStatus(400);
-      console.log('there was an error deleting this comment', err);
+      console.log('This user has been deleted');
     });
 };
 
+//! Hood 
 const getNeighborhoodsPosts = function(req, res, next) {
   const { hoodName } = req.query;
   let postHoodId = null;
@@ -371,5 +381,6 @@ module.exports = {
   createComment,
   getComments,
   updateComment,
-  deleteComment
+  deleteComment,
+  usersPosts
 };
