@@ -26,7 +26,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const NavBar = ({ changeView, updateLogin, loggedIn, weatherIcon, weatherInfo, userSignUp, getUserPosts }) => {
+const NavBar = ({ changeView, updateLogin, loggedIn, weatherIcon, weatherInfo, userSignUp, getUserPosts, userLogin }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -39,7 +39,7 @@ const NavBar = ({ changeView, updateLogin, loggedIn, weatherIcon, weatherInfo, u
           {/* Login button (changes to sign out button when logged in) */}
           <div variant="contained" color="secondary"> 
             {loggedIn ? <Button variant="contained" color="secondary" onClick={updateLogin}> Sign Out </Button>
-              : <Login updateLogin={updateLogin} userSignUp={userSignUp} getUserPosts={getUserPosts}/>}
+              : <Login updateLogin={updateLogin} userLogin={userLogin} userSignUp={userSignUp} getUserPosts={getUserPosts}/>}
           </div>
         </Toolbar>
       </AppBar>

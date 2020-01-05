@@ -6,7 +6,7 @@ import { Button } from '@material-ui/core';
 //all component imports needed for login dialog box
 import { TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
 
-const useStyles = makeStyles(theme => ({
+const useStyles = makeStyles(() => ({
   root: {
     flexGrow: 1,
   },
@@ -28,10 +28,11 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Comment = () => {
+const Comment = ({ currentPost, createComment }) => {
   const classes = useStyles();
-  // react hook to set open and close state of dialog box
+  // react hook to set open and close state of dialog box and comment body
   const [open, setOpen] = React.useState(false);
+  const [comment, setCommentValue] = React.useState('');
   const handleOpen = () => {
     setOpen(true);
   };
@@ -48,14 +49,15 @@ const Comment = () => {
       {/* dialog box for loging in */}
       <Dialog open={open} onClose={handleClose} aria-labelledby="form-dialog-title">
         <DialogTitle id="form-dialog-comment"> Leave a comment! </DialogTitle>
-        {/* text fields in dialog box */}
+        {/* text field in dialog box */}
         <DialogContent>
-          <TextField id="comment" label="Comment" type="comment" multiline rows="3" fullWidth />
+          <TextField id="comment" label="Comment" type="comment" value={comment} 
+          onChange={(e) => setCommentValue(e.target.value)} multiline rows="4" fullWidth />
         </DialogContent>
         {/* buttons in dialog box */}
         <DialogActions>
           <Button onClick={handleClose} color="primary">Cancel</Button>
-          <Button onClick={handleClose} color="primary">Comment</Button>
+          <Button onClick={ () => {handleClose(); createComment(currentPost.id, comment) }} color="primary">Comment</Button>
         </DialogActions>
       </Dialog>
     </div>

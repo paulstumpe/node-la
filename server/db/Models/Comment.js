@@ -6,7 +6,7 @@ module.exports = (sequelize, type) => {
   return sequelize.define('comment', {
     commentUserId: {
       type: type.INTEGER,
-      allowNull: false,
+      //allowNull: false,
     },
     commentBody: {
       type: type.STRING,

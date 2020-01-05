@@ -9,7 +9,7 @@ module.exports = function (app, express) {
   //login to an account/get a single user
   app.post('/signup', ctrl.createUser);
   //get single user info
-  app.get('/users/?username', ctrl.getSingleUser);
+  app.get('/users/:username', ctrl.getSingleUser);
   //get all users
   app.get('/users', ctrl.getUsers);
   //create a post
@@ -18,8 +18,6 @@ module.exports = function (app, express) {
   app.get('/posts', ctrl.getPosts);
   //get all post by single user
   app.get('/usersposts', ctrl.usersPosts);
-  // deleteUser,
-  // ? app.put('/posts:id'. ctrl.updatePost);
   //delete a post
   app.delete('/users:id/posts:id', ctrl.deletePost);
   //create comment

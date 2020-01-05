@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Post = ({ changeView, currentPost }) => {
+const Post = ({ changeView, currentPost, createComment }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -55,7 +55,7 @@ const Post = ({ changeView, currentPost }) => {
           </Paper></p>
         </Grid>
         {/* Button with dialog box for adding comments*/}
-        <Comment />
+        <Comment currentPost={currentPost} createComment={createComment} />
         {/* Comment layout goes here */}
         <Grid item xs={12}>
           <Paper className={classes.comment}>

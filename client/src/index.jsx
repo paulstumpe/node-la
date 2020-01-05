@@ -3,6 +3,7 @@ import ReactDOM from 'react-dom';
 import App from './components/App.jsx';
 import { MuiThemeProvider, createMuiTheme } from '@material-ui/core';
 
+// main color scheme for the app
 const theme = createMuiTheme({
   palette: {
     primary: {
@@ -15,8 +16,5 @@ const theme = createMuiTheme({
 })
 
 ReactDOM.render(
-  <MuiThemeProvider theme={theme}>
-    <App />
-  </MuiThemeProvider>, 
-  document.getElementById('app')
+  <MuiThemeProvider theme={theme}> <App /> </MuiThemeProvider>, document.getElementById('app')
 );
