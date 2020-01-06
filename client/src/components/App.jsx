@@ -125,9 +125,6 @@ class App extends React.Component {
       'username': this.state.username,
     })
       .then(response => response)
-      .then(() => {
-        axios.get('/usersposts');
-      })
       .then(this.getAllPosts)
       .catch(error => console.log('failed to create post', error))
   }
@@ -141,7 +138,7 @@ class App extends React.Component {
       'commentVotes': 0,
     })
       .then(response => response)
-      .then(this.getAllPosts)
+      .then(this.getComments(this.state.currentPost.id))
       .catch(error => console.log(error))
   }
 
