@@ -339,11 +339,13 @@ const deleteComment = function (req, res, next) {
 const getNeighborhoodsPosts = function(req, res, next) {
   const { hoodName } = req.query;
   let postHoodId = null;
-  Hood.findOne({
+  Hood.findAll({
     where: {
       hoodName: hoodName,
   }})
-  .catch((err) => { debugger; })
+  .catch((err) => { 
+    debugger 
+  })
   .then((hood) => {
       debugger;
       postHoodId = hood.dataValues.id;
@@ -357,7 +359,7 @@ const getNeighborhoodsPosts = function(req, res, next) {
     debugger;
   })
   .catch((err)=>{
-    debugger;
+    //debugger;
   })
 }
 

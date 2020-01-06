@@ -22,6 +22,7 @@ class App extends React.Component {
       username: '',
       userId: '',
       neighborhood: '',
+      hoodPosts: []
     };
 
     this.userLogin = this.userLogin.bind(this);
@@ -33,6 +34,7 @@ class App extends React.Component {
     this.updateLogin = this.updateLogin.bind(this);
     this.getAllPosts = this.getAllPosts.bind(this);
     this.getComments = this.getComments.bind(this);
+    this.getHoodPosts = this.getHoodPosts.bind(this)
     this.getUserPosts = this.getUserPosts.bind(this);
     this.createComment = this.createComment.bind(this);
     this.changeCurrentPost = this.changeCurrentPost.bind(this);
@@ -68,7 +70,7 @@ class App extends React.Component {
     return axios.get('/posts')
       .then(response => {
         this.setState({
-          posts: response.data.data,
+          posts: response.data.data.reverse(),
         })
       })
       .catch(error => console.log(error))
@@ -154,7 +156,22 @@ class App extends React.Component {
           comments: response.data.data,
         })
       })
-    .catch(error => console.log(error))
+      .catch(error => console.log(error))
+  }
+
+  // function to get all posts of a certain neighborhood
+  getHoodPosts(hoodName){
+    return axios.get('/neighborhoods/posts', {
+      params: {
+        hoodName: hoodName,
+      }
+    })
+      .then(response => {
+        this.setState({
+          hoodPosts: response.data.data,
+        })
+      })
+      .catch(error => console.log(error))
   }
 
   // function to change views
@@ -179,7 +196,7 @@ class App extends React.Component {
   }
   
   render() {
-    console.log(this.state.comments);
+    console.log(this.state.neighborhood);
     const { view } = this.state;
     const { loggedIn } = this.state;
     return (
@@ -217,7 +234,11 @@ class App extends React.Component {
                 </Typography>)
             // neighborhoods shows posts based on what neighborhood is selected
             case 'neighborhoods':
-              return <Neighborhoods changeView={this.changeView} />;
+              return <Neighborhoods 
+                changeView={this.changeView}
+                getHoodPosts={this.getHoodPosts} 
+                hoodPosts={this.state.hoodPosts}
+                />;
             // post view shows the post clicked on with it's comments
             case 'post':
               return <Post
