@@ -35,7 +35,7 @@ const useStyles = makeStyles(theme => ({
   },
 }));
 
-const Post = ({ changeView, currentPost, createComment }) => {
+const Post = ({ changeView, currentPost, createComment, comments }) => {
   const classes = useStyles();
   return (
     <div className={classes.root}>
@@ -57,13 +57,15 @@ const Post = ({ changeView, currentPost, createComment }) => {
         {/* Button with dialog box for adding comments*/}
         <Comment currentPost={currentPost} createComment={createComment} />
         {/* Comment layout goes here */}
+        {comments.map(comment => 
         <Grid item xs={12}>
           <Paper className={classes.comment}>
             <Typography variant="h6" color="primary" style={{ fontWeight: "bolder" }}>Username</Typography>
-            <Typography variant="body2">Comment 1 placeholder text</Typography>
+            <Typography variant="subtitle2" color="textSecondary">{comment.createdAt}</Typography>
+            <Typography variant="body2">{comment.commentBody}</Typography>
           </Paper>
         </Grid>
-        
+          )}
       </Grid>
     </div>
   );
