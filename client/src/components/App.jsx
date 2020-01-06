@@ -238,6 +238,8 @@ class App extends React.Component {
                 changeView={this.changeView}
                 getHoodPosts={this.getHoodPosts} 
                 hoodPosts={this.state.hoodPosts}
+                changeCurrentPost={this.changeCurrentPost}
+                getComments={this.getComments}
                 />;
             // post view shows the post clicked on with it's comments
             case 'post':

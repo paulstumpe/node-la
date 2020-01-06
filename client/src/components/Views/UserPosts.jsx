@@ -35,7 +35,7 @@ const UserPosts = ({ changeView, userPosts, changeCurrentPost }) => {
                     {post.title}
                   </Typography>
                   <Typography variant="body2">{post.body}</Typography>
-                  <Typography variant="body2"> 0 comments</Typography>
+                  <Typography variant="body2">Username</Typography>
                 </Grid>
                 <Typography variant="subtitle2" color="textSecondary">{post.createdAt}</Typography>
               </Grid>

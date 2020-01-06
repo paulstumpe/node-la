@@ -51,7 +51,6 @@ const useStyles = makeStyles(theme => ({
 const Neighborhoods = ({ changeView, getHoodPosts, hoodPosts }) => {
   //use given style from above
   const classes = useStyles();
-
   //react hook to set temporary state
   const [hood, setHood] = React.useState('');
   //handle state change of neighborhood type
@@ -61,9 +60,11 @@ const Neighborhoods = ({ changeView, getHoodPosts, hoodPosts }) => {
 
   return (
     <div className={classes.root}>
+      {/* View title */}
       <Typography variant="h4" style={{ fontWeight: "bolder", textAlign: "center", color: "white" }}>
         Select Your Neighborhood
       </Typography>
+      {/* Neighborhood selector form */}
         <Grid item xs={12}>
           <Paper className={classes.searchForm}>
             <FormControl className={classes.formControl}>
@@ -91,12 +92,14 @@ const Neighborhoods = ({ changeView, getHoodPosts, hoodPosts }) => {
                 <MenuItem value={'WestBank'}>West Bank</MenuItem>
               </Select>
             </FormControl>
+          {/* Select button */}
           <div className={classes.alignItemsAndJustifyContent}>
             <Button className={classes.button} style={{ fontWeight: "bolder" }} onClick={() => { getHoodPosts(hood) }}>SELECT</Button>
             </div>
           </Paper>
         </Grid>
       <br />
+      {/* If no posts found, tell the user, otherwise show the posts */}
       {!hoodPosts.length > 0 ? <Typography variant="h5" style={{ fontWeight: "bolder", textAlign: "center", color: "white" }}>No Posts Found</Typography>
         : hoodPosts.map((post, index) =>
           <p>
@@ -111,7 +114,7 @@ const Neighborhoods = ({ changeView, getHoodPosts, hoodPosts }) => {
                       {post.title}
                     </Typography>
                     <Typography variant="body2">{post.body}</Typography>
-                    <Typography variant="body2">0 comments</Typography>
+                    <Typography variant="body2">Username</Typography>
                   </Grid>
                   <Typography variant="subtitle2" color="textSecondary">{post.createdAt}</Typography>
                 </Grid>
