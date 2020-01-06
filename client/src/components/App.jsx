@@ -125,7 +125,11 @@ class App extends React.Component {
       'username': this.state.username,
     })
       .then(response => response)
-      .catch(error => console.log(error))
+      .then(() => {
+        axios.get('/usersposts');
+      })
+      .then(this.getAllPosts)
+      .catch(error => console.log('failed to create post', error))
   }
 
   // function to create a new post
@@ -137,6 +141,7 @@ class App extends React.Component {
       'commentVotes': 0,
     })
       .then(response => response)
+      .then(this.getAllPosts)
       .catch(error => console.log(error))
   }
 
@@ -223,6 +228,7 @@ class App extends React.Component {
               currentPost={this.state.currentPost}
               createComment={this.createComment}
               comments={this.state.comments}
+              loggedIn={this.state.loggedIn}
               />;
           }
         })()}

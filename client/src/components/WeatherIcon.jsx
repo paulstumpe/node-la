@@ -10,7 +10,8 @@ import Snow from './images/weatherImages/Snow.png'
 
 const useStyles = makeStyles(theme => ({
   img: {
-    width: 80,
+    maxWidth: 80,
+    maxHeight: 60,
   },
 }));
 
