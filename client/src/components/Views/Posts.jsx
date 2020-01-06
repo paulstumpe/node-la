@@ -2,6 +2,7 @@ import React from 'react';
 import CreatePost from '../CreatePost.jsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Paper, Grid } from '@material-ui/core';
+import moment from 'moment';
 
 const useStyles = makeStyles(theme => ({
   root: {
@@ -37,7 +38,7 @@ const Posts = ({ changeView, loggedIn, createPost, posts, changeCurrentPost, get
                   <Typography variant="body2">{post.body}</Typography>
                   <Typography variant="body2">Username</Typography>
               </Grid>
-                <Typography variant="subtitle2" color="textSecondary">{post.createdAt}</Typography>
+                <Typography variant="subtitle2" color="textSecondary">{moment(post.createdAt).fromNow()}</Typography>
             </Grid>
           </Grid>
         </Paper>

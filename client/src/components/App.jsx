@@ -88,7 +88,7 @@ class App extends React.Component {
     })
       .then(response => {
         this.setState({
-          userPosts: response.data.data,
+          userPosts: response.data.data.reverse(),
         })
       })
       .catch(error => console.log(error))
