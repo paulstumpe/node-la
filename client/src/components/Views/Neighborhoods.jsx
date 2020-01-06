@@ -97,7 +97,7 @@ const Neighborhoods = ({ changeView, getHoodPosts, hoodPosts }) => {
           </Paper>
         </Grid>
       <br />
-      {!hoodPosts ? <Typography variant="h5" style={{ fontWeight: "bolder", textAlign: "center", color: "white" }}>No Posts Found</Typography>
+      {!hoodPosts.length > 0 ? <Typography variant="h5" style={{ fontWeight: "bolder", textAlign: "center", color: "white" }}>No Posts Found</Typography>
         : hoodPosts.map((post, index) =>
           <p>
             <Paper className={classes.paper} elevation={3}>
@@ -107,29 +107,18 @@ const Neighborhoods = ({ changeView, getHoodPosts, hoodPosts }) => {
                 <Grid item xs={12} sm container>
                   <Grid item xs container direction="column" spacing={2}>
                     <Typography gutterBottom id={index} variant="h5" style={{ cursor: 'pointer' }}
-                      onClick={() => { changeView("post"), changeCurrentPost(userPosts[index]) }}>
+                      onClick={() => { changeView("post"), changeCurrentPost(posts[index]), getComments(post.id) }}>
                       {post.title}
                     </Typography>
                     <Typography variant="body2">{post.body}</Typography>
-                    <Typography variant="body2"> 0 comments</Typography>
+                    <Typography variant="body2">0 comments</Typography>
                   </Grid>
                   <Typography variant="subtitle2" color="textSecondary">{post.createdAt}</Typography>
                 </Grid>
               </Grid>
             </Paper>
           </p>
-        
-        
-        }
-      <Grid container spacing={2}>
-
-        <Grid item xs={12}>
-          <Paper className={classes.paper}>
-            <Typography variant="h5" style={{ cursor: 'pointer' }} onClick={() => { changeView("post") }}>Post Title</Typography>
-            <Typography variant="body2">Post placeholder text here</Typography>
-          </Paper>
-        </Grid>
-      </Grid>
+        )}
     </div>
   );
 }
