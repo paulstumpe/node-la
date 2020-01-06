@@ -60,7 +60,7 @@ const Neighborhoods = ({ changeView, getHoodPosts, hoodPosts }) => {
       {/* Neighborhood selector form */}
         <Grid item xs={12}>
           <Paper className={classes.searchForm}>
-            <FormControl className={classes.formControl}>
+            <FormControl variant="outlined" className={classes.formControl}>
               <InputLabel id="hood-select-label">Neighborhood</InputLabel>
               <Select
                 labelId="hood-select-label"
