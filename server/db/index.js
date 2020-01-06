@@ -1,3 +1,5 @@
+'use strict';
+
 const mariaConfig = require('./config');
 const Sequelize = require('sequelize');
 const UserModel = require('./Models/User');
@@ -9,20 +11,48 @@ const PostTypeModel = require('./Models/PostType');
 //connect to mariadb using Sequelize methods
 const sequelize = new Sequelize('nodela', 'root', '', mariaConfig);
 
-
+/*
+Next, we instantiate our models by passing a sequelize instance and library itself to required model files.
+ */
 const User = UserModel(sequelize, Sequelize);
 const Hood = HoodModel(sequelize, Sequelize);
 const Comment = CommentModel(sequelize, Sequelize);
 const Post = PostModel(sequelize, Sequelize);
 const PostType = PostTypeModel(sequelize, Sequelize);
 
-// //Post.belongsTo(User);
-User.hasMany(Post);
+/*
+Associations are tricky, try to remember: 'the table belongs to the column'(posts belongs to user(Id))
+source.hasOne(Target)
+source.hasMany(Target[s])
+target.belongsTo(Source),s
+
+https://lorenstewart.me/2016/09/12/sequelize-table-associations-joins/
+
+Set constraints to false to avoid errors
+*/
+
+//Set Table Associations before initialization, be mindful of order
+User.hasMany(Post, {
+  foreignKey: 'userPostId',
+  constraints: false
+});
+
+Post.hasMany(Comment, {
+  foreignKey: 'commentUsersId',
+  constraints: false
+});
+
+User.hasMany(Comment, {
+  foreignKey: 'username',
+  constraints: false
+});
+
 Post.belongsTo(User);
 
 Post.hasMany(Comment);
 Comment.belongsTo(Post);
 
+//Sync the Models to construct the database tables
 User.sync({ force: true })
   .then(() => console.log('Users synced!'));
 
@@ -38,9 +68,11 @@ PostType.sync({ force: true })
 Comment.sync({ force: true })
   .then(() => console.log('Comments synced!'));
 
+//Confirm the connection to the db
 sequelize.authenticate()
   .then(() => console.log('Connection to the database has been established successfully.'))
   .catch(err => console.log('Database Connection Error', err));
+
 
 module.exports = {
   User,
