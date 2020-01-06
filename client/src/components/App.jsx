@@ -1,10 +1,10 @@
 import React from 'react';
 import axios from 'axios';
-import NavBar from './NavBar.jsx';
+import Post from './Views/Post.jsx';
 import Posts from './Views/Posts.jsx';
 import UserPosts from './Views/UserPosts.jsx';
 import Neighborhoods from './Views/Neighborhoods.jsx';
-import Post from './Views/Post.jsx';
+import NavBar from './NavBar.jsx';
 import Typography from '@material-ui/core/Typography';
 
 class App extends React.Component {
