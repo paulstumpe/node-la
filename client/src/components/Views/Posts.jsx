@@ -36,7 +36,7 @@ const Posts = ({ changeView, loggedIn, createPost, posts, changeCurrentPost, get
                     {post.title}
                   </Typography>
                   <Typography variant="body2">{post.body}</Typography>
-                  <Typography variant="body2">Username</Typography>
+                  <Typography variant="body2" style={{ color: '#00796b', fontWeight: "bolder"}}>Username</Typography>
               </Grid>
                 <Typography variant="subtitle2" color="textSecondary">{moment(post.createdAt).fromNow()}</Typography>
             </Grid>
