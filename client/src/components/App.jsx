@@ -29,6 +29,7 @@ class App extends React.Component {
     this.getWeather = this.getWeather.bind(this);
     this.userSignUp = this.userSignUp.bind(this);
     this.createPost = this.createPost.bind(this);
+    this.getComments = this.getComments.bind(this);
     this.updateLogin = this.updateLogin.bind(this);
     this.getAllPosts = this.getAllPosts.bind(this);
     this.getComments = this.getComments.bind(this);
@@ -131,17 +132,27 @@ class App extends React.Component {
   createComment(postId, comment){
     return axios.post('/comments', {
       'postId': postId,
-      'commentUserId': this.state.userId,
+      'userId': this.state.userId,
       'commentBody': comment,
       'commentVotes': 0,
     })
-      .then(response => console.log(response))
+      .then(response => response)
       .catch(error => console.log(error))
   }
 
   // function to store all current comments in state for main post view
-  getComments(){
-
+  getComments(id){
+    return axios.get('comments', {
+      params: {
+        postId: id
+      }
+    })
+      .then(response => {
+        this.setState({
+          comments: response.data.data,
+        })
+      })
+    .catch(error => console.log(error))
   }
 
   // function to change views
@@ -166,7 +177,7 @@ class App extends React.Component {
   }
   
   render() {
-    console.log(this.state.userId);
+    console.log(this.state.comments);
     const { view } = this.state;
     const { loggedIn } = this.state;
     return (
@@ -193,6 +204,7 @@ class App extends React.Component {
                 createPost={this.createPost}
                 posts={this.state.posts}
                 changeCurrentPost={this.changeCurrentPost}
+                getComments={this.getComments}
                 />;
             // userPosts shows posts from the user once logged in
             case 'userPosts':
@@ -210,6 +222,7 @@ class App extends React.Component {
               changeView={this.changeView}
               currentPost={this.state.currentPost}
               createComment={this.createComment}
+              comments={this.state.comments}
               />;
           }
         })()}
