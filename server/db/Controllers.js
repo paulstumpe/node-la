@@ -121,6 +121,7 @@ const createPost = function (req, res) {
   .then((tuple) => {
     const createdHoodObj = tuple[0];
     const newHoodObj = tuple[1];
+    debugger;
     postHoodId = createdHoodObj.dataValues.id;
     return User.findOrCreate({
       where:{
@@ -345,19 +346,23 @@ const getNeighborhoodsPosts = function(req, res, next) {
   }})
   .catch((err) => { debugger; })
   .then((hood) => {
-      debugger;
+      // debugger;
       postHoodId = hood.dataValues.id;
       return Post.findAll( {where: {
         postHoodId: postHoodId
       }})
   })
-  .then((posts)=>{
-    res.send(posts);
-    posts;
-    debugger;
+  .then((response) => {
+    res.status(200);
+    res.send(JSON.stringify({
+      status: 'success',
+      data: response,
+      message: 'Here are all the posts!'
+    }));
+    return next();
   })
   .catch((err)=>{
-    debugger;
+    // debugger;
   })
 }
 
