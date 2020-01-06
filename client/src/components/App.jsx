@@ -196,6 +196,8 @@ class App extends React.Component {
   }
   
   render() {
+    this.state
+    console.log();
     const { view } = this.state;
     const { loggedIn } = this.state;
     return (

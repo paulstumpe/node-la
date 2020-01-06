@@ -179,6 +179,7 @@ const getSinglePost = function (req, res) {
     }
   })
     .then((singlePost) => {
+      debugger;
       res.status(200).json({
         data: singlePost
       });
@@ -209,7 +210,15 @@ const usersPosts = function (req, res, next) {
 //! READ POST
 const getPosts = function (req, res, next) {
   const {userId} = req.query;
-  Post.findAll()
+  
+    Post.findAll({
+      include: [
+        {
+          model: User,
+        }
+      ]
+    })
+    .catch((err)=>{err; debugger;})
     .then((response) => {
       res.status(200);
       res.send(JSON.stringify({
