@@ -1,7 +1,6 @@
 import React from 'react';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Typography, Grid, Paper } from '@material-ui/core';
-//all component imports needed for neighborhood selector
 import { FormControl, Select, InputLabel, MenuItem } from '@material-ui/core';
 
 const useStyles = makeStyles(theme => ({

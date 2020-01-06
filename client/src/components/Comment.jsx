@@ -1,10 +1,6 @@
 import React from 'react';
-//style imports for all material ui 
 import { makeStyles } from '@material-ui/core/styles';
-//all component imports needed for navbar
-import { Button } from '@material-ui/core';
-//all component imports needed for login dialog box
-import { TextField, Dialog, DialogActions, DialogContent, DialogTitle } from '@material-ui/core';
+import { TextField, Dialog, DialogActions, DialogContent, DialogTitle, Button } from '@material-ui/core';
 
 const useStyles = makeStyles(() => ({
   root: {
