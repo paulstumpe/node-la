@@ -301,12 +301,7 @@ const getComments = function (req, res, next) {
     //where
     where:{
       postId: postId,
-    },
-    include: [
-      {
-        model: User,
-      }
-    ]
+    }
   })
     .catch((err) => { err; debugger; })
     .then((response) => {
