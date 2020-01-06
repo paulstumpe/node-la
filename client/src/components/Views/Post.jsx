@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import Comment from '../Comment.jsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Paper, Grid, Typography } from '@material-ui/core';
@@ -47,7 +48,7 @@ const Post = ({ changeView, currentPost, createComment, comments, loggedIn }) =>
           <p><Paper className={classes.paper}>
             <Typography variant="h3" style={{ fontWeight: "bolder", textAlign: "center" }}>{currentPost.title}</Typography>
             <Typography variant="h6" color="primary" style={{ fontWeight: "bolder", textAlign: "right" }}>Username</Typography>
-            <Typography variant="subtitle2" color="textSecondary" style={{textAlign: "right" }}>{currentPost.createdAt}</Typography>
+            <Typography variant="subtitle2" color="textSecondary" style={{ textAlign: "right" }}>{moment(currentPost.createdAt).fromNow()}</Typography>
             <Typography variant="h6">{currentPost.postBody}</Typography>
           </Paper></p>
         </Grid>
@@ -58,7 +59,7 @@ const Post = ({ changeView, currentPost, createComment, comments, loggedIn }) =>
         <Grid item xs={12}>
           <Paper className={classes.comment}>
             <Typography variant="h6" color="primary" style={{ fontWeight: "bolder" }}>Username</Typography>
-            <Typography variant="subtitle2" color="textSecondary">{comment.createdAt}</Typography>
+              <Typography variant="subtitle2" color="textSecondary">{moment(comment.createdAt).fromNow()}</Typography>
             <Typography variant="body2">{comment.commentBody}</Typography>
           </Paper>
         </Grid>

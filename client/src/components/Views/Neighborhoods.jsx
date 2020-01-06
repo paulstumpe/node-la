@@ -1,4 +1,5 @@
 import React from 'react';
+import moment from 'moment';
 import { makeStyles } from '@material-ui/core/styles';
 import { Button, Typography, Grid, Paper } from '@material-ui/core';
 import { FormControl, Select, InputLabel, MenuItem } from '@material-ui/core';
@@ -108,7 +109,7 @@ const Neighborhoods = ({ changeView, getHoodPosts, hoodPosts }) => {
                     <Typography variant="body2">{post.body}</Typography>
                     <Typography variant="body2">Username</Typography>
                   </Grid>
-                  <Typography variant="subtitle2" color="textSecondary">{post.createdAt}</Typography>
+                  <Typography variant="subtitle2" color="textSecondary">{moment(post.createdAt).fromNow()}</Typography>
                 </Grid>
               </Grid>
             </Paper>

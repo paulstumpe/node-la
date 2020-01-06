@@ -1,8 +1,8 @@
 import React from 'react';
+import moment from 'moment';
 import CreatePost from '../CreatePost.jsx';
 import { makeStyles } from '@material-ui/core/styles';
 import { Typography, Paper, Grid } from '@material-ui/core';
-import moment from 'moment';
 
 const useStyles = makeStyles(theme => ({
   root: {
