@@ -292,14 +292,25 @@ const createComment = function (req, res) {
 
 // ! READ COMMENT
 const getComments = function (req, res, next) {
+  //const {userId} = req.query;
+
+
+
   const {postId} = req.query;
   Comment.findAll({
     //where
     where:{
       postId: postId,
-    }
+    },
+    include: [
+      {
+        model: User,
+      }
+    ]
   })
+    .catch((err) => { err; debugger; })
     .then((response) => {
+      debugger;
       res.status(200);
       res.send(JSON.stringify({
         status: 'success',
